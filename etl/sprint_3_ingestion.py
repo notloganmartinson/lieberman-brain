@@ -170,7 +170,7 @@ if __name__ == "__main__":
         logging.error(f"Failed to connect to Neo4j. Check credentials. Error: {e}")
         exit(1)
 
-    nodes, edges = load_and_resolve_entities("extracted_subgraphs.jsonl")
+    nodes, edges = load_and_resolve_entities("./data/processed/extracted_subgraphs.jsonl")
     logging.info(f"Resolved to {len(nodes)} unique nodes and {len(edges)} valid edges.")
     generate_embeddings(nodes)
     

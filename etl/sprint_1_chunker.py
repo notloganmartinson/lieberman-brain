@@ -15,7 +15,7 @@ def create_chunks():
     all_chunks = []
     
     # Process YouTube Transcripts
-    youtube_dir = "./youtube"
+    youtube_dir = "./data/youtube"
     if os.path.exists(youtube_dir):
         for filename in os.listdir(youtube_dir):
             if filename.endswith(".txt") and filename != "clean_yt_transcripts.txt":
@@ -33,7 +33,7 @@ def create_chunks():
                     })
                     
     # Process Twitter Frameworks
-    twitter_file = "./tweets/graph_frameworks.txt"
+    twitter_file = "./data/tweets/graph_frameworks.txt"
     if os.path.exists(twitter_file):
         with open(twitter_file, "r", encoding="utf-8") as f:
             content = f.read()
@@ -48,7 +48,7 @@ def create_chunks():
             })
             
     # Process LinkedIn Posts
-    linkedin_file = "./linkedin/clean_linkedin.txt"
+    linkedin_file = "./data/linkedin/clean_linkedin.txt"
     if os.path.exists(linkedin_file):
         with open(linkedin_file, "r", encoding="utf-8") as f:
             content = f.read()
@@ -63,7 +63,7 @@ def create_chunks():
             })
             
     # Export to JSON
-    output_file = "chunked_data.json"
+    output_file = "./data/processed/chunked_data.json"
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(all_chunks, f, indent=4, ensure_ascii=False)
         

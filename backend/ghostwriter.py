@@ -76,7 +76,7 @@ def retrieve_context(query_embedding: List[float], top_k: int = 5) -> str:
     return context_str
 
 def get_tone_context() -> str:
-    tone_file = "tweets/tone_and_replies.txt"
+    tone_file = "../etl/data/tweets/tone_and_replies.txt"
     if os.path.exists(tone_file):
         with open(tone_file, "r", encoding="utf-8") as f:
             return f.read()
