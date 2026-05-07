@@ -5,6 +5,11 @@
 venv/
 .venv/
 env/
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+.env
 
 # Data Files & Graph Models (The "Brain")
 chunked_data.json

@@ -3,7 +3,7 @@ import re
 from typing import List, Dict, Any, Optional
 import json
 from concurrent.futures import ThreadPoolExecutor
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException, Request, File, UploadFile, Form
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from ddgs import DDGS
@@ -12,10 +12,13 @@ from google.genai import types
 from backend.ghostwriter import (
     embed_query,
     retrieve_context,
+    retrieve_document_context,
     get_tone_context,
     generate_content,
-    client
+    client,
+    store_document_chunks
 )
+from backend.document_parser import process_file
 
 # Initialize FastAPI App
 app = FastAPI(title="Lieberman GraphRAG API", description="Better Perplexity Backend")
@@ -31,6 +34,7 @@ app.add_middleware(
 
 class ChatRequest(BaseModel):
     prompt: str
+    session_id: str
     access_token: Optional[str] = None
 
 class Source(BaseModel):
@@ -116,6 +120,26 @@ def fetch_graph_data(prompt: str) -> tuple[str, List[Dict[str, Any]]]:
         logging.error(f"Graph retrieval failed: {e}")
         return "", []
 
+def fetch_document_data(prompt: str, session_id: str) -> tuple[str, List[Dict[str, Any]]]:
+    """Helper function to retrieve full user document context for the thread pool."""
+    try:
+        # We no longer need to embed the prompt for documents since we fetch the full document
+        return retrieve_document_context(session_id)
+    except Exception as e:
+        logging.error(f"Document retrieval failed: {e}")
+        return "", []
+
+@app.post("/upload")
+async def upload_document(session_id: str = Form(...), file: UploadFile = File(...)):
+    try:
+        file_bytes = await file.read()
+        chunks = process_file(file.filename, file_bytes)
+        store_document_chunks(session_id, file.filename, chunks)
+        return {"status": "success", "filename": file.filename, "chunks_processed": len(chunks)}
+    except Exception as e:
+        logging.error(f"Failed to process upload: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
 @app.post("/chat", response_model=ChatResponse)
 def chat_endpoint(request: ChatRequest, req: Request):
     if not request.prompt.strip():
@@ -149,18 +173,20 @@ def chat_endpoint(request: ChatRequest, req: Request):
         logging.info("Intent classified as RESEARCH. Taking deep path.")
         
         # Parallel I/O Retrieval
-        with ThreadPoolExecutor(max_workers=2) as executor:
+        with ThreadPoolExecutor(max_workers=3) as executor:
             future_web = executor.submit(get_web_context, prompt)
             future_graph = executor.submit(fetch_graph_data, prompt)
+            future_doc = executor.submit(fetch_document_data, prompt, request.session_id)
             
             web_context_str, web_sources = future_web.result()
             graph_context_str, graph_sources = future_graph.result()
+            doc_context_str, doc_sources = future_doc.result()
 
         # 3. Tone Context
         tone_str = get_tone_context()
 
         # 4. Combine Contexts for the Generation System Prompt
-        combined_context = f"{web_context_str}\n\n{graph_context_str}"
+        combined_context = f"{web_context_str}\n\n{graph_context_str}\n\n{doc_context_str}"
 
         # 5. Generate Response using the combined context
         try:
@@ -170,7 +196,7 @@ def chat_endpoint(request: ChatRequest, req: Request):
             raise HTTPException(status_code=500, detail="Failed to generate response.")
 
         # Combine sources
-        all_sources = web_sources + graph_sources
+        all_sources = web_sources + graph_sources + doc_sources
 
     return ChatResponse(
         reply=reply,

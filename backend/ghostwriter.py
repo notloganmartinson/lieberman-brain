@@ -10,6 +10,8 @@ from googleapiclient.discovery import build
 from google.oauth2.credentials import Credentials
 from datetime import datetime, timedelta
 import time
+import uuid
+from concurrent.futures import ThreadPoolExecutor
 
 load_dotenv()
 
@@ -33,6 +35,36 @@ def embed_query(query: str) -> List[float]:
         contents=query,
     )
     return response.embeddings[0].values
+
+def retrieve_document_context(session_id: str) -> tuple[str, list]:
+    logging.info(f"Querying Neo4j for full user document context (session: {session_id})...")
+    driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USERNAME, NEO4J_PASSWORD))
+    
+    context_str = ""
+    sources = []
+    with driver.session() as session:
+        query = """
+        MATCH (n:UserDocumentChunk {session_id: $session_id})
+        RETURN n.text AS text, n.filename AS filename
+        """
+        results = session.run(query, session_id=session_id).data()
+        
+        if results:
+            context_str += "=== UPLOADED DOCUMENT CONTEXT ===\n"
+            for res in results:
+                context_str += f"- [From {res['filename']}]: {res['text']}\n"
+            
+            # Since chunks are from the same file(s), let's deduplicate sources by filename
+            unique_filenames = set([res['filename'] for res in results])
+            for filename in unique_filenames:
+                sources.append({
+                    "type": "document",
+                    "title": filename,
+                    "snippet": f"Full document injected ({len(results)} chunks)"
+                })
+                
+    driver.close()
+    return context_str, sources
 
 def retrieve_context(query_embedding: List[float], top_k: int = 5) -> tuple[str, list]:
     logging.info("Querying Neo4j for relevant graph context...")
@@ -215,6 +247,56 @@ You MUST mimic the formatting, hook style, vocabulary, and conversational tone f
                 time.sleep(2**(attempt+1))
                 continue
             raise e
+
+def process_and_store_chunk(chunk: str, session_id: str, filename: str):
+    """Helper function to embed and store a single chunk in Neo4j."""
+    vector = embed_query(chunk)
+    chunk_id = uuid.uuid4().hex
+    
+    driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USERNAME, NEO4J_PASSWORD))
+    with driver.session() as session:
+        cypher = """
+        MERGE (n:UserDocumentChunk {id: $id})
+        SET n.session_id = $session_id,
+            n.filename = $filename,
+            n.text = $text
+        WITH n
+        CALL db.create.setNodeVectorProperty(n, 'embedding', $vector)
+        RETURN n
+        """
+        session.run(
+            cypher,
+            id=chunk_id,
+            session_id=session_id,
+            filename=filename,
+            text=chunk,
+            vector=vector
+        )
+    driver.close()
+
+def store_document_chunks(session_id: str, filename: str, chunks: List[str]):
+    logging.info(f"Storing {len(chunks)} chunks for file {filename} (session: {session_id}) using multithreading...")
+    
+    # Ensure Vector Index exists once before threading
+    driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USERNAME, NEO4J_PASSWORD))
+    with driver.session() as session:
+        session.run(
+            "CREATE VECTOR INDEX user_document_chunk_embedding IF NOT EXISTS "
+            "FOR (n:UserDocumentChunk) ON (n.embedding) "
+            "OPTIONS {indexConfig: {`vector.dimensions`: 768, `vector.similarity_function`: 'cosine'}}"
+        )
+    driver.close()
+    
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        futures = [
+            executor.submit(process_and_store_chunk, chunk, session_id, filename)
+            for chunk in chunks
+        ]
+        # Wait for all to complete and catch exceptions if any
+        for future in futures:
+            future.result()
+            
+    logging.info("Chunks successfully stored in Neo4j.")
 
 def main():
     parser = argparse.ArgumentParser(description="GraphRAG Content Engine for Alex Lieberman")

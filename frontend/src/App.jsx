@@ -10,12 +10,36 @@ function App() {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [accessToken, setAccessToken] = useState(null);
   
+  // Sprint 4: Session and Upload State
+  const [sessionId] = useState(() => crypto.randomUUID());
+  const [isUploading, setIsUploading] = useState(false);
+  const [attachedFile, setAttachedFile] = useState(null);
+  
+  // Feature: Cancellation
+  const [abortController, setAbortController] = useState(null);
+  
   const messagesEndRef = useRef(null);
   const textareaRef = useRef(null);
   const calendarRef = useRef(null);
+  const fileInputRef = useRef(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleCancel = () => {
+    if (abortController) {
+      abortController.abort();
+    }
+    setMessages((prev) => {
+      const newMessages = [...prev];
+      const lastMsg = newMessages[newMessages.length - 1];
+      if (lastMsg && lastMsg.role === 'user') {
+        lastMsg.isCancelled = true;
+      }
+      return newMessages;
+    });
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -48,19 +72,54 @@ function App() {
     }
   };
 
+  const handleFileUpload = async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+    
+    setIsUploading(true);
+    setAttachedFile(file.name);
+    
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('session_id', sessionId);
+    
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+    try {
+      const response = await fetch(`${apiUrl}/upload`, {
+        method: 'POST',
+        body: formData, // the browser will automatically set the correct Content-Type with boundary
+      });
+      
+      if (!response.ok) {
+        throw new Error('Upload failed');
+      }
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      setAttachedFile(null);
+    } finally {
+      setIsUploading(false);
+      if (event.target) {
+        event.target.value = null; // reset input so the same file can be uploaded again if needed
+      }
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!input.trim()) return;
+    if (!input.trim() || isUploading) return;
 
-    const userMessage = { role: 'user', content: input };
+    const userMessage = { role: 'user', content: input, attachment: attachedFile, isCancelled: false };
     setMessages((prev) => [...prev, userMessage]);
     setInput('');
+    setAttachedFile(null); // Clear from input bar
     
     // Reset textarea height after submit
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto';
     }
     
+    const controller = new AbortController();
+    setAbortController(controller);
     setIsLoading(true);
 
     try {
@@ -70,7 +129,8 @@ function App() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ prompt: userMessage.content, access_token: accessToken }),
+        body: JSON.stringify({ prompt: userMessage.content, session_id: sessionId, access_token: accessToken }),
+        signal: controller.signal,
       });
 
       if (!response.ok) {
@@ -91,6 +151,10 @@ function App() {
       
       setMessages((prev) => [...prev, aiMessage]);
     } catch (error) {
+      if (error.name === 'AbortError') {
+        console.log('Request cancelled by user');
+        return;
+      }
       console.error('Error fetching chat response:', error);
       const errorMessage = {
         role: 'ai',
@@ -179,10 +243,18 @@ function App() {
           ) : (
             messages.map((msg, index) => (
               <div key={index} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[85%] rounded-2xl px-5 py-4 ${msg.role === 'user' ? 'bg-blue-600 text-white rounded-br-none' : 'bg-gray-100 text-gray-800 rounded-bl-none'}`}>
+                <div className={`max-w-[85%] rounded-2xl px-5 py-4 ${msg.role === 'user' ? (msg.isCancelled ? 'bg-gray-400 text-white rounded-br-none opacity-80' : 'bg-blue-600 text-white rounded-br-none') : 'bg-gray-100 text-gray-800 rounded-bl-none'}`}>
                   
                   {msg.role === 'user' ? (
-                    <div className="whitespace-pre-wrap">{msg.content}</div>
+                    <div className="flex flex-col items-end">
+                      {msg.attachment && (
+                        <div className={`mb-2 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border ${msg.isCancelled ? 'bg-gray-300 text-gray-600 border-gray-400' : 'bg-blue-500 text-white border-blue-400'}`}>
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg>
+                          {msg.attachment}
+                        </div>
+                      )}
+                      <div className="whitespace-pre-wrap text-right">{msg.content}</div>
+                    </div>
                   ) : (
                     <div className="prose prose-sm md:prose-base max-w-none text-gray-800 prose-p:leading-relaxed prose-pre:bg-gray-800 prose-pre:text-gray-100">
                       {msg.content.startsWith("📅 **[Calendar Agent]**") && (
@@ -262,10 +334,41 @@ function App() {
         {/* Input Area */}
         <div className="bg-white border-t border-gray-200 p-4">
           <div className="max-w-4xl mx-auto w-full">
+            {(attachedFile || isUploading) && (
+              <div className="mb-2 flex items-center">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100">
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg>
+                  {isUploading ? `Uploading ${attachedFile}...` : attachedFile}
+                  {!isUploading && (
+                    <button 
+                      onClick={() => setAttachedFile(null)}
+                      className="ml-1 hover:text-blue-900 focus:outline-none"
+                    >
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                  )}
+                </span>
+              </div>
+            )}
             <form onSubmit={handleSubmit} className="flex relative items-end rounded-xl border border-gray-300 bg-gray-50 overflow-hidden focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 transition-all">
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                className="p-3 text-gray-400 hover:text-blue-600 transition-colors focus:outline-none flex-shrink-0"
+                title="Attach Document"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg>
+              </button>
+              <input 
+                type="file" 
+                ref={fileInputRef} 
+                hidden 
+                accept=".pdf,.docx,.csv,.txt" 
+                onChange={handleFileUpload} 
+              />
               <textarea 
                 ref={textareaRef}
-                className="w-full bg-transparent max-h-32 min-h-[56px] py-3 pl-4 pr-12 outline-none resize-none text-gray-800 placeholder-gray-400 overflow-y-auto"
+                className="w-full bg-transparent max-h-32 min-h-[56px] py-3 pl-2 pr-12 outline-none resize-none text-gray-800 placeholder-gray-400 overflow-y-auto"
                 placeholder="Ask a question..."
                 value={input}
                 onChange={handleInputChange}
@@ -278,13 +381,25 @@ function App() {
                 rows={1}
                 style={{ height: 'auto' }}
               />
-              <button 
-                type="submit" 
-                disabled={!input.trim() || isLoading}
-                className="absolute right-2 bottom-2 p-2 rounded-lg bg-blue-600 text-white disabled:bg-gray-300 disabled:text-gray-500 transition-colors"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-              </button>
+              {isLoading ? (
+                <button 
+                  type="button" 
+                  onClick={handleCancel}
+                  className="absolute right-2 bottom-2 p-2 rounded-lg bg-gray-600 hover:bg-gray-700 text-white transition-colors flex items-center justify-center"
+                  title="Stop generating"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="12" height="12" rx="2" ry="2"></rect></svg>
+                </button>
+              ) : (
+                <button 
+                  type="submit" 
+                  disabled={!input.trim() || isUploading}
+                  className="absolute right-2 bottom-2 p-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white disabled:bg-gray-300 disabled:text-gray-500 transition-colors flex items-center justify-center"
+                  title="Send message"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </button>
+              )}
             </form>
             <div className="text-center mt-2">
                <span className="text-[10px] text-gray-400">Powered by FastAPI, Neo4j, and Gemini</span>
