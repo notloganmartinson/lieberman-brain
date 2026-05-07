@@ -8,7 +8,8 @@ An enterprise-grade GraphRAG (Retrieval-Augmented Generation) architecture upgra
    - **Semantic Router:** Categorizes user intent. Schedule-related requests take a "Fast Path" directly to the Calendar Agent.
    - **Hybrid Retrieval:** Standard research queries trigger a "Deep Path" combining live web search (DuckDuckGo) with Neo4j graph traversal.
    - **Document Ingestion Pipeline:** Users can upload PDF, DOCX, CSV, and TXT files. Chunks are extracted, semantically chunked, and ingested into Neo4j using multithreading (ThreadPoolExecutor) for maximum speed.
-   - **Full Document Context:** User-uploaded documents are dynamically queried from Neo4j based on their `session_id` and the *entire* document is injected into the LLM context window.
+   - **Session-Aware Vector Search:** User-uploaded documents are queried from Neo4j using true cosine similarity vector search scoped to their `session_id`. This ensures high relevance while staying within the LLM's optimal performance window.
+   - **Embedding Optimization:** The RAG pipeline computes the user prompt embedding exactly once and shares it across all parallel retrieval tasks (Graph and Docs), significantly reducing latency and API usage.
    - **GSuite Calendar Agent:** Uses Gemini Function Calling and Google OAuth to natively read, create, and delete events on the user's actual Google Calendar.
    - **Localized Timezone Handling:** Automatically detects and respects the user's local timezone for all calendar operations.
 

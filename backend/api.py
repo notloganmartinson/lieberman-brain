@@ -111,20 +111,18 @@ def get_web_context(query: str, max_results: int = 3) -> tuple[str, List[Dict[st
             fallback_context = "=== WEB CONTEXT ===\n[SYSTEM NOTE: Live web search is currently unavailable due to network limits. You must answer relying EXCLUSIVELY on the Graph Context.]\n"
             return fallback_context, []
 
-def fetch_graph_data(prompt: str) -> tuple[str, List[Dict[str, Any]]]:
-    """Helper function to run embedding and retrieval sequentially for the thread pool."""
+def fetch_graph_data(query_embedding: List[float]) -> tuple[str, List[Dict[str, Any]]]:
+    """Helper function to run retrieval sequentially for the thread pool using pre-computed embedding."""
     try:
-        query_embedding = embed_query(prompt)
         return retrieve_context(query_embedding)
     except Exception as e:
         logging.error(f"Graph retrieval failed: {e}")
         return "", []
 
-def fetch_document_data(prompt: str, session_id: str) -> tuple[str, List[Dict[str, Any]]]:
-    """Helper function to retrieve full user document context for the thread pool."""
+def fetch_document_data(query_embedding: List[float], session_id: str) -> tuple[str, List[Dict[str, Any]]]:
+    """Helper function to retrieve user document context for the thread pool using pre-computed embedding."""
     try:
-        # We no longer need to embed the prompt for documents since we fetch the full document
-        return retrieve_document_context(session_id)
+        return retrieve_document_context(query_embedding, session_id)
     except Exception as e:
         logging.error(f"Document retrieval failed: {e}")
         return "", []
@@ -172,11 +170,14 @@ def chat_endpoint(request: ChatRequest, req: Request):
     else:
         logging.info("Intent classified as RESEARCH. Taking deep path.")
         
+        # Optimize: Compute embedding once and share across parallel tasks
+        query_embedding = embed_query(prompt)
+
         # Parallel I/O Retrieval
         with ThreadPoolExecutor(max_workers=3) as executor:
             future_web = executor.submit(get_web_context, prompt)
-            future_graph = executor.submit(fetch_graph_data, prompt)
-            future_doc = executor.submit(fetch_document_data, prompt, request.session_id)
+            future_graph = executor.submit(fetch_graph_data, query_embedding)
+            future_doc = executor.submit(fetch_document_data, query_embedding, request.session_id)
             
             web_context_str, web_sources = future_web.result()
             graph_context_str, graph_sources = future_graph.result()

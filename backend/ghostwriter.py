@@ -36,8 +36,8 @@ def embed_query(query: str) -> List[float]:
     )
     return response.embeddings[0].values
 
-def retrieve_document_context(session_id: str) -> tuple[str, list]:
-    logging.info(f"Querying Neo4j for full user document context (session: {session_id})...")
+def retrieve_document_context(query_embedding: List[float], session_id: str, top_k: int = 3) -> tuple[str, list]:
+    logging.info(f"Querying Neo4j for vector-ranked user document context (session: {session_id})...")
     driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USERNAME, NEO4J_PASSWORD))
     
     context_str = ""
@@ -45,22 +45,26 @@ def retrieve_document_context(session_id: str) -> tuple[str, list]:
     with driver.session() as session:
         query = """
         MATCH (n:UserDocumentChunk {session_id: $session_id})
-        RETURN n.text AS text, n.filename AS filename
+        WHERE n.embedding IS NOT NULL
+        WITH n, vector.similarity.cosine(n.embedding, $query_embedding) AS score
+        ORDER BY score DESC
+        LIMIT $top_k
+        RETURN n.text AS text, n.filename AS filename, score
         """
-        results = session.run(query, session_id=session_id).data()
+        results = session.run(query, top_k=top_k, query_embedding=query_embedding, session_id=session_id).data()
         
         if results:
             context_str += "=== UPLOADED DOCUMENT CONTEXT ===\n"
             for res in results:
-                context_str += f"- [From {res['filename']}]: {res['text']}\n"
+                context_str += f"- [From {res['filename']} | Score: {res['score']:.4f}]: {res['text']}\n"
             
-            # Since chunks are from the same file(s), let's deduplicate sources by filename
+            # Deduplicate sources by filename
             unique_filenames = set([res['filename'] for res in results])
             for filename in unique_filenames:
                 sources.append({
                     "type": "document",
                     "title": filename,
-                    "snippet": f"Full document injected ({len(results)} chunks)"
+                    "snippet": f"Vector-matched context retrieved from {filename}"
                 })
                 
     driver.close()
