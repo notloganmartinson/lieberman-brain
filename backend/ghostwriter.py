@@ -30,11 +30,12 @@ def embed_query(query: str) -> List[float]:
     )
     return response.embeddings[0].values
 
-def retrieve_context(query_embedding: List[float], top_k: int = 5) -> str:
+def retrieve_context(query_embedding: List[float], top_k: int = 5) -> tuple[str, list]:
     logging.info("Querying Neo4j for relevant graph context...")
     driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USERNAME, NEO4J_PASSWORD))
     
     context_str = ""
+    sources = []
     with driver.session() as session:
         # Step A: Vector Search to find Entry Nodes
         vector_query = """
@@ -46,7 +47,7 @@ def retrieve_context(query_embedding: List[float], top_k: int = 5) -> str:
         
         if not entry_nodes:
             logging.warning("No entry nodes found in the vector search.")
-            return ""
+            return "", []
         
         entry_node_ids = [n["id"] for n in entry_nodes]
         logging.info(f"Found {len(entry_node_ids)} entry nodes via Vector Search.")
@@ -66,6 +67,7 @@ def retrieve_context(query_embedding: List[float], top_k: int = 5) -> str:
         context_str += "Core Concepts Identified:\n"
         for n in entry_nodes:
             context_str += f"- {n['label']}: {n['description']}\n"
+            sources.append({"type": "graph", "label": n['label'], "id": n['id']})
             
         context_str += "\nRelated Concepts & Justifications:\n"
         for r in traversal_results:
@@ -73,16 +75,20 @@ def retrieve_context(query_embedding: List[float], top_k: int = 5) -> str:
             context_str += f"- {r['source']} [{r['relationship']}] {r['target']}{justification}\n"
             
     driver.close()
-    return context_str
+    return context_str, sources
 
 def get_tone_context() -> str:
-    tone_file = "../etl/data/tweets/tone_and_replies.txt"
+    # Use absolute path relative to this script's directory
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    tone_file = os.path.join(base_dir, "..", "etl", "data", "tweets", "tone_and_replies.txt")
     if os.path.exists(tone_file):
         with open(tone_file, "r", encoding="utf-8") as f:
             return f.read()
     else:
         logging.warning(f"Tone file not found at {tone_file}.")
         return ""
+
+import time
 
 def generate_content(query: str, context: str, tone: str) -> str:
     logging.info("Generating content via Gemini...")
@@ -105,15 +111,24 @@ You MUST mimic the formatting, hook style, vocabulary, and conversational tone f
 - Address the user's prompt directly using the context provided.
 """
 
-    response = client.models.generate_content(
-        model='gemini-3.1-flash-lite-preview',
-        contents=query,
-        config=types.GenerateContentConfig(
-            system_instruction=system_prompt,
-            temperature=0.7,
-        ),
-    )
-    return response.text
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            response = client.models.generate_content(
+                model='gemini-3-flash-preview',
+                contents=query,
+                config=types.GenerateContentConfig(
+                    system_instruction=system_prompt,
+                    temperature=0.7,
+                ),
+            )
+            return response.text
+        except Exception as e:
+            if "503" in str(e) and attempt < max_retries - 1:
+                logging.warning(f"Model busy (503). Retrying in {2**(attempt+1)}s...")
+                time.sleep(2**(attempt+1))
+                continue
+            raise e
 
 def main():
     parser = argparse.ArgumentParser(description="GraphRAG Content Engine for Alex Lieberman")
@@ -128,7 +143,7 @@ def main():
         query_embedding = embed_query(args.prompt)
         
         # 2. Retrieve Graph Context
-        context_str = retrieve_context(query_embedding)
+        context_str, sources = retrieve_context(query_embedding)
         
         # 3. Retrieve Tone Context
         tone_str = get_tone_context()
