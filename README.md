@@ -7,10 +7,11 @@ An enterprise-grade GraphRAG (Retrieval-Augmented Generation) architecture upgra
 1. **Backend (FastAPI + Neo4j):**
    - **Semantic Router:** Categorizes user intent. Schedule-related requests take a "Fast Path" directly to the Calendar Agent.
    - **Hybrid Retrieval:** Standard research queries trigger a "Deep Path" combining live web search (DuckDuckGo) with Neo4j graph traversal.
-   - **Agentic Calendar:** Uses Gemini Function Calling to extract event details and manage a virtual calendar.
+   - **GSuite Calendar Agent:** Uses Gemini Function Calling and Google OAuth to natively read, create, and delete events on the user's actual Google Calendar.
 
 2. **Frontend (React + Vite + Tailwind):**
    - **Generative UI:** A clean, minimalistic chat interface that renders real-time citations and a dynamic calendar notification system.
+   - **OAuth Integration:** Secure Google Sign-In button that manages access tokens and securely passes them to the backend API.
    - **Markdown Precision:** Uses `react-markdown` with Tailwind Typography for premium text rendering.
    - **Persona-Grounded:** Grounded in a verified "tone file" to ensure output matches the target's unique cadence and vocabulary.
 
@@ -20,6 +21,7 @@ An enterprise-grade GraphRAG (Retrieval-Augmented Generation) architecture upgra
 - Python 3.12+ & Node.js
 - A Neo4j Aura Database instance
 - A Google Gemini API Key
+- A Google OAuth Client ID (for Calendar access)
 
 ### Installation
 
@@ -28,7 +30,7 @@ An enterprise-grade GraphRAG (Retrieval-Augmented Generation) architecture upgra
    python -m venv venv
    source venv/bin/activate
    pip install -r requirements.txt
-   # Create .env with credentials
+   # Create .env with NEO4J and GEMINI credentials
    python -m uvicorn backend.api:app --reload
    ```
 
@@ -36,6 +38,7 @@ An enterprise-grade GraphRAG (Retrieval-Augmented Generation) architecture upgra
    ```bash
    cd frontend
    npm install
+   # Create .env with VITE_GOOGLE_CLIENT_ID
    npm run dev
    ```
 

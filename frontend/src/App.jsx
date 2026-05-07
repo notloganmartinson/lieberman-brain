@@ -12,6 +12,7 @@ function App() {
   
   const messagesEndRef = useRef(null);
   const textareaRef = useRef(null);
+  const calendarRef = useRef(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -20,6 +21,18 @@ function App() {
   useEffect(() => {
     scrollToBottom();
   }, [messages, isLoading]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (calendarRef.current && !calendarRef.current.contains(event.target)) {
+        setIsCalendarOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const login = useGoogleLogin({
     onSuccess: (tokenResponse) => setAccessToken(tokenResponse.access_token),
@@ -105,16 +118,16 @@ function App() {
             </div>
             
             {/* Calendar UI */}
-            <div className="flex items-center gap-4 relative">
+            <div className="flex items-center gap-4 relative" ref={calendarRef}>
               {!accessToken ? (
                 <button
                   onClick={() => login()}
-                  className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                  className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors whitespace-nowrap"
                 >
                   Sign in with Google
                 </button>
               ) : (
-                <div className="text-sm font-medium text-green-600 px-2">Signed In</div>
+                <div className="text-sm font-medium bg-green-100 text-green-700 px-3 py-1 rounded-full whitespace-nowrap border border-green-200">Calendar Connected</div>
               )}
               <button 
                 onClick={() => setIsCalendarOpen(!isCalendarOpen)}
@@ -131,10 +144,10 @@ function App() {
 
               {/* Dropdown Menu */}
               {isCalendarOpen && (
-                <div className="absolute right-0 mt-2 w-72 bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden z-50 transform origin-top-right transition-all">
+                <div className="absolute top-full right-0 mt-2 w-72 max-w-[calc(100vw-2rem)] bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden z-50 transform origin-top-right transition-all">
                   <div className="px-4 py-3 bg-gray-50 border-b border-gray-100 flex justify-between items-center">
-                    <h3 className="text-sm font-semibold text-gray-800">Scheduled Events</h3>
-                    <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-medium">{events.length}</span>
+                    <h3 className="text-sm font-semibold text-gray-800 whitespace-nowrap">Scheduled Events</h3>
+                    <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-medium ml-2">{events.length}</span>
                   </div>
                   <div className="max-h-64 overflow-y-auto p-2">
                     {events.length === 0 ? (

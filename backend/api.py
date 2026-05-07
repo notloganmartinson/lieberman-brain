@@ -158,7 +158,7 @@ def chat_endpoint(request: ChatRequest):
 
         # 5. Generate Response using the combined context
         try:
-            reply, new_event = generate_content(prompt, combined_context, tone_str, is_schedule_intent=False, access_token=request.access_token)
+            reply, new_event = generate_content(prompt, combined_context, tone_str, is_schedule_intent=False, access_token=access_token)
         except Exception as e:
             logging.error(f"Content generation failed: {e}")
             raise HTTPException(status_code=500, detail="Failed to generate response.")

@@ -136,7 +136,7 @@ You MUST mimic the formatting, hook style, vocabulary, and conversational tone f
                                                   maxResults=10, singleEvents=True,
                                                   orderBy='startTime').execute()
             events = events_result.get('items', [])
-            return {"status": "success", "events": [{"title": e.get('summary', 'Busy'), "start": e['start'].get('dateTime', e['start'].get('date'))} for e in events]}
+            return {"status": "success", "events": [{"id": e['id'], "title": e.get('summary', 'Busy'), "start": e['start'].get('dateTime', e['start'].get('date'))} for e in events]}
         except Exception as e:
             logging.error(f"Calendar list error: {e}")
             return {"status": "error", "message": str(e)}
@@ -146,7 +146,7 @@ You MUST mimic the formatting, hook style, vocabulary, and conversational tone f
         
         Args:
             title: The title of the event.
-            time: The ISO 8601 start time of the event (e.g. '2026-05-08T15:00:00Z').
+            time: The ISO 8601 start time of the event including the timezone offset (e.g. '2026-05-08T15:00:00-05:00'). Do NOT use 'Z'.
         """
         nonlocal captured_event
         if not access_token:
@@ -175,10 +175,28 @@ You MUST mimic the formatting, hook style, vocabulary, and conversational tone f
             logging.error(f"Calendar insert error: {e}")
             return {"status": "error", "message": str(e)}
 
+    def delete_meeting(event_id: str) -> dict:
+        """Deletes an event from the user's Google Calendar.
+        
+        Args:
+            event_id: The unique ID of the event to delete. You MUST use get_upcoming_meetings first to find this ID.
+        """
+        if not access_token:
+            return {"status": "error", "message": "User must sign in with Google first to delete a meeting."}
+        try:
+            creds = Credentials(token=access_token)
+            service = build('calendar', 'v3', credentials=creds)
+            service.events().delete(calendarId='primary', eventId=event_id).execute()
+            logging.info(f"Deleted schedule_event with ID: {event_id}")
+            return {"status": "success", "message": f"Event {event_id} deleted successfully."}
+        except Exception as e:
+            logging.error(f"Calendar delete error: {e}")
+            return {"status": "error", "message": str(e)}
+
     config = types.GenerateContentConfig(
         system_instruction=system_prompt,
         temperature=0.7,
-        tools=[get_upcoming_meetings, schedule_meeting],
+        tools=[get_upcoming_meetings, schedule_meeting, delete_meeting],
         automatic_function_calling=types.AutomaticFunctionCallingConfig(disable=False),
     )
 
