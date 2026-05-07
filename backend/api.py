@@ -66,7 +66,7 @@ def get_web_context(query: str, max_results: int = 3) -> tuple[str, List[Dict[st
         return "", []
 
 @app.post("/chat", response_model=ChatResponse)
-async def chat_endpoint(request: ChatRequest):
+def chat_endpoint(request: ChatRequest):
     if not request.prompt.strip():
         raise HTTPException(status_code=400, detail="Prompt cannot be empty.")
         
