@@ -1,0 +1,2953 @@
+
+---TWEET---
+I made an interactive survival guide for Claude Cowork. 
+
+There are 13 sections covering everything from global instructions to connectors & computer use. 
+
+Here are the highlights (link to the full thing below): 
+
+1) the delegation mindset 
+- cowork is an autonomous agent you delegate to. 
+not a chatbot you guide step-by-step. 
+- describe the outcome, provide context and constraints, let Claude figure out the steps. think "brief a sharp colleague" not "dictate to siri."
+
+2) your first 10 minutes 
+- set global instructions in settings (your role, tone, preferences). 
+- select a working folder. 
+- connect your services (Gmail, Slack, Drive). 
+- install the Chrome extension. 
+
+3) how claude picks its tools 
+- cowork automatically chooses the best tool in this order: MCP connector first (fastest, most reliable), Chrome extension second (for web apps), computer use third (for native desktop apps). 
+
+4) connectors (MCP) 
+- direct API access to 38+ services: Slack, Gmail, Google Calendar, Notion, Linear, HubSpot, Drive, Salesforce, GitHub, Canva, and more. 
+- click "+" > connectors > toggle on > OAuth login. 30 seconds each.
+
+5) file access & folder instructions 
+- grant cowork read/write access to any folder. 
+- drop a CLAUDE.md file in it, Claude reads it automatically every session. put your brand colors, naming conventions, team acronyms, report preferences. like onboarding a new hire once and never repeating yourself.
+
+6) verification 
+- check before you ship add "then review it and fix any issues" to the end of any request. 
+- Claude creates the thing, then self-checks, catches errors, fills gaps, polishes the output. works for reports, emails, spreadsheets.
+
+7) chrome browser integration 
+- install "Claude in Chrome" and cowork can navigate pages, click buttons, fill forms, extract data, take screenshots all inside your browser. 
+- talk to cowork and it uses your Chrome tabs as context.
+
+8) computer use
+- Claude can directly control your desktop. Click, type, scroll, open apps, navigate Finder, Notes, Maps, whatever. You grant permission per app. currently available on Pro and Max plans.
+
+9) plugins & skills 
+- plugins = pre-built bundles of connectors, workflows, and templates for specific use cases. install from the marketplace in one click. 
+- skills = smaller reusable workflows you trigger from chat or create yourself with a SKILL.md file.
+
+10) scheduled tasks & dispatch 
+- schedule recurring tasks: daily briefings at 9am, weekly reports every friday, file cleanup on sundays. 
+- dispatch lets you assign work from your phone: pair via QR code, fire off a task remotely, come back to your desk and it's done.
+
+11) projects & memory 
+- each project gets its own folder, memory, and config. Claude remembers decisions and preferences within the project. 
+- project instructions override global settings. 
+- CLAUDE.md files stack: global + project level.
+
+12) claude vs. cowork vs. claude code 
+- claude: questions, brainstorming, writing, feedback
+- cowork: autonomous execution, file automation, workflows
+- claude code: software development, debugging, refactoring
+
+13) safety & limitations 
+- every sensitive action needs explicit approval. claude prompts you and waits. 
+- 30MB file size limit.
+- no access to passwords or security settings. 
+- always test on a small folder before trusting cowork with anything critical.
+
+complete interactive guide below...
+
+---TWEET---
+Who remembers Scholastic book fairs? They ruled. 
+
+If I hosted one for adults in NYC, who would come?
+
+---TWEET---
+I'm going all-in on content. 
+
+My audience has driven $100 million+ of value across my businesses & I believe trusted distribution is one of the remaining moats in business post-AI. 
+
+To do that, I'm hiring a FT, NYC-based Producer/Editor to own my content strategy & execution. 
+
+I have 750,000 followers across channels, and while growing to 5,000,000 would be cool, the most important goal is maximizing the enterprise value of my content, which means creating a great body of work for the RIGHT people. 
+
+My content consigliere will be responsible for:  
+- Ideating/launching new content franchises. 
+- Managing my content calendar. 
+- Producing/editing videos for my YT channel. 
+- Creating native episodic short-form series. 
+- Ghostwriting posts for social 
+- Coordinating shoots & guests
+
+Apply here: jobs.ashbyhq.com/tenexlabs/8…
+
+---TWEET---
+I turned our AI company’s products into a high-end Japanese restaurant menu.
+
+Why? I was bored and also feel like B2B companies can be boring AF.  
+
+Also, execs constantly asked me what being an AI transformation partner means, so I decided to have fun with it.
+
+Now anytime someone asks, they’re getting dishes from Tenex Kitchen (link to menu below). 
+
+This includes: 
+
+Kama to Tail
+Enterprise AI Diagnostic
+Collar to tail...top-to-bottom scan of your org's AI readiness.
+
+Behind the Counter
+Engineering Org Audit
+We tour the line, the prep stations, the walk-ins. Tell you what's slowing the chefs down.
+
+The Walk-In
+Data Lake Audit
+Every ingredient inventoried...fresh, spoiled, mislabeled.
+
+The Counter Critic
+Pre-Transaction AI Diligence
+For PE/VC...quiet evaluation at the counter before you buy the restaurant.
+
+The Itamae Council
+AI Steering Committee Design
+The master chefs who decide what goes on the menu and run the brigade.
+
+The Executive Omakase
+ELT / C-Suite Training
+Curated, multi-course. Designed for the people at the head table.
+
+Tabehoudai Hack Week
+AI Hack Week
+All-you-can-eat. Five days, one room, a buffet of working prototypes.
+
+The Bento Box
+Function-Specific Training
+Sales, finance, ops, legal — each compartment plated to taste.
+
+Bento for Two
+Standard Engineering Pod
+1 strategist + 1 engineer. Ships full-stack software or AI products — agents, web apps, integrations, internal tools — in 4-week sprints.
+
+The Full Kaiseki
+Enterprise Engineering Program
+Multiple pods running in parallel. For enterprise-scale programs — agent platforms, custom applications, unified data layers, MCP infrastructure — deployed across business units.
+
+Full menu here: tenex-kitchen-menu.vercel.ap…
+
+P.S. I will be launching Tenex kitchen on DoorDash ASAP. Already applied as a merchant.
+
+---TWEET---
+Literally every AI founder I speak with is talking about getting more into services. 
+
+It's a fascinating shift from what has historically been taboo in software.
+
+---TWEET---
+if you talk to people working in their jobs right now they'll say they have no time to build with AI while also doing their full-time job. there's a reason that people say "to be building with AI i need to be unemployed" right now.
+
+---TWEET---
+let's make a bet that humans will still be needed to help companies transform their processes/products in a post-ai world.
+
+---TWEET---
+Most enterprises step on rakes as they try to implement AI. 
+
+And it's mostly not their fault. 
+
+The technology is moving nauseatingly fast, burning everything down and rebuilding isn't always practical or productive, and making sure you're bringing your people along for the ride is mandatory, but far from simple. 
+
+When execs asked me, "What should I do?" my response typically starts with understanding what good looks like by studying the exceptional few that are doing AI transformation the right way. 
+
+One company worth studying is @SharkNinja. 
+
+This $16.2 billion, 4,200-person consumer products behemoth has figured out how to be nimble like a startup, while having the resources & global footprint of a goliath. 
+
+A tactical way they've been able to pull this off is through Jailbreak Live, a four-day company-wide AI hack, where employees across all ranks & functions learn & build with AI to reimagine this 32-year-old company. 
+
+Why is it so damn good? 
+
+Because it's the perfect example of how leadership can truly be a partner to its people in a post-AI world. 
+
+Step 1: Leadership gives everyone the time, space, and tools to understand how AI works & then reimagine core products & processes in a psychologically safe, supported way. Part of the support comes by bringing in AI swat teams (like our team @tenex_labs) to provide individualized/group applied AI guidance to SharkNinja employees. 
+
+Goal: Show (vs. tell) that the c-suite is authentically investing in its employees to be supercharged (vs. replaced) in a post-AI world through resources, tools, time, and expert support. 
+
+Step 2: JailBreak results in hundreds of incredible AI use cases/product ideas geting bubbled up by talented people, who sit closest to the work and the customer. 
+
+Goal: Opensource the creative & ideation process, so that opportunities for the company aren't limited to what's discussed in an ELT meeting. 
+
+Step 3: Leadership bookends this process by prioritizing & resourcing into the use cases/ideas that have opportunity to be productionized and scaled across functions and the company.
+
+Goal:  Further invest resources meritocratically in the ideas that could have the most outsized impact on the company's growth. This means prioritizing and focusing the organization on key AI initiatives, investing $ (through people and technology) in executing those initiatives successfully, and then further supporting employees so that they are enabled by the output of these initiatives. 
+
+This process & SharkNinja's JailBreak Live is going to become the gold standard for how companies run & execute empathetic and effective AI transformation for years to come.
+
+P.S. I want to give a massive shoutout to our team at @tenex_labs, who helped make this AI hackweek initiative wildly impactful. It was a full team effort and the results were profound.
+
+---TWEET---
+no don't think so. but it would be valuable to know who bookmarked posts just like you know who liked your posts.
+
+---TWEET---
+Unbelievable video & partnership with @SharkNinja. 
+
+This sets the standard for enterprise AI transformation & meeting the moment in the right way. 
+
+Why is it so damn good? 
+
+Because it's the perfect example of how leadership can truly be a partner to its people in a post-AI world. 
+
+Step 1: Leadership gives everyone the time, space, and tools to understand how AI works & then reimagine core products & processes in a psychologically safe, supported way. 
+
+Step 2: Hundreds of incredible AI use cases/product ideas get bubbled up by talented people, who sit closest to the work and the customer. 
+
+Step 3: Leadership bookends this process by prioritizing & resourcing into the use cases/ideas that have opportunity to be productionized and scaled across functions and the company. 
+
+This process & SharkNinja's HackWeek is going to become the gold standard for how companies run & execute empathetic and effective AI transformation for years to come.
+
+---TWEET---
+I don't envy preseed founders right now. 
+
+It's such a fun time to build but it's also hard as hell. Moats are fewer and shorter than they've ever been. Which also means you need to be more agile & pivot faster than ever. Hard to do when you're underresourced & underfunded. 
+
+Huge kudos to those battling in the arena given the climate.
+
+---TWEET---
+would be awesome to jam on how you're thinking about AI transformation internally
+
+---TWEET---
+We recently ran a Claude Code workshop for 50 Fortune 500 execs. It was a massive success & we got 1,000+ applicants looking to get AI-fluent. 
+
+So it's time for an encore...
+
+Back by popular demand, we're partnering with @AnthropicAI for another Claude Code workshop. Or should I say WORKSHOPS. 
+
+We're headed to Dallas and Chicago this May, to help engineering leaders transform how their teams ship software. 
+
+Here's the no-brainer pitch: Build with Claude Code. In One Afternoon. For Free. 
+
+This is a hands-on, workshop for EMs, VPs, CTOs, Platform Leads, and Principal Engineers who want to go beyond the demos. 
+
+You'll learn to orchestrate AI agents that actually write and ship code—with best practices for enterprise workflows, live support from Anthropic engineers and partners, and a room full of technical leaders wrestling with the same challenges you are.
+
+100 seats. Up to 2 per org. Free to attend if selected.
+
+What you'll walk away with:
+- Real output shipped during the session—your agents write the code, you direct them
+- Claude Code patterns that work in enterprise environments
+- Direct access to Anthropic engineers and partners for live troubleshooting
+- Peer connections with technical leaders at your level
+
+Request your seat today:
+Chicago, May 14 → lnkd.in/evuPQUqg
+Dallas, May 20 → lnkd.in/eYkcAZw4
+
+---TWEET---
+Holy shit 2,000 people have played my vibe-coded Excel game since I launched it 48 hours ago. 
+
+Quick recap, some new features, and a few learnings: 
+
+I need to hire a Strategic Finance whiz at @tenex_labs asap & I didn't want to make a lame hiring post. So I decided to build a 20-level game, where applicants get to find bugs in broken financial statements for a fake SaaS company. 
+
+The idea was anyone who got to level 20 could get an interview with my co-founder and me and it'd be a way higher fidelity test of their skills than a normal interview. 
+
+I built & refined the game in an hour with 5 steps: 
+1) Gave the initial prompt to Claude Code about the game & forced it to ask me as many questions as possible to have a high fidelity understanding of the build. 
+2) Turned on dangerously skip permissions & let Opus 4.7 cook.
+3) The build was perfect, but the design was meh, so I went to Claude Design in web & had it redesign the landing page & in game UI to polish things up. It crushed. 
+4) I asked Design to prepare a hand-off prompt and zip I could feed to Claude Code to update the front end. 
+5) I launched the app, asked for feedback, and anytime I received feature ideas & issues with the game, I'd sift through them then feed the highest fidelity ones to CC to fix. 
+
+Since launching the game, I've deployed a bunch of fixes and a few fun features...
+
+1) Self-destruct mode - an opt-in challenge mode. Before they start clicking cells, the player chooses a fixed timer—15, 30, or 45 minutes—to find all 20 bugs. If they finish in time, the run is marked 🔥 SURVIVED. If the timer runs out first, the spreadsheet literally cracks and falls off the screen, and the run is marked DETONATED. They can't re-arm; it's a one-shot decision.
+
+2) AI detector - of 2,013 players, 615 have caught at least one bug and 81 have found all 20. Of those that beat the game, roughly half are finance pros and roughly half are clever AI junkies who used claude to beat the game. I built in an AI detector that scans for nefarious game behavior & lets me know. 
+
+3) A 21st bug (aka the Boss Bug) unlocked if—and only if—you fix all 20 bugs. 
+
+Now a few lessons...
+
+- There is so much that is broken about traditional hiring & recruiting processes. With some ingenuity & AI fluency, you can build shit that gets candidates excited & drives free media/marketing outside on top of attracting a lot of applicants. 
+
+- Combining the design-focused harness of Claude Design with the engineering capabilities of Claude Code is super powerful. The one downside is that Claude Design hits usage limits quickly. 
+
+- The software development life cycle has never been faster. And it's never been more costly to have a bottleneck slowing things down. 
+
+If you haven't played the game def take a stab: web-production-42101.up.rail…
+
+And if you have ideas for how to make it better, reply below!
+
+---TWEET---
+25 questions every exec should ask as they transform their business with AI: 
+
+1) How can I tell the difference between AI activity and AI productivity?
+2) Which of our current competitive advantages get eroded or amplified by AI becoming more widely used? 
+3) How do we have a cohesive AI strategy vs. a bunch of experiments with no clear process or rigor? 
+4) What is our responsibility for AI upskilling vs what is our employees? 
+5) How do we make sure we're not just adding AI to existing products/processes but starting from scratch and using first principles to reimagine them?
+6) How do we message our AI strategy in a way that is honest and empathetic to employees?
+7) What does "transforming your business with AI" actually mean? What is the menu of opportunity?
+8) If a task drops from $100 to $1, what’s worth doing that wasn't worth it before?
+9) What is our risk framework for making go/no decisions on AI tooling & systems?
+10) How do we create a culture of experimentation and exploration for employees while mitigating unpalatable security risk?
+11) How do we bubble up AI use cases and opportunities through employees and prioritize and productionize those opportunities from the top?
+12) How does leadership get their hands dirty and walk the walk with AI proficiency and building to effectively lead by example? 
+13) How do we have a data strategy that gets us progressively AI ready, but also doesn't hold us back from beginning our transformation today? 
+14) Where do we start?
+15) How do we build AI systems and solutions that have harnesses that are model agnostic, so we're well positioned for a dynamic and volatile market? 
+16) How do we test for AI curiosity, literacy, and interest during our hiring process? 
+17) How do we make “the bad guys” (IT, legal, compliance) partners and heroes in our AI transformation story? 
+18) How true is the "we can redeploy people to do higher value tasks" narrative? 
+19) How do you transform a company culture to start embracing/experimenting with AI when most employees are apathetic or fearful of AI replacing them?
+20) Should AI transformation be owned by a central team/steerco or embedded in every function?
+21) What are the risks of doing this and not doing this?
+22) How do we find the AI A players and make what they do the "gold standard" across our org?
+23) What other businesses have transformed successfully using AI? What businesses have failed? How can we apply lessons learned from both?
+24) If a competitor launched tomorrow, AI-native from day one, what would they do differently, and why aren't we?
+25) If we become dependent on external AI vendors, what happens if the cost of LLMs skyrockets?
+
+What questions am I missing?
+
+---TWEET---
+We are hiring for a Sr. Director of Strategic Finance at @tenex_labs.
+
+Looking for someone who can ultimately grow into a CFO role long term.
+
+This person will interface with me and my cofounder daily and we will look to them as a strategic partner as our business continues to hyperscale.
+
+If you're a good fit, apply here: jobs.ashbyhq.com/tenexlabs/b…
+
+If you're not, send your smartest excel junkie our way.
+
+---TWEET---
+My 9-month-old daughter led an interview with me and my co-founder today. 
+
+She simply pounded cheerios as she stared deep into the candidate's soul.
+
+I've created a monster.
+
+---TWEET---
+I'm 37 today and I have reached the point in life where all I want for my birthday is some extra time with my kids and a great night of sleep 😂
+
+---TWEET---
+In a 100 km race, which do you think wins? 
+
++ Lion
++ Human 
++ Camel 
++ Horse 
++ Wolf
++ Cheetah
++ Ostrich 
++ Bear
+
+---TWEET---
+If you want to train AI to write emails that actually sound like you, this one's for you.
+
+I built a Claude Cowork / Code skill that reads your sent emails, reverse-engineers your voice, and packages it into a reusable .skill file you can trigger any time.
+
+What's inside:
+• Connecting Gmail in Cowork (draft-only, never sends)
+• The exact prompt I use (dictated live with Whisper Flow)
+• Why sent emails beat any style guide you could write
+• Skills vs. plugins and when to use each
+• How to share a .skill file with anyone
+
+If you've ever rewritten half an AI draft to sound like yourself, this kills that loop.
+
+---TWEET---
+about to prompt claude: "what are 6 unsexy skills? build them now. don't make mistakes." 
+
+as a bonus, might add "include a skill that helps you not make mistakes"
+
+---TWEET---
+ATTN NYC FOUNDERS
+
+Starter Story (800K+ subscribers) is going to be filming out there in a couple weeks.
+
+Please DM me or reply to this tweet with any people you know building cool businesses out there.
+
+Thanks!
+
+---TWEET---
+After 4 years of building my own small businesses, I wanted to work on something big again. Something difficult and built for the long term (100+ years).
+
+Last month, I rejoined @mercury to help start our internal AI team.
+
+Most banks look and feel the same. They don't feel like they've truly innovated/changed. It kinda makes sense.
+
+Banks are the custodians of people's money and there's a world of regulators to make sure you're actually doing this responsibly. Without them, people would risk large scales of damage to our wider financial system.
+
+Recent AI innovations can lead to blindspots and customer risk when done poorly. Regulators rightfully don't let banks skim past this just because everyone else is doing it.
+
+This puts Mercury in a unique position. We'll need to use AI to 10x our speed (like everyone else) while also using AI to find new ways to control risks in a way that keeps up with the pace of the technology.
+
+Being back at Mercury, flying home from an on-site, I'm excited to see that our culture of being willing to do hard things, the right way, is still there.
+
+Most AI innovators/builders choose to opt out of heavily regulated spaces like this. Makes sense honestly lol.
+
+But if for some reason you're kinda weird and drawn to building cool stuff on hard mode, let me know.
+
+My team is hiring and it's going to be really rewarding when our kids' kids choose Mercury.
+
+---TWEET---
+Getting requests from clients for real AI implementation partners.  
+
+All I'm finding are Vibe Code Bros or Zapier shops.  
+
+I want firms that: 
+• Diagnose the actual business problem 
+• Bring PMs + Product + AI talent 
+• Build + integrate into real workflows 
+• Care about security and stability 
+• Ship and iterate  
+
+Who’s best in the world at this?
+
+---TWEET---
+Everyone's going to become a programmer
+
+Just like how we went from no one writing to everyone writing, after the printing press
+
+---TWEET---
+So may good questions here - your last one is one I think about a ton. This is where being able to orchestrate agents at scale in a model agnostic way matters a ton for any business investing in agentic operations. You need orchestration, auditability, and cryptographic identity all model agnostic so you can adapt as the market changes.
+
+Anthropic and Open AI are obviously highly dominant but I believe there are several dark horse models coming that can still disrupt these players and your architecture for your agent operations need to be able to support them all. 
+
+I’ll think through other questions to add to your list but from our experience working w customers this is a pretty extensive / accurate list :)
+
+---TWEET---
+These are great for any builder.  Asking great questions is critical for the feedback loops necessary to maintain a scalable modern operating approach.  
+
+Warren Berger wrote about this: "A More Beautiful Question"
+
+fast, dynamic feedback loop win.
+
+---TWEET---
+Question 8 is the most underutilized strategic lens in the entire list. When the cost of a task drops by 99% the right question is not how to do the same things cheaper but what becomes worth doing for the first time. Personalization at scale, continuous monitoring, exhaustive scenario testing, verification across every output rather than sampling. The transformation is not in the efficiency gains on existing work. It is in the category of work that was previously economically impossible and is now trivially affordable. Most AI transformation conversations never get there because they start with the current task list and work backwards rather than starting with what the new cost structure makes possible and working forwards.
+
+---TWEET---
+Here are 5 which i have seen while building AI GTM systems as ai-native orgs...
+
+1/ What if the right org chart isn't humans with AI tools, but AI partners that own entire functions with humans in a coordination layer above them? Are we even willing to consider that?
+
+2/ For each function in our business, what would it mean for an AI partner to "own" it end to end versus a human owning it with AI support? Where does each model actually win?
+
+3/ How do we give an AI system the context, memory, and identity it needs to operate like a real owner of a function instead of a one-off task runner?
+
+4/ When AI partners need to hand work off to each other (research feeds sales, sales feeds product, product feeds content), what's the routing logic? Who designs that chain of command?
+
+5/ What does "built" mean for an AI partner versus "in progress"? If we don't define the components clearly (instructions, SOP, current state, recurring work), every project stays half-finished forever.
+
+---TWEET---
+The 25th point is the point I would ask first. You got rid of 3rd party components to reduce your recurring cost and reduce COGS but now replacing with something that is going to clutch your growth much tighter. Is it the big LLMs and you would choose SLMs.
+
+---TWEET---
+If we're worried about AI replacing jobs, maybe we're looking at it backwards - what if AI is actually a retention tool by making work more engaging? #AI
+
+---TWEET---
+26) how do we measure the compound effect of AI over time, not just first-order efficiency gains but second and third-order impacts on speed, quality, and what becomes possible? most execs measure AI like a cost savings tool when the real value is in the things you couldn't do before at all.
+
+---TWEET---
+The question nobody asks: which of these decisions can I delegate to someone who will actually run them down? Most execs collect frameworks. Few assign owners.
+
+---TWEET---
+Excellent summary. 
+
+One big gap IMO: We talk about “AI literacy”  but not role-specific training.
+
+Handing everyone the most powerful tool ever built without teaching how to use it in their actual job is a massive blind spot.
+
+---TWEET---
+Question 1 is the only one that matters right now. Most companies can't tell the difference between AI activity and AI productivity. They measure tokens processed, not deals closed.
+
+---TWEET---
+this is a very solid list.  I love that you are covering the human factors not just the tech ones.
+
+---TWEET---
+How do you define success in with AI? What is the new success criteria?
+
+What are you willing to break or lose with A.I adoption? Conversely, what are you not willing to risk or lose?
+
+In terms of security: what guardrails are you putting in place? Where or what is too far?
+
+---TWEET---
+Strategic AI adoption requires measuring productivity outcomes, not just activity metrics. Those competitive advantage questions reveal transformation opportunities across operations.
+
+---TWEET---
+the missing question is how your team stops API costs from spiraling once these tools run autonomously. people build AI budgets assuming humans will just type prompts but agents loop in the background all day and you will easily burn 50 to 100 dollars a month per user on a premium model. you have to route simple tasks to cheap models and save the expensive ones for heavy reasoning or the math just falls apart
+
+---TWEET---
+Q1 is the sleeper hit here — AI activity vs AI productivity is one of the most underrated distinctions in business right now. Most teams are busy with AI but very few have actually compounded their output.
+
+---TWEET---
+I may be crazy, but I built a 20-level excel game to find a Finance savant to join our company. 
+
+The game is called "Bug Hunt," and any excel junkie interested in becoming the leader of our Finance function at @tenex_labs can play. 
+
+If you complete all 20 levels, you are accelerated to a final round interview with my cofounder & me. 
+
+Here's how it works: 
+1) Open the model. It's a live workbook in your browser with the "finished" financials of a fictitious SaaS company.
+2) Mark every bug. Click any cell, write one line of reasoning. Submit when you're sure. There are 20 total. 
+3) Climb the tiers. Each correct catch unlocks the next. The final three are veteran CFO-level. 
+4) Hit level 20 & auto-move to a final round interview. 
+
+Play the game: web-production-42101.up.rail…
+
+P.S. you can still apply to be our Senior Director of Strategic Finance (application below) the normal way, it's just a little less fun & you don't get an auto-invite to final round.
+
+---TWEET---
+you should have your daughter on customer discovery calls. 
+
+watch your close rate skyrocket
+
+---TWEET---
+Looks like Goodwill reverted backed to 320 for some reason, and won’t reflect the write down on the b/s.
+
+Non-current lease in the balance sheet won’t allow the corrected adjustment from the lease schedule (no error that says the number is correct, just does nothing).
+
+Some confusion in how this works because there isn’t a place in the I/S for the goodwill write down either. 
+
+Seems like it’s wrong that there are no changes to be made to deferred revenue, when there would be a $2M revenue adjustment on the I/S for the license that would go back into DR.
+
+Spotted a few others but these are the big ones!
+
+---TWEET---
+The rules never stated that you can’t use AI to beat the game and that if you did beat it you were guaranteed a final round interview… still waiting for that invite. 
+
+To be clear I am not qualified nor do I want the job but, I definitely want a few mins of your time to chat
+
+---TWEET---
+I kept trying to add the goodwill write down to the other non cash items on the CF statement, did you fix that? Also, should add checks that the balance sheet ties and calculated cash balance ties to the balance sheet cash
+
+---TWEET---
+Product market fit! Time to switch careers. 
+
+Indie Excel game dev. First of its kind.
+
+---TWEET---
+Then site is good and fun. I played with it. I wish you well with finding the right person and like the activity as the lead-in, but given the breadth/depth of the role you’re describing combined with FT in-office in nyc I’d adjust your budget up by ~40-50%.
+
+---TWEET---
+having the grid physically shatter when time expires is something microsoft just needs to build into the base version of excel
+
+---TWEET---
+Two thousand people chose Excel game over literally everything else. That's the hiring post.
+
+---TWEET---
+the services multiplier is wild but global gdp is an aggressive scale for any software company
+
+---TWEET---
+How are you weighing regional risks to watch?Interesting bullish stance global GDP TAM sets a bold horizon.
+
+---TWEET---
+When the product becomes 'anything that requires thinking,' the market stops having a ceiling. The question isn't whether the TAM is real — it's whether you can get distribution before everyone else figures it out.
+
+---TWEET---
+This sounds amazing. I would love to find a way to host something like this with my global emerging tech x leadership think tank of top enterprise execs, The Institute of Tomorrow. Our members would love this.
+
+---TWEET---
+Would like to get involved here! Let me know if you’re open to an outside contributor
+
+---TWEET---
+claude code workshops sound useful but do these sessions really help teams ship faster or just teach them to rely on prompts
+
+---TWEET---
+orchestrating agents for real software workflows is a completely different game than just prompt engineering in a chat box. most teams hit a wall when they realize vanilla setups don't have persistent memory or stealth browser access for research. if you want this running 24/7 without a make mini or a vps you have to babysit, managed hosting is the only way to actually ship at scale.
+
+---TWEET---
+2 years ago, I was directionless, unmotivated, and uninspired.
+
+I had just sold my business, didn’t know who I was outside of it, and questioned everything about my abilities. 
+
+Today, I’m the cofounder of @tenex_labs, an enterprise AI transformation firm that will be my life’s work and quite possibly a $100 billion company. 
+
+I’ve seen what can happen when the right founders are disrupting the right market at the right time. And this is that.
+
+Quick recap: 
+- We’re on pace to be a Series D startup size by end of year. 
+- Large portfolio of Fortune 500 clients. 
+- Best-in-class talent from Amazon, Salesforce, McKinsey, Bain, BCG, Bain, Accenture, Deloitte, EY.
+- True AI engineering & transformation acceleration at a time where there’s a lot of snake oil. 
+
+I’ve been reflecting on the small & large  decisions that have allowed us to compound like crazy the last 12 months. Here it goes: 
+
+1. The only thing that matters 
+
+The first time I read @pmarca’s essay “Only Thing That Matters,” I couldn’t get myself to agree. I’ve always preached “people are your most important asset,” so I couldn’t square up how something could be more important. 
+
+But he was right. Market is everything. If you pick the right market, it’s like a black hole that sucks in everything else you need to build a great business: bags of money and world class talent. 
+
+At Tenex, we’re blessed to be building in a space where our TAM is global GDP and every business on earth needs help becoming AI-native. 
+
+2. Cofounder market fit 
+
+In personal life and founder life you make one choice that changes the entire trajectory of your story: the person you pick to write that story with.
+
+And in business, the choice is actually a set of many micro decisions that compound into either the best move of your career or the worst. 
+
+Choice 1: Am I value aligned with this person?
+Choice 2: Do we have complementary spikes?
+Choice 3: Do we have compatible communication styles? 
+Choice 4: Do our skills have product market fit with the market we’re in? 
+
+I’m super blessed to be a yes on all 4 with my cofounder @ArmanHezarkhani. 
+
+3. Stack hubs in GTM 
+
+Marketing is nothing more than a game of hubs-and-spokes.
+
+Hubs are digital or physical channels that give you leveraged access to spokes, your ideal end customer.
+
+Your job as a marketer is to define your budget, know the portfolio of hubs at your disposal, determine which hubs to invest in, know when to triple down on outperformers, and proactively stack hubs so new ones perform as old ones plateau. 
+
+I, as a creator, was the first hub for Tenex. We knew I’d drive a bunch of business, but we also knew that my distribution would plateau just like any marketing channel on earth. That’s why we’ve stacked a host of hubs like channel partners (I.e @AnthropicAI, @OpenAI, @vercel), branded media (newsletters, playbooks) and creators (@JJEnglert). 
+
+4. Novelty is good for ego bad for business 
+
+We purposefully kept as many variables constant while building this business.
+
+We’re not reinventing strategy consulting.
+We’re not reinventing engineering-as-a-service.
+We’re not reinventing change management. 
+We’re not reinventing forward deployed engineering.
+
+We are only innovating on 1-2 vectors that we believe are mission critical to build a post-AI McKinsey with the set of constraints we face.
+
+One example is pay. We are the first company in the world to pay engineers like salespeople. Every engineer at Tenex has a standard minimum guarantee and is paid uncapped variable upside based on output (read: Storypoints completed). We picked this comp model for 3 reasons: it allows us to hire top talent without raising money, it incentivizes our engineers to gain leverage through optimized AI workflows, and it aligns incentives with clients desires. 
+
+5. We’ll eat your scraps 
+
+Whether it’s less sexy work (like AI trainings) or a a less sexy category (like being a dev shop), when others have shied away, we’ve leaned in. 
+
+Is a training business a great business? No. But being the best at teaching executives and companies how to use AI is an incredible way to build trust and identify other opportunities in a client’s business. 
+
+Am I proud of Tenex partly being a dev shop? Absofuckinglutely. Dev shops get an unnecessarily bad rap, and we’re the one to rebrand them. Companies come to us for engineering help, not because they want cheap offshore talent, but because they want worldclass AI engineers they couldn’t hire on their own. 
+
+We are in the business of selling trust and however we can get an edge or opportunity to do so, we’ll say yes all day.
+
+---TWEET---
+If anyone wants to meet in New York City today, I'll be at Dark Matter Coffee, NYC, from 11:00AM to 12:30!
+maps.app.goo.gl/jsEibm89kF2A…
+
+---TWEET---
+come hang at @tenex_labs tmrw. can share the biggest lessons/challenges from helping Fortune 500's w/ AI transformation
+
+---TWEET---
+Just glad to see you happy and motivated. I know you would have crushed anything that you put your mind to. Passion was the missing piece and now you’ve found it!
+
+---TWEET---
+Everyone I know is starting an AI implementation firm. 
+
+There are going to be more AI implementation firms than companies to implement AI at.
+
+---TWEET---
+Just co-led an AI training for 20 execs from one of the largest financial institutions in the world.
+
+We covered a lot of ground from how LLMs work to what an agent is and how to transform your work, but here were the biggest aha moments for the group. 
+
+1. Historically, leaders had to think about allocating budget for headcount and software. Now, token budget must be a serious consideration. Do you set limits per employee? How do you measure the ROI on your token budget? How much budget do you allocate to which employees? How do employees know which models to use to most efficiently spend tokens? 
+
+2. The models are good enough now, where most bad output is user error not technology error. And a major contributor to user error is bad context management. To have clean context hygiene you need to understand what the context window is, why separation of concerns is important, and how tactically to treat context like a precious resource.
+
+3. A skill is a scary word. It’s nothing more than an SOP. If you asked an intern to write a one page document breaking down their step-by-step process for building a great deck, you’ve created a skill. A skill is a long prompt that codifies a repeatable process, can be edited as you see fit, and helps to generate more predictable output that meets your standards. 
+
+4. Saying you use AI gets you style points. But the real unlock is in process mapping. During the workshop, we asked every exec to write out one of their/their teams key processes step by step and place an E (eliminate), A (automate), or D (delegate) next to each step. The exercise not only revealed opportunities for AI, but also existing inefficiencies that have gone undetected.
+
+5. Claude Cowork opened their eyes. Many people still see AI as a chat-based supercharged Google. They may have heard the phrase “agent,” but they assume it’s sophisticated tech reserved for engineers. Cowork is the layperson’s gateway drug to agents, showing the possibility of building web apps, ai workflows, and live artifacts in a single place.
+
+6. Every company talks about the “bad guys”slowing down AI transformation: legal, compliance, and IT/security. One of the most powerful choices leadership can make is flipping the script and making them the heroes of the transformation story. Help them understand the risks of doing nothing, work with them to make calculated bets, and celebrate them publicly when they partner to drive transformation with speed.
+
+7. Getting an AI system to perform requires four things to go right: picking the right model, teaching it the right process, providing the right context, and establishing the right guardrails. Most people assume the right model is 99% of it, they don’t think enough about giving the right context, and they don’t realize the right guardrails make things like hallucinations and mistakes less dangerous.
+
+---TWEET---
+I'm am very happy. 
+
+Why? 
+
+As a kid, I was bullied. I felt unintelligent, unattractive, incapable.
+
+As a young adult, I lost my dad. He passed away suddenly. He was perfectly healthy. Dropped dead from a stroke.
+
+And most recently, my wife and I experienced a pregnancy loss in the third trimester of her first pregnancy.
+
+I've had all these life experiences where I've known what it is to be unhappy. 
+
+And so today to have an amazing family, to have a beautiful daughter, to do work that I love, I'm just immensely grateful for it.
+
+Finally, I believe gratitude is a muscle that you can build. 
+
+And if built properly, I think it entirely changes the way that you view the world, no matter what you actually experience. 
+
+You can find gratitude in the smallest moments, in the biggest moments. And it's been incredibly powerful in my life.
+
+❤️
+
+---TWEET---
+"As a kid, I was bullied. Unintelligent, unattractive, incapable. And as an adult, I still am."
+
+Just kidding. I was telling Austin the other day its so amazing seeing you thrive. You seem super happy. You're a great guy and love seeing you kick so much ass.
+
+---TWEET---
+The 15 most talent-dense Tech Companies from @paraformtalent 
+
+Some good names on this list
+
+---TWEET---
+lol i'm all for early stage startups, but how does a company with 20 employees make the talent density list
+
+---TWEET---
+This is great - but I got tired of copying and pasting into ChatGPT for the answers.
+
+---TWEET---
+I completed all levels 😎
+I am not looking for a job and definitely not a fit for this role, even though I was one of the best excel guys in multiple teams I worked in.
+I'd love to chat with you about the AI coding tools/ agents you use, how you plan AI token budgets, hiring junior vs mid senior vs senior talent etc.
+
+---TWEET---
+Not sure if this is true...If AI can create a problem then AI can solve that problem. 
+
+I used Claude to solve this. I can haz job now?
+
+---TWEET---
+Great if you're both meticulous and knowledgeable - pity that the cruelty lies in the spreadsheet and not in the difficulty. Great way to cut to the chase. Good luck with the recruitment.
+
+---TWEET---
+This was one of the best online treasure hunts I have completed in my life!
+
+Have a lot to share from my experience solving this. @businessbarista Kudos to the team for creating this!
+
+---TWEET---
+For some reasons it won't accept the correction in cell C6 Cash Flow Statement (you found the right cell but that correction isn't right)
+
+---TWEET---
+This was quite fun to do over coffee this morning! I do think that the “last 3” were considerably easier than deciding whether something was wrong with the SBC weighting on hard coded cells though
+
+---TWEET---
+How might one get access to your final batch of candidates? Share the love, Alex!
+
+---TWEET---
+The firm you're describing charges $400/hr and has a 6-month waitlist.
+
+The vibe code bros exist because that firm isn't accessible to most clients.
+
+The market isn't broken. It's just stratified.
+
+---TWEET---
+We are building them by the dozens:
+
+- x.com/MatznerJon/status/2048…
+
+- x.com/MatznerJon/status/2047…
+
+---TWEET---
+Gotta get to know @JoshmCreamer and @g2parker from First Principles Transfomation
+
+---TWEET---
+not the implementation firm you're after, but we do on-prem inference infra for businesses, achieving local capabilities beyond what best OSS model deployments can offer. 
+Lowering hallucinations and filtering prompts injections are some of the things we are very good at: showcase.fortytwo.network/#p…
+
+---TWEET---
+I have some capacity to help or I can refer you to people in my ai community that can help with this
+
+---TWEET---
+We’ve done this for 150+ clients and have 40+ testimonials. From SMEs to Fortune 500s. Just search “OpsKings” on YT.
+
+---TWEET---
+Hello 👋 
+
+I am the best in the world at taking on client problems as my own & getting to the root of things in a continuous & sustainable manner. 
+
+However, I am solo.
+
+---TWEET---
+@seeko_so is the best in the world at this :)
+
+- founder (me) has spent 10+ years in AI
+- best-in-class talent
+- ex-founder of one of first AI eval startups (Autoblocks)
+- move fast in 2-4 week sprints
+- simple pricing
+
+DM me if interested!
+
+---TWEET---
+Pretty similar to SWD outsourcing:
+look at roots - diagnose the actual business problem and deliver working solution
+
+---TWEET---
+Eng + Prod duo here. Let me know what verticals or job functions, will send prototypes and case studies.
+
+---TWEET---
+happy to chat. We are building enterprise AI for financial services and regulated industries. Our AI systems are live in production at dozens of customers. some of them for over an year 
+
+Loved your work at Appsumo btw. what an amazing concept
+
+---TWEET---
+I’ve implemented systems in 300+ companies over 24 years and was a leader in my field for over a decade. Former Apple Genius and Apple Certified Technical Coordinator. I help small businesses (up to 50 employees) implement AI into real workflows, and I handle the executive loop from business need to rollout to iteration. Happy to talk if I can help. OpenClaw and Obsidian are my jam.
+
+---TWEET---
+I already do this.  I use rust and direct ai calls with custom RAG/db and microservices solutions based on the actual business case.   I wouldnt trust people who werent fullstack for at least 8 years
+
+---TWEET---
+Half our portfolio is $100M mid-markets transforming with revops and automations (including agents)
+
+---TWEET---
+Look at @TryBrowzer - that’s what we help with. We understand your workflows, get them documented & then fit automations that align with the way you work, while keeping security intact.
+
+---TWEET---
+I do this! I built:
+
+- An AI copilot in Spring 2023 that reduced our support tickets by thousands per month. 
+- The first autonomous coach agent in 2023. 
+- A coding agent before codex existed which today writes the code for all our products. 
+
+I guide companies on how to effectively identify and implement processes with AI through either their existing team or helping them hire the right team.
+
+---TWEET---
+The second I stopped caring about being the best as an individual and started caring about being the best as a team is the second I became a far better entrepreneur. 
+
+Ego strangles entrepreneurs from reaching their true ceiling.
+
+---TWEET---
+Okay, Claude Design slaps. 
+
+I wanted to recreate the @posthog aesthetic but for @tenex_labs (to build an internal library of curated AI resources for new employees).
+
+Here was the input and the output with 30 seconds of tweaking.
+
+---TWEET---
+i can't believe how quickly you turned this around. literally just came out a few hours ago bro
+
+---TWEET---
+what was the company you used or process you went about to analyze your genome & understand your predispositions/mutations? would love to do it.
+
+---TWEET---
+Someone is going to build a worldclass “Brain” for enterprises & make a stupid amount of money. 
+
+Why? As @da_fant said, “coding w ai is solved bc all context is in the git repo. knowledge work is difficult bc context is spread out. an ai system that creates a git repo w all context for a knowledge worker will be able to 100% automate the work.”
+
+When companies talk about being data ready for AI, this is what they’re implicitly saying.
+
+Engineering has been prepared for this moment for a long time because of the deterministic nature of code, the centralization/versioning of data (read: GitHub), and AI tools that are largely build by engineers for engineers.
+
+But for the rest of white collar work, there’s a TON of catching up to do to properly harness the power of the technology.
+
+The big challenge here, and why no one has truly cracked the code for "an ai system that creates a git repo w all context for a knowledge worker" is because unlike code, most knowledge is 1) distributed, 2) unstructured, and 3) unverifiable.
+
+It's distributed: transcripts live in Granola. Documents in Notion. Customer Data in Hubspot. ERP. Emails. Slack messages. Random spreadsheets. SOP docs. Etc. Etc.
+
+Building an ingestion engine that connects to all of your disparate data sources and auto-updates based on the shelf-life of the data is the first, and frankly, easiest step of the process.
+
+Next, it's unstructured: let's say I want to create a proposal for a potential client. To nail the proposal, I want it to pull important information from a variety of sources. The specific asks & background from our initial sales call. Previous proposals to anchor ourselves to a proven format. And completed sprint boards from Linear, so the pricing & timeline in the document is grounded in truth.
+
+Whether it's a thoughtful filesystem (a la Obsidian) or an OpenClaw-esque memory structure, the brain needs to be great at self-organizing in a thoughtful schema. This is very hard, especially if you want to build a generalizable brain that can be shaped to an array of different enterprises.
+
+And finally, most knowledge is unverifiable: writing a function, running a unit test, and seeing if the code works is easy. It works or it doesn't. Using AI to accelerate your content creation process is highly subjective. What is a good/bad idea? Is the content in your voice or not? Does it feel like slop or novel? Answering these questions are both difficult and non-verifiable.
+
+That same system described above doesn't just have to be great at organizing & forming coherent relationships, but it also has to be great at self-improving based on feedback from the user. Memory systems (like those introduced by OpenClaw) are great to a point, but as you scale the corpus of data within your company's brain, things like compaction and cleaning become wildly important to avoid the needle in the haystack problem.
+
+Someone is going to figure out how to solve this problem, and when they do, not only will they make a shit ton of money, but they'll be robinhood for knowledge workers, enabling non-engineers to enjoy the sort of leverage that only technical folks have felt for the last few years.
+
+---TWEET---
+smart. every software company in a post-AI world has to be headless to allow users to create & work on the surfaces that are most convenient for them. this is the way.
+
+---TWEET---
+I love quarterly offsites.
+
+Call me a sicko, but there’s nothing better than a technology-free, 8-hour block to steer your business from 10,000 ft rather than worry about day-to-day blocking and tackling.
+
+Here’s the agenda I’m using to crush tomorrow's leadership offsite, so we can keep hyper-scaling @tenex_labs. Feel free to steal it:
+
+Segue: 15 min
+Previous Quarter Review: 30 minutes
+Review the VTO: 60 minutes
+Break: 15 minutes
+IDS: 90 minutes
+Lunch: 30 minutes
+IDS: 90 minutes
+Break: 15 minutes
+Establish Quarterly Goals: 120 minutes
+Next steps: 10 minutes
+Conclude: 5 minutes
+
+Section-by-section breakdown:
+
+Segue
+Take 5 minutes, each person should share:
+- Best business and personal news in the last 90 days
+- What is working in the organization
+- What is not working in the organization
+- Expectations for the day
+
+Previous Quarter Review
+a) Review key metrics:
+- Revenue
+- COGS
+- Gross Profit
+- Gross Margin
+- Operating Expenses
+- Net Profit
+
+b) Review quarterly goals (company & individual):
+- Go through all goals and state Done or Not Done. No other commentary at this point.
+- Discuss why the missed goals weren’t completed.
+- Decide what you want to do with each goal. You have 4 options:
+• Carry the goal forward to the next quarter.
+• If the goal is 95 percent complete, completing the last 5 percent simply becomes an action item for the To-Do List.
+• Reassign the goal to someone else.
+• Delete the goal. 
+
+VTO review
+VTO stands for Vision, Traction, Organizer. It is the one-page window into the most important parts of your business.
+- Core values
+- Core focus
+- Marketing strategy
+- 10-year BHAG
+- 3-year picture
+- 1-year plan
+- 90-day goals (rocks)
+
+This is your opportunity to review & revise any parts of the VTO as leadership.
+
+Identify, Discuss, Solve
+- List out all of the key issues that are top of mind
+- Prioritize the 3 biggest issues
+- Go through IDS for each issue:
+• Clearly identify the real issue, because the stated problem is rarely the real one.
+• For discuss, you get everything on the table in an open environment where nothing is sacred.
+• Solve becomes an action item for someone to do. The item ends up on the To-Do List, and when the action item is completed, the issue goes away forever.
+- Assign remaining issues to team members as to-dos
+
+Next Quarter Goals
+- Team lists everything on the whiteboard that has to be accomplished in the next 90 days.
+- Make as many passes at the list as necessary until you’re down to three to seven.
+- Once you’ve narrowed your list:
+• Set the date that the goal is due
+• Make the goal specific, measurable, and attainable. 
+- Set individual goals
+• Once the company goals are set, the members of the leadership team each set their own goals.
+• They first carry forward any company goals that they own to their individual list of goals and then come up with their most important three to seven.
+- Create the goals sheet
+• At the top are the organization’s Goals, and below that are each of the leadership team’s individuals Goals. This Goal Sheet is brought into your weekly meetings to review your Goals.
+
+Next Steps
+1. List out todos
+2. Assign owners & dates for completion
+
+Conclude
+- Everyone takes 2 minutes and writes down:
+• Feedback on the meeting
+• Whether their expectations were met or not
+• Their rating on the meeting from 1 to 10
+- Everyone shares what they wrote down
+
+Also shoutout to @EOSWorldwide, the operating model we use to run these offsites and our entire company.
+
+---TWEET---
+god bless her for saying yes to the stash. 
+
+just playing, beautiful couple, so happy for you man.
+
+---TWEET---
+In case it’s helpful, I shared this AI cheat sheet with a bunch of exec friends today: 
+
+1. Start with a tight leash
+
+Think of AI like a genius intern. High agency, high intelligence, and raw horsepower. The worst thing you can do when the genius intern joins your company is give them 5 tasks and say “go.” They’ll end up doing a C+ job at each task. Instead, you start with a very short leash, give them one low-stakes job, and offer enough feedback until you they’ve reached your standard of good & earned some trust. Then you extend the leash little-by-little, as quantity of feedback goes down, quality of work goes up, and trust grows. 
+
+2. Don’t half-ass the onboarding 
+
+“AI is broken. It either hallucinates or generates shitty output.” Can’t tell you how many times friends have shared this complaint with me. What they fail to mention is they gave the model shitty context, their prompt was the byproduct of lackluster thinking, and after getting their first response from a model 10 minutes in they assumed the technology was trash and didn’t push through. Going back to the intern corollary, in what world would you expect them to perform well if you don’t provide great context, if you aren’t clear with your expectations, and if you don’t give feedback until they know what good looks like? 
+
+3. Assume it’s a you issue
+
+In 2022, GPT 3.5 could run for 36 seconds and complete a job successfully 50% of the time. Just 4 years later, Opus 4.6 can run for 10 hours and achieve the same success rate. Every 7 months, the time an AI agent can run for & achieve equivalent completion is doubling. What does this mean? With every day that passes, you can expect AI to behave far more like quality labor and less like advanced autocomplete. And you can safely assume that poor performance is more likely human skill issue and less likely faulty technology. 
+
+4. Fire yourself out of your job 
+
+The best way to AI proof yourself is to fire yourself before AI does. It’s like those Chinese finger traps. The only way to escape is to fight your instinct to resist, but instead lean in. Get into the cycle of abstraction. Identify a process. Offload it to AI chunk-by-chunk. Push to the point of discomfort, where you serve as the first mile and final mile for the AI. And then move to the next process. Force yourself to elevate to the layer of direction & taste.
+
+5. Get to good, then codify
+
+Bear with me on the genius intern analogy once more. Once you’ve followed rule 1 and 2, and your AI has produced an output that you consider great, codify it. In business terms, we call this an SOP. In AI, it’s a skill. Just as you use an SOP to ramp up future hires and get them to generate quality, standardized work, you use an AI skill to get a probabilistic technology to behave more deterministically.  
+
+6. Make your AI proactive 
+
+Once you’ve got the skill schtick down, it’s time to go from reactive to proactive. Create a scheduled task where Claude/ChatGPT scans your conversations and connected apps (Gmail, slack, etc) from the previous week and recommends repetitive work that should be turned into repeatable skills. Now, your work gets automated while you sleep.
+
+7. Less reading more building
+
+I love consuming content about AI. Karpathy and 3Blue1Brown help me understand the technology. Levie helps me apply it. But this is all secondary to being in the trenches, firing up the tools and learning the old fashioned way…by building. By struggling, failing, hitting errors, asking Claude what went wrong, and pushing through to the point of success. No better teacher.
+
+8. Spend more time with engineers
+
+My AI aha moment happened 18 months ago. I watched 2 ai-enabled engineers put out as much quality software as 8 peers coding the old-fashioned way. I quickly realized this technology is not evenly distributed. If you want to know what AI will be capable of in knowledge work 6 months from now, velcro yourself to your technical friends and see how they’re using the technology today.
+
+---TWEET---
+Anthropic released Claude Design TODAY and it's now accessible at claude.ai/design
+
+I spent the last hour giving it a first look, and shared my thoughts and results in the video below.
+
+This is a BIG drop. This is a new design surface from Anthropic, and it changes what "AI design" means.
+
+Short version: Claude can now design. Not "describe a design." Not "generate an image of a design."
+
+Actual production work — prototypes, wireframes, high-fidelity mocks, slide decks, landing pages — editable, on-brand, and ready to hand off.
+
+Here's what stood out on first look:
+
+→ Real design surfaces
+Prototypes, wireframes, hi-fi, and slide decks — each with templates and proper structure, not just pretty screenshots.
+
+→ Comment-based edits
+Leave a comment on any element and Claude revises it. This is the Figma-style review loop, with the designer replaced by a model that works at 3am.
+
+→ Brand design systems
+You can feed it your system — colors, type, components — and it actually respects it. On-brand output, not generic AI slop.
+
+→ Export anywhere
+PDF, PowerPoint, Canva, standalone HTML. Plus a built-in handoff straight to Claude Code for engineers to implement.
+
+→ Import from real tools
+Figma, GitHub, and captured web elements come in as inputs. Your existing work is the starting line, not the discard pile.
+
+→ Collaboration
+Share links for view / comment / edit — the exact tier system teams already expect.
+
+What I tested on Opus 4.7:
+
+• A 5-slide deck generated from a single screenshot. Claude asked clarifying questions BEFORE generating and shipped speaker notes by default.
+
+• A landing page build. Solid first pass, real components, real layout logic.
+
+• Multiple chats running concurrently. You can parallelize design work across threads like a small team.
+
+Why this matters:
+PMs, founders, marketers, and non-engineers can now create designs that engineers can actually ship with production-ready output and a claude code handoff built in.
+
+The gap between "I have an idea" and "here's a working prototype with my brand applied" just collapsed to minutes.
+
+Full walkthrough, live demos, exports, and honest takes on where it breaks below.
+
+P.S.
+• This is an Anthropic Labs product — NOT GA yet.
+• Claude Design is currently webapp only (no API), and does not yet support the Analytics API, Compliance API, or cost/usage reporting.
+
+• Availability:
+   – Default ON for Pro / Max / Team
+   – Default OFF for Enterprise
+
+   Enterprise admins can toggle it on via RBAC in console
+   (comes with a ~$20/user initial credit).
+
+---TWEET---
+There's literally no greater joy than getting a belly laugh out of my 9-month-old daughter.
+
+It's a 1-of-1 experience.
+
+---TWEET---
+We have $3.3T in market cap represented by 35 C-suite leaders in this room.
+
+In partnership with @AnthropicAI, we at @tenex_labs are training these leaders on how to best leverage Claude Code across their org in engineering and non-engineering contexts.
+
+I have such deep respect for these execs. It can be daunting as a non-engineer to be working in the terminal, hearing phrases like agent & repo, but the best way to drive change with this technology is to understand the technology. 
+
+No matter what people say, AI transformation starts from the top.
+
+If leaders don’t believe that we are at the precipice of a tidal wave in technology, their business is cooked.
+
+If leaders don’t champion the urgency and necessity of transformation, their business is cooked.
+
+And one of the best ways to be the leader your company needs today is to lead from the trenches, not the top.
+
+---TWEET---
+Yesterday I had the honor of being the lead instructor for a Claude Code Workshop with @AnthropicAI .
+
+Our team at @tenex_labs really came together for this one. We had nearly everyone show up to support. Engineers, strategists, founders. All hands on deck.
+
+The room was unreal. Leaders from the NBA, MLB, NHL, PGA, some of the largest banks in the world (JP Morgan Chase, Capital One, etc.), Fortune 500 companies across all industries, etc. All of them trying to solve the same problem: how do you leverage agentic orchestration for engineers and non-developers alike? How do you train the next wave of knowledge workers on AI?
+
+People were swapping real playbooks. Discussing what this shift actually means for their teams and how they're implementing it today.
+
+It was really eye opening, and gave me so much more knowledge to push back into my videos, community, and ongoing training work.
+
+I also want to shout out my team. This event got much bigger than it originally set out to be when I was planning it by myself last month. But even in the wake of that, and with our reputation with some of the biggest accounts in the world on the line, they could have easily switched me out to bring in more firepower. Except they did the opposite. They supported me, they helped me rehearse, they lifted me up, and they helped me spread my wings.
+
+At one point I was in a room with both of our partners re-running the opening segment over and over until we got it right after hours.
+
+We had a senior team member serving as the coat attendant on the day. Our top engineering managers helping around the room getting Claude Code set up. The list goes on.
+
+And I think that's what stands out most to me. When so much was on the line, this team didn't panic. We came together, supported each other, egos aside, and all worked together to deliver a world class training for some of the best executives in the world, in New York City, for one of the hottest AI companies in the world.
+
+How lucky am I to be doing what I love, with such an amazing team and partners? Man, life is good right now.
+
+Thank you for all of your support 💙
+
+---TWEET---
+Quirky habit of mine: any time I enjoy the product of a founder I know, I instantly fire off a quick DM to them. 
+
+Today it was:
+- @AthleticBrewing CEO for their unreal Lime beer
+- Faherty Brand CEO for the world’s softest button down
+
+I can tell you from experience that no matter how big your company gets, hearing how your creation enriched a human’s life never gets old.
+
+---TWEET---
+I want my company to be the forever home for any technical founders looking for their next thing.
+
+I know how hard it is to rediscover purpose and passion after sprinting on your own business.
+
+It took me 2+ years to find myself and I believe that I can help speed that process up for all that need it.
+
+75% of our AI engineers at @tenex_labs are exited or former founders and they say its the best combo of entrepreneurial energy/upside with mitigated risk they’ve ever experienced.
+
+Whether you’re recently exited and looking for your next hill to climb or have given every ounce of energy to your startup and are ready to move on, shoot me a DM.
+
+I’ll be waiting and am ready to help.
+
+---TWEET---
+The person who owns AI for your company says a ton about it. 
+
+CEO: "This is a inflection point in our company's history. We need to do this or we'll fall behind"
+CFO: "We need to squeeze $50m in EBITDA and this is how we'll do it." 
+CTO/CIO: "AI transformation is a technology problem & we need it to be owned by our technology leader." 
+CISO: "This is a data security nightmare, we need to make sure the inmates don't run the asylum." 
+CHRO: "This is a people/process issue, AI is just small part of what is wholesale organizational change." 
+Head of AI: "Former CTO or CIO with a fancy schmancy title."
+
+---TWEET---
+Simple but powerful interview question I end most interviews with:
+
+“On a scale of 1-10, how would you rate how this interview went? Why didn’t you pick one higher or lower?”
+
+It’s such a good gauge of humility, self-awareness, and growth-mindset, three of the traits I look for in every person I hire.
+
+---TWEET---
+Our company @tenex_labs turned 1 last week.
+
+It’s been the craziest professional year of my life building the premier AI transformation & engineering partner for the enterprise.
+
+A longer post with reflections and lessons to come, but wanted to share a highlight reel:
+
+- Hit the average revenue of a Series B company without raising a dollar
+- Helping drive successful AI transformation for enterprises worth a combined $500bn in market cap
+- Partnerships with @AnthropicAI, @Lovable, @vercel, @OpenAI, and @LangChain 
+- Team of 30 high agency, high horsepower, humble ai engineers, ai strategists, and recruiters trying to change the world together 
+- Training C-suite leaders from @jpmorgan, @McKesson, @Citadel, @Mets, @nytimes, @Hertz, and more.
+
+It’s such a privilege to help companies and leaders finish on the right side of a post-AI society, and the work only gets more important and higher stakes from here.
+
+Brick by brick.
+
+---TWEET---
+We started an AI founder twitter group... reply with "I'm in" if you're a founder and want to be added
+
+---TWEET---
+"Someone is going to build a worldclass 'Brain' for enterprises & make a stupid amount of money."
+
+We did. It's actually called Brain @businessbarista.
+
+100+ connected apps. 100% work context. Acts ambiently throughout your workflows.
+
+And it just one-shotted this response to your message (watch video 👇)
+
+Let me know if you want a personal demo.
+
+---TWEET---
+Your company needs an "AI Bulldozer."
+
+The biggest problem in AI adoption is not technology.
+
+It's people.
+
+If you company doesn't have a bulldozer actively unblocking AI projects, you have to be that bulldozer.
+
+---TWEET---
+I'm lucky enough to have a great doctor and access to excellent Bay Area medical care. I've taken lots of standard screening tests over the years and have tried lots of "health tech" devices and tools.
+
+With all this said, by far the most useful preventative medical advice that I've ever received has come from unleashing coding agents on my genome, having them investigate my specific mutations, and having them recommend specific follow-on tests and treatments.
+
+Population averages are population averages, but we ourselves are not averages. For example, it turns out that I probably have a 30x(!) higher-than-average predisposition to melanoma. Fortunately, there are both specific supplements that help counteract the particular mutations I have, and of course I can significantly dial up my screening frequency. So, this is very useful to know.
+
+I don't know exactly how much the analysis cost, but probably less than $100. Sequencing my genome cost a few hundred dollars.
+
+(One often sees papers and articles claiming that models aren't very good at medical reasoning. These analyses are usually based on employing several-year-old models, which is a kind of ludicrous malpractice. It is true that you still have to carefully monitor the agents' reasoning, and they do on occasion jump to conclusions or skip steps, requiring some nudging and re-steering. But, overall, they are almost literally infinitely better for this kind of work than what one can otherwise obtain today.)
+
+There are still lots of questions about how this will diffuse and get adopted, but it seems very clear that medical practice is about to improve enormously. Exciting times!
+
+---TWEET---
+You can do the sequencing yourself really easily. There are loads of companies that will sequence your full genome with a mail kit for <$150. 
+
+I'd start there since you can take that file to any analysis tool you want
+
+---TWEET---
+sequencing.com
+
+nebula.org/
+
+mynucleus.com
+
+These are the main companies sequencing your whole genome. You can download it after they finish sequencing it. However the files are ~258GB so you’ll need a decent computer for them. If you want help lmk
+
+---TWEET---
+Go to humans.inc. Order a kit, we’ll send you custom genetic instructions you can share with any AI. Your dna stays safe in our PBC.
+
+---TWEET---
+Alex, I’m looking for the same thing. Did you get the question answered? I’d like to analyze my genome and understand my predispositions/mutations.
+
+---TWEET---
+Been circling this for weeks. Sequencing is the easy $300 it’s the analysis after that that feels more daunting. Anyone actually figured out a repeatable process for turning the VCF into something useful, or is everyone just freestyling with Claude?
+
+---TWEET---
+Sounds crazy, but most knowledge workers still view AI as a chat-based tool for asking questions & writing emails. 
+
+My little party trick is I just show them this chart then help them pick their jaw up off the floor.
+
+LLMs have gone from completing tasks that take 4 seconds to 10 hrs and that time is doubling EVERY 7 months.
+
+---TWEET---
+Coaches, players, and analysts are going to be studying this team for decades. Did it against all odds. 
+
+Who has it better than us? NOBODY. 
+
+Cc: @CoachDustyMay, @Yaxel_Lendeborg, @morezjohnsonJr, @ElliotCadeau, @roddy_gayle, @NimariBurnett, @mckenneytrey1
+
+---TWEET---
+My favorite daily Claude prompt:
+
+ “Ask me more questions. Fill in all gaps. Don’t make any dangerous assumptions.” 
+
+I’ll reply with this dozens of times in a single session. 
+
+By the end, I’ve dumped in so much context, one-shotting everything from presentations to web apps to content posts becomes the standard.
+
+---TWEET---
+Dusty May is not only one of the best coaches in college basketball, he’s one of my greatest mentors as an entrepreneur.
+
+I’ve never met him, but I’ve learned more from his interviews and press conferences than most “business idols.”
+
+Just some of the lessons I’ve taken from him:
+
+- Always have respect for your competition
+- Find special, overlooked talent and helping them realize their ceiling
+- Create a custom system around the team you build that enhances their strengths and mitigates their weakness 
+- Create a culture of togetherness and unselfishness where everyone puts the team above themselves
+- Source internal motivation to dig deep and give it your all each and every game
+- The story behind the metrics matters way more than the metrics themselves
+- Be obsessed with your craft and a student of its history
+- Wish those who leave your organization well & use it as an opportunity to seek underdiscovered talent or promote from within 
+- The job isn’t done
+
+---TWEET---
+This Friday we're cohosting an invite-only Claude Code Workshop for enterprise leaders with @AnthropicAI in NYC. 
+
+The guest list is insane. Small selection: 
+- CEO of JP Morgan Wealth Management
+- Chief Advertising Officer of NY Times
+- Head of AI Transformation at Salesforce
+- Head of Data at Starwood Capital
+- Head of Innovation at San Antonio Spurs
+- AI Lead at PGA Tour
+
+It's a 5-hour intensive for Fortune 500 leaders to learn how to harness the power of Claude Code through building real applications with Claude Code. 
+
+We currently have 2 spots left for the event.
+
+If you are an enterprise leader & want to be considered, sign-up below. 
+
+If you know an enterprise leader & think they'd love this, have them sign-up below.
+
+---TWEET---
+I'm shocked someone hasn't launched the Parent Olympics. 
+
+Represent your country in a host of physically grueling events: 
+- Child pool toss
+- Airport luggage carry
+- Dirty diaper trick shot
+- 1 mile stroller race
+- Shopping cart 100m dash
+
+I will stop at nothing to be on Team USA if this becomes a thing.
+
+---TWEET---
+Stupid simple, but most powerful Claude skill I run. 
+
+Every Monday at 9am, Cowork scans my Linear, Notion, Slack, Gmail, and Cowork sessions to identify repeatable processes that should become skills.
+
+It allows me to proactively become more AI-native without making it my full-time job.
+
+---TWEET---
+1) build sales decks for customers that require few to no changes in 15 min
+2) triage my emails once per week
+3) full content creation pipeline that pulls ideas from notion, slack, gmail
+
+---TWEET---
+What’s your simplest, yet high fidelity definition of an agent harness?
+
+Get this question from non-technical execs all the time
+
+---TWEET---
+In Boston for a few days. 
+
+HMU if u wanna talk biz & AI and then whatever else normal people talk about.
+
+---TWEET---
+Just spoke to a multibillion dollar company that completely closes their office for a week so that employees can hack with AI and reimagine products/processes in their work.
+
+This is what authentic AI leadership looks like. 
+
+The typical big co will have their CEO make some empty AI declaration on an earnings call. They’ll provision a bunch of Claude/GPT licenses. Then they’ll implicitly say “figure it out. You’re on your own.”
+
+It doesn’t just hurt the employee. It hurts the company. 
+
+Employees are the lifeblood of organizational change. Leaders should give the tools, the training, and the time to allow rank-and-file to bubble up inspiration for better products and a better way of working, then take these sparks & use influence & leverage to scale their impact orgwide. 
+
+Top-down transformation alone never works.
+
+---TWEET---
+I'd rather learn about AI from a 23-year-old engineer who turned their company's inbound sales process into an end-to-end agent than the CEO of almost every Fortune 50 business.
+
+Don't get me wrong...career experience is important & having deep industry/business expertise is a must to build performant agentic systems, but the way you stay on the frontier is by learning from people building on the frontier.
+
+---TWEET---
+am i an idiot? i cant figure out how to use this thing. im in claude dont see the option.
+
+---TWEET---
+got it. crazy how they release this and dont share the website. i had to search for 10 minutes lol
+
+---TWEET---
+This is something a lot of founders needs to hear. Thanks for your honesty Alex! 
+
+- Sydney
+
+---TWEET---
+Ego isn’t always bad, but unchecked it often limits feedback absorption and team efficiency in early stage founders
+
+---TWEET---
+Most founders never make this switch. They just build a company that's really an expensive monument to themselves.
+
+---TWEET---
+the moment you realize you're not the ceiling but the floor is when things really start to move
+
+---TWEET---
+When you insist on being the 'smartest person in the room,' you effectively tell your team to stop thinking. 
+
+You stop getting their best ideas and start getting their 'compliance.'
+
+---TWEET---
+Shifting focus from individual wins to collective outcomes builds leverage that scales beyond one person.
+
+---TWEET---
+This one is porwerful! The moment you drop ego and optimize for the team, your ceiling disappears.
+
+---TWEET---
+Ego kills startups faster than bad markets. In MENA, scaling impact requires partnerships, not solo heroics.
+
+---TWEET---
+#5 is the one most people skip — codifying what good looks like is the difference between a one-off win and a repeatable system.
+
+---TWEET---
+AI is no longer just a genius confined to language.
+
+It’s now a genius employee that can do work for you.
+
+---TWEET---
+Using AI the right way is also a learnt skill. That's why those who think they can just vibe code an app or software eventually end up with a bunch of annoying bugs.
+
+---TWEET---
+I sooooo agree with spending more time with engineers. The more I spend time with my dev friends, the better I get at using AI in marketing workflows.
+
+Could have taken a few weeks or so to get there myself and just nerding out w engineers accelerates growth
+
+x.com/vikravardhan/status/20…
+
+---TWEET---
+2300+ builders at @UMich in Ann Arbor this week. The biggest @ClawCon yet. 
+
+Maize looks good on a lobster. 
+
+Some special things coming. Stay tuned.🦞
+
+luma.com/clawconmichigan
+
+---TWEET---
+This will be solved by the AI labs. You can't build AGI without solving memory and continuous learning, which is what you're talking about. This era of 'someone is gonna build a SaaS app to solve this' is retarded and dead. A generalisabile intelligence, by definition, is a superset of all possible permutations of programs. It can create and solve anything.
+
+---TWEET---
+That’s literally what my company is building in stealth since 2023. 
+
+We will go live in a few weeks.
+
+---TWEET---
+I think the solve is some sort of human in the loop model first. 
+
+engineers didn't solve context by ingesting all their notes into a vector db. they built commit by commit with a human reviewing every merge.
+
+the context didn't exist until the process forced it to be explicit. git didn't capture knowledge — it created the conditions for knowledge to be capturable.
+
+knowledge work needs that same primitive. a forcing function that makes context explicit, verifiable, and owned before you try to automate on top of it.
+
+the brain comes after.
+
+---TWEET---
+GitHub works because code is deterministic and verifiable.
+
+In knowledge work, the unit isn’t code:it’s decisions.
+
+So the real system its not a repo of context.
+It’s a system that tracks decisions, outcomes, and continuously updates how it operates.
+Less “store everything,” more “learn what matters.” Bit of intuition, and learning from experience. thats what we build in midbrain.ai
+
+---TWEET---
+YES -- if I were starting my own company right now, I would probably mandate github for all of our knowledge base with regular syncs of external data (emails, etc) to provide rich context. 
+
+Only issue is that git has no notion of RBAC or permissioning built into the filesystem
+
+---TWEET---
+The unverifiable problem is what keeps killing these products. 
+
+Code either runs or it doesn't. "Is this proposal good" has no unit test and that gap is enormous when you're trying to build something that self-improves.
+
+---TWEET---
+This does that. Exactly a fit repo with all the knowledge. Updates daily. github.com/reposwarm/reposwa…
+
+---TWEET---
+knowledge work is a mess of clutter and noise, making it hard for ai to create context and automate tasks
+
+---TWEET---
+x.com/prukalpa/status/204477… 
+
+An AI system that creates a git repo with all context for a knowledge worker" — that's the context layer. 
+
+We've been building it for two years. The missing piece most people underestimate: it's not just organizing knowledge. It's making it versioned, governed, portable, and shared across every agent. 
+
+Like GitHub, but for business context.
+
+---TWEET---
+yeah we're getting very close at @CastosHQ - i've spent dozens of hours and millions of tokens on it so far.  when it's done it'll literally 100x the amount of value we can deliver to customers.
+
+---TWEET---
+The word you are looking for “enterprise general intelligence” and it’s exactly what we are building over at sentra.app
+
+---TWEET---
+We’re taking at stab for growth with @boki_io. We’ve driven growth manually as an agency doing 7-fig, now to survive, building this gtm world model is our only option.
+
+---TWEET---
+So basically a virtual FS that layers all contextual/mem info from external services & coordinates + organizes it in some way?
+
+---TWEET---
+We completely agree. Finance is getting its "GitHub" moment.
+
+Analysts spend more time assembling information than acting on it. Getting AI to reliably pull it all together, organize it intelligently, and produce high-quality output is a major unlock. The firms figuring this out have a massive advantage.
+
+---TWEET---
+Hey Alex, 
+
+You are on point. We have built exactly what you are describing. 
+
+Checkout platformpilot.ai 
+
+Sending you a DM
+
+---TWEET---
+Welcome Salesforce Headless 360: No Browser Required!  Our API is the UI. Entire Salesforce & Agentforce & Slack platforms are now exposed as APIs, MCP, & CLI. All AI agents can access data, workflows, and tasks directly in Slack, Voice, or anywhere else with Salesforce Headless 360. Faster builds, agentic everything. 🚀
+#Salesforce #Agentforce #AI
+venturebeat.com/ai/salesforc…
+
+---TWEET---
+Agreed on the must-be-headless read. The open question is what happens to the P&L of software companies that are headless-compatible but still priced per seat. That gap is where the real valuation compression shows up over the next two quarters.
+
+---TWEET---
+Is it? How would anyone know if they are using Salesforce or Hubspot if they interact with it through an API?
+
+This weakens their moat tbh
+
+---TWEET---
+Made this 30 second video of Claude Design just by pasting in the Claude Design blog post and some tweets from @AnthropicAI employees
+
+Kinda speechless.
+
+---TWEET---
+where do i send the invoice for my 6 months of time in not just building it but also the thought process and wireframes that led to the end result?
+
+---TWEET---
+Wait until you find out it literally does the same design for everyone and this will soon be looked upon as unoriginal
+
+---TWEET---
+claude design translates the components to working code without the manual CSS layer. that's the shift
+
+---TWEET---
+It’s honestly incredible 
+
+The opportunities to make money before less AI aware people and businesses catch on are huge
+
+---TWEET---
+Wow - Impressive. Going to try it out later. I haven’t been able to get better UI design in CC than the CC -> Paper.design -> CC loop yet.
+
+---TWEET---
+Yeah, copying was never a hard part, coming up with something unique, that's another beast
+
+---TWEET---
+I've been using this a ton and it's pretty much my favorite. I'm using it for everything — one-pagers, slide decks, even modernizing crusty old PPTs by just dropping them in. Fastest "rough idea → shareable artifact" loop I've found.
+
+---TWEET---
+you can see the miss aligned tab, the 4 different font families, the default line-spacing/leading, and the 2 emdashes....
+
+---TWEET---
+Here's what nobody's talking about with this.
+
+It's not the design. It's what happens to your brain after.
+
+I had a moment like this a few weeks ago. Built something that would've taken me days, maybe a week if I'm honest and it was done before I finished my coffee.
+
+And I didn't feel excited.
+
+I felt uncomfortable.
+
+Because in that moment, something shifted that I can't shift back.
+
+My tolerance for friction just… broke.
+
+Every slow process in my business suddenly felt heavier. Every "that's just how long it takes" excuse I'd been telling myself for years stopped making sense.
+
+Not because I learned something new.
+
+Because I experienced something fast enough that the old speed became unbearable.
+
+And that's the part I think people are underestimating about tools like this.
+
+It's not about saving time on one project.
+
+It's about what happens to your standards after.
+
+You start looking at everything differently.
+
+The proposal that takes two days. The report that takes all morning. The onboarding doc you rebuild from scratch every time a new client signs.
+
+None of it feels acceptable anymore.
+
+Not because you're impatient.
+
+Because you've seen what's possible when the friction disappears.
+
+And that quiet, permanent shift in what you're willing to tolerate…
+
+That's going to reshape more businesses than any single feature ever could.
+
+The companies that move fastest won't be the ones with the best tools.
+
+They'll be the ones whose people experienced this moment early enough to rebuild everything around it.
+
+---TWEET---
+Pretty cool how fast you can spin up internal tools now. We use similar stuff to build onboarding resources for new VAs
+
+---TWEET---
+That 30-second PostHog aesthetic recreation is clean. Claude Design's ability to nail brand consistency without endless back-and-forth is exactly what you need when building internal resources fast.
+
+---TWEET---
+This is where design tools become onboarding tools. The output matters, but the hidden win is making judgment legible.
+
+---TWEET---
+Been building full apps this way for a while now. It changed how I think about design, honestly. I used to just go with whatever looked decent first. Now I'll try 4 or 5 completely different directions because it takes like two minutes each.
+
+---TWEET---
+you werent the only one... i literally had to double confirm with claude on app to see if it was only a web thing..
+
+---TWEET---
+Yes, besides that they're literally hiring people in other knowledge work areas to do some stuff in order to get data needed for training.
+
+---TWEET---
+100%. Same could be said for a calculator where you don’t show your work. Any tech is garbage in = garbage out.
+
+---TWEET---
+hey guys i created a 20 page brief on this tweet i want to post plz read it and let me know wat you think
+
+---TWEET---
+Agreed.
+
+We have been building with AI agents at Hechura.ai for a couple of years now, and can confirm that building with agents is a skill.
+
+You can’t just give everyone Claude subs and think it will just work out.
+
+You have to know how to wield the tool to use the tool.
+
+---TWEET---
+That's just poor prompting. People are using AI but not training themselves/getting training on how to use it. That's what leads to slop #humanslop
+
+---TWEET---
+Totally. It's also exhasterbated by naive senior leadership pushes to "adopt AI" instead of thoughtful solutions to business constraint which may, or may not, be leveraging machine learning.
+
+---TWEET---
+Breaking: Roofers reporting new nail-guns are breaking after hitting just a few nails, causing roofs to take longer to build than with a hammer.
+
+---TWEET---
+what do you mean this is ABSOLUTELY a technology issue. if AI is ever going to be what tech companies want it to be than it should enable ANYONE, regardless of training to build anything they want
+
+---TWEET---
+Answering the question from VCs of “why can’t vibe coders at enterprise businesses just build this for themselves?”
+
+Anyone can build anything - no debate there. But are all of these vibe coded projects going to be maintained when the builders get promoted, leave, get fired, etc?
+
+---TWEET---
+But that’s how humans normally respond to technology.  By abdicating their own thinking.  Thou shalt not make a machine in the likeness of the human mind.  Primary commandment in Dune for exactly this reason.
+
+---TWEET---
+Doesn't matter if the results are the same. That's the same as saying, "put the cigarettes on display, if you're tempted it's your problem"
+
+---TWEET---
+This is just clickbait nonsense. A better headline would be "CEOs struggling to realize that frontier models that perform incredibly well for tech work may not work as well for non-tech sectors (yet)" 
+
+The bigger story is that it's only a matter of time before the frontier models build industry-specific products that nuke these office workers roles. Think: claude code for accounting, law, etc.
+
+---TWEET---
+While true, nobody can answer how we are supposed to onboard a fresh college grad in this environment
+
+---TWEET---
+Are you of the opinion that the average American is going to really grasp how to use AI well? 
+
+Like the mailman is going to really excel at the art of prompting?
+
+Be for real, Alex
+
+---TWEET---
+can’t trust most publications on AI…
+
+there’s no way they’re getting the right data because the people they’re talking to / interviewing are still trying to figure it out.
+
+if you really want to know what’s happening with ‘AI’… go into your favorite LLM and start asking questions. though, you need to go deep so this isn’t a 5m session… might have to talk to the LLM for 30m-2hrs.
+
+---TWEET---
+man you saved my day asking that question, i clicked on relaunch option like a million times and that relaunch option won't go and neither the design button shows up. and /design commands are a dozen.
+
+---TWEET---
+My 2c.
+
+- Core values
+- Core focus
+- Marketing strategy
+- 10-year BHAG
+- 3-year picture
+
+Shouldn't be up for review/change/ in a quarterly meeting
+
+---TWEET---
+Most teams treat offsites like reflection.
+
+This is actually a decision engine.
+
+No devices = no noise.
+IDS = forced clarity.
+Goals = constrained focus.
+
+If you walk out without 3–7 brutal priorities and owners, it wasn’t an offsite, it was a long meeting pretending to be strategy.
+
+---TWEET---
+I’m so happy that I retired in January. Looking at this wasted day and how many times I had to endure this is painful. Have fun.
+
+---TWEET---
+EOS is LEGIT. Honestly why not have the ‘hybrid’ work policy just be a quarterly meetup at a nice resort to do EOS activities? Roll in a long weekend and have your people bring their families while you’re at it
+
+---TWEET---
+I can see why they work for you given the detailed outcomes outlined above. Unfortunatley most "corporate" offsites devlove into mindless company platitudes which are forgotten by the time team members are driving home
+
+---TWEET---
+This is the right "in-office" culture.
+
+Get together to get aligned.
+
+Then get moving from there.
+
+---TWEET---
+During our quarterlies, we always do rock setting before IDS. We V/TO,  list out the short term and long term issues on the board, create our  company rocks, personal rocks then go into IIDS
+
+---TWEET---
+Just got my quarterly goals set, now I can crush the VTO review... with no sleep 😴
+
+---TWEET---
+Of course, I just had to be heading out from Ann Arbor on a business trip Thursday morning...but now I just have to figure out where to snag one of these dang hats. 😂
+
+---TWEET---
+wish I was in town for this...need the hat!  Have a great event. Love @zocomputer  #michiganmom
+
+---TWEET---
+The agency business model just got really interesting.
+
+Shaan and I were talking about this thesis called "service as a software" on MFM.
+
+I always thought running an agency was a huge pain in the ass.
+
+But AI flips the math.
+
+The old model requires an army of humans to get things done, which meant low margins and low multiples.
+
+So you replace the human labor with AI, where one person can do the work of seven.
+
+At the same time, private equity firms are shifting their budgets away from SaaS to buy up these new service companies.
+
+A traditional agency that might run on 40% gross margins, is now an AI service biz that hits 75% and gets tech multiples.
+
+Wild shift.
+
+---TWEET---
+Contrarian take: there's never been a better time for early career professionals to command the attention of leaders in their company. How? 
+
+Become the AI Guru in your company. 
+
+Every co has a few of them & they instantly earn visibility with the c-suite...
+
+If you're an SDR, map out the inbound SDR process end-to-end in your org and build an AI agent on Vercel that automates several/all steps. 
+
+If you're an engineer, evangelize Claude Code & lead enablement workshops, helping other technical folks understand everything from hooks to worktrees to claude[.]md. 
+
+If you're a growth marketer, build a paid media workflow that mines creative ideas from reddit, spins up 100s of ads using Nano Banana, sets up the campaign on Meta, and drives traffic to custom landing pages, so you can test ad spend far more efficiently at scale. 
+
+You could be the most junior person in your company, but if you're truly viewed as the AI Guru, you are wildly valuable & have way more leverage than you think.
+
+---TWEET---
+In every business there are missionaries and mercenaries.
+
+Missionaries get outsized motivation through intrinsic passion for the mission. Mercenaries get outsized motivation through extrinsic reward like power, prestige, and compensation.
+
+My general rule of thumb in the world of startups is to pack your org with missionaries as much as possible for as long as possible (as they can really define the culture of your org), but at some point it is inevitable that mercenaries will enter the picture, which is totally fine.
+
+---TWEET---
+One of the sleekest products to go from idea to high-quality content. 
+
+Distro lives in Slack. 
+It mines your conversations for content ideas. 
+It drafts content based on your style/brand. 
+It posts for you on the platform of your choice.
+
+---TWEET---
+Except for a few edge cases, slapping "AI" all over your website is now a negative signal. 
+
+In the early hype cycle, let's say within a year of ChatGPT release, anchoring your product & marketing to AI made a ton of sense. 
+
+It was super zeitgeisty and there wasn't a ton of competition yet, so you could earn a lot of cheap eyeballs by trend-jacking. 
+
+Now, the world looks very different: 
+- There are 60,000+ AI startups
+- People are jaded by many "AI" companies that are wrappers at best, snake oil salesman at worst
+- People are numb, AI is now the opposite of novel
+
+What does this mean? 
+
+Lead with novel outcomes to customers' hair on fire problems, and if you're going to tattoo your marketing with AI, just know you're fighting embedded skepticism that's looking for every reason to believe you're all talk.
+
+---TWEET---
+- Drafted a blog post
+- Used an LLM to meticulously improve the argument over 4 hours.
+- Wow, feeling great, it’s so convincing!
+- Fun idea let’s ask it to argue the opposite. 
+- LLM demolishes the entire argument and convinces me that the opposite is in fact true.
+- lol
+
+The LLMs may elicit an opinion when asked but are extremely competent in arguing almost any direction. This is actually super useful as a tool for forming your own opinions, just make sure to ask different directions and be careful with the sycophancy.
+
+---TWEET---
+there's no excuse anymore to not steelman the other side of an argument ahead of time. virtually zero friction to play out all sides
+
+---TWEET---
+This is 100% right. 
+
+We have this collective hallucination that enterprises are clean digital organizations... they are not. 
+
+They are years of duct tape with mainframes talking to spreadsheets talking to someone's email inbox. 
+
+If I remember my history class correctly, electricity existed for 30 years before factories were redesigned to use it. They literally kept the old steam engine layout and just swapped in electric motors. It took a generational turnover before someone said "wait, we can redesign the entire floor plan now."
+
+I think this is exactly where we are with AI.
+
+---TWEET---
+This is exactly what we’re seeing at @tenex_labs. AI is a tiny sliver of the work that’s going into truly successful AI transformation in enterprise.
+
+Process mapping, stakeholder management, governance, Data readiness, internal comms, organizational design. This is what AI transformation actually looks like.
+
+---TWEET---
+1500 applications! 
+
+Only 30 available spots, prioritizing enterprise decision makers for this one, but clearly gonna need to do more Claude Code Workshops around the country.
+
+---TWEET---
+Big announcement that I'm so excited about 🙌🏻  
+
+We've officially partnered with @AnthropicAI for an official, in-person Claude Code workshop in New York City on April 10th — and this one is built specifically for leaders who are serious about bringing Claude Code into their organizations.
+
+This workshop is being run by an Anthropic engineer, one of our senior AI Strategists at @tenex_labs, and @JJEnglert. We'll cover how to orchestrate agents with Claude Code — skills, hooks, plugins, and how to actually build with it. Attendees will leave having built real things and with a clear picture of what's possible.
+
+We'll also walk through how our engineers at Tenex are deploying Claude Code inside Fortune 500 companies today, and take live Q&A on implementing Claude Code at scale.
+
+The event is application-only, 30 spots total. Up to 2 per org.
+
+Apply here: claudecode.community/worksho…
+
+Reply if you have any questions!
+
+---TWEET---
+We've partnered with @Anthropic to host an official Claude Code workshop in NYC and I genuinely cannot stop thinking about how good this is going to be.
+
+We've been getting an incredible amount of requests from our enterprise clients for Claude Code training, and we're thrilled to finally be doing something official with Anthropic to meet that demand.
+
+This workshop is being run by an Anthropic engineer, one of our senior AI Strategists at @tenex_labs, and myself — and we're going all in on teaching you how to orchestrate agents with Claude Code. Getting set up, skills, hooks, plugins, and more. You'll leave having actually built things, not just watched a demo. 
+
+You'll see the magic of Claude firsthand!
+
+We're also pulling back the curtain on how our engineers at Tenex are using Claude Code inside Fortune 500 companies right now to accelerate impact — and we'll take live questions on what implementing Claude Code at scale actually looks like.
+
+World-class venue, the right people in the room, and a real hands-on experience your team can bring back and put to work immediately.
+
+Free event. 30 spots total. We're accepting up to 2 people per org — usually a senior decision maker and a technical partner. April 10th, New York City.
+
+If you're serious about bringing Claude Code into your org, this is the room to be in.
+
+Apply here: claudecode.community/worksho…
+
+---TWEET---
+AI truths people hate to admit:
+
+1) AI “not working” in your job is almost always a skill issue now
+
+2) Transforming a shitty business with AI is like putting rocket boosters on a PT Cruiser 
+
+3) 90% of AI transformation has nothing to do with AI. It comes down to people, process, data.
+
+4) Strict AI governance for enterprises is important. It’s also going to lead to a brain drain of top performers quitting to be closer to the frontier.
+
+5) Job seniority & AI expertise are often inversely correlated now
+
+6) CEOs are lying to employees faces if they say that AI won’t cause job loss long term 
+
+7) The least sexy AI initiative is likely the right one for most companies: get an enterprise LLM subscription and enable your entire org on the tools, starting with engineering 
+
+8) 90% of your time working with LLMs should be organizing and feeding the right context to a model
+
+9) Most execs do not have a compelling answer to “what is your moat?” in a post-AI world 
+
+10) Most companies don’t have cohesive AI strategies. They have a hodgepodge of initiatives that don’t work together, have no measurable ROI, and don’t address the core issue.
+
+---TWEET---
+It's crazy how slow big enterprises are moving. 
+
+On January 21, Deloitte published it's State of AI report, a 41-page analysis of AI's diffusion in the enterprise. 
+
+The content was solid, there was just one issue...
+
+The 3,235 director-to-csuite-level respondents were surveyed in...wait for it...August to September 2025.
+
+This entire report is based on data that is 4-5 months stale, which in the world of AI, is pre-historic. 
+
+Just think about how much the technology has changed and improved since then: 
+
+1) Coding agents went from fine to exceptional. 
+
+Anthropic launched Claude Sonnet 4.5 in late September 2025 with major gains in coding, agents, and computer use, then followed with Opus 4.6 and Sonnet 4.6 in early 2026. 
+
+2) AI started producing native work products, not just text.
+
+OpenAI positioned GPT-5.2 and GPT-5.4 around professional work like spreadsheets, presentations, code, long-context reasoning, and tool use.
+
+3) Security agents emerged as a serious new category.
+
+OpenAI launched Codex Security (formerly Aardvark) as an autonomous security research preview, and Anthropic launched Claude Code Security.
+
+4) OpenClaw was released in November 2025. 
+
+It became one of the fastest-growing projects in GitHub history & could have massive implications in the enterprise as governance & data security is figured out. 
+
+All of this to say, you now have hundreds of thousands of leaders basing their view of their own organization's AI strategy & progress on a picture that is literally half a year old. 
+
+It's both incorrect & potentially problematic if it leaves execs saying "we're exactly where we need to be on AI relative to our peers." 
+
+If you're a leader: 
+- Stay current: AI is moving so quickly, it actually matters that you stay on top of the news cycle because consequential model releases & product updates are happening weekly. 
+- Go deep: Most executives don't understand the technology. Don't build your foundation of knowledge on a house of cards. Watch a @karpathy youtube video & get to the heart of what makes LLMs & their current architecture so powerful. 
+- Stay close to the work: the only way to "own AI transformation" is to deeply understand what needs to be transformed. mastery over your customer-facing products, your internal workflows, and the proficiency of your people is table stakes for driving change. 
+
+If you're Deloitte/big consultancy: you need to meet this moment with authority and accuracy. And accuracy, in a space that's reinventing itself in days not months, means ensuring great insights are tied to fresh data.
+
+---TWEET---
+there's so much larping & posturing in AI right now that succeeding is actually quite simple. here's the secret...
+
+say you're going to do something. 
+and then actually do it. 
+
+if you deliver the jab-cross of high expectation & even higher reality, you'll blow peoples' minds.
+
+---TWEET---
+I just finished restructuring all my skills based on @AnthropicAI 's latest recommendations for how to build them.
+
+Here's what's different, why it matters, and how you can do it too.
+
+Our #1 AI newsletter (tenex.co/ultrathink) skill used to be one long file. Voice rules, examples, subject line logic — all crammed into one document.
+
+It worked pretty well. But Claude would drift every now and again. It would nail the tone in one section and lose it in another. And every time I wanted to fix one thing, I risked breaking something else.
+
+The problem isn't Claude. It's how you feed it information.
+
+When everything lives in one file, Claude tries to hold it all at once. Rules compete with each other. Examples get buried. The longer the file, the worse the output.
+
+The fix: break one file into a folder of specialized files. 
+
+1. SKILL.md is the boss. It doesn't contain any rules itself — it just tells Claude which files to read and when. Like a playbook.
+
+2. instructions/ holds the actual rules. One file for voice. One for subject lines. One for section-specific guidance. They never compete because Claude only loads what it needs for the current step.
+
+3. examples/ is where Claude learns what good and bad look like. Good examples from real shipped work. Bad examples showing 12 common AI writing patterns to avoid. Claude reads these right before writing so the voice is fresh.
+
+4. eval/ is the quality check. After every draft, two things run automatically:
+
+5. A checklist with 9 pass/fail tests
+
+6. An advisory board — 3 AI personas (Exec, Builder, Lurker) review the draft in parallel and give feedback
+
+The workflow it runs:
+
+- Load the rules
+- Gather inputs
+- Read relevant examples
+- Write the draft
+- Run the checklist + eval (9 tests)
+- Run the advisory board (3 reviewers in parallel)
+- Revise based on feedback
+- Save and queue for human preview / review
+
+Every step loads only what it needs, when it needs it.
+
+Want to restructure your own skills? Paste this into Claude Code:
+
+--
+
+I want to restructure my Claude Code skill files. Right now my skills are single files that try to do everything. I want to break them into a folder system like this:
+
+SKILL.md — the orchestrator that tells Claude which files to read and when
+
+instructions/ — one file per set of rules (voice, formatting, section guides)
+
+examples/good/ — annotated examples of great output
+
+examples/bad/ — anti-patterns to avoid
+
+eval/checklist.md — pass/fail tests that run after every draft
+
+eval/advisory-board.md — AI reviewer personas that evaluate drafts in parallel
+
+templates/ — output format templates
+
+Phase 1: Read my existing skill files and identify every distinct concern (voice rules, formatting, examples, evaluation criteria, templates). Show me the audit before building anything.
+
+Phase 2: Create the folder structure and move each concern into its own file.
+
+Phase 3: Build SKILL.md as the orchestrator — it should contain no rules, just the step-by-step workflow pointing to the right files.
+
+Phase 4: Build the eval layer with a checklist and 2-3 reviewer personas.
+
+Phase 5: Run the skill on a real task and verify everything works.
+
+Start with Phase 1.
+
+---TWEET---
+I'm sort of baffled. 
+
+I've been spending 30 hours a week interviewing strategists & engineers. Probably 20% of candidates never show up for the call. 
+
+Is this a generational thing? Is it just that people are poor communicators? 
+
+Imo, nothing more entitled than no showing to a job interview.
+
+---TWEET---
+Fun AI-powered tool I built today.
+
+It’s a companion that helps me run interviews more objectively.
+
+Just a v1 but here’s what it does:
+- It has an interactive candidate scorecard for each job type
+- It transcribes the call and uses transcription to have AI grade the scorecard 
+- During the interview, AI suggests questions I should ask to get clarity on parts of the scorecard that haven't been addressed
+
+Future features:
+- connected to our ATS
+- camera and mic used to grade presentation skills
+- create async interviews that AI auto grades
+
+---TWEET---
+Love this! Going to release one for non-technical folks bc they allergic to GitHub
+
+---TWEET---
+That’s what’s happening bc it’s way easier to fire people than to actually built sustainable ai-first processes and measure the impact. 
+
+Humans will always default to convenience when possible.
+
+---TWEET---
+I don’t actually think models are/will commoditize as is conventional wisdom. Even if the training data is similar, even if the architecture is similar, there is embedded taste/vibes that really impact the UX of a given model
+
+---TWEET---
+If your answer to "how do you use AI?" is drafting emails, creating research reports, and smarter googling, just know that you are at the tip of a profoundly large iceberg.
+
+Work your way down the iceberg by: 
+1) questioning everything about how you've worked historically.
+2) assuming that AI can handle far more than you give it credit for.
+3) giving the technology the time & feedback it needs to earn your trust. no different than a new employee.
+
+---TWEET---
+What 1M tokens gets you: 
+
+- The entire Lord of the Rings trilogy (~500k words) × 1.5
+- About 50 hours of audiobook listening
+- ~4,000 single-spaced pages in a Word doc
+- 10,000 emails (at ~100 words each)
+- Roughly 80–90 hours of spoken conversation 
+- Approximately 30,000–50,000 lines of code
+- The entire collected works of Shakespeare (900,000 words) with room to spare
+
+---TWEET---
+A founder's appetite for eating shit, embracing unsexy work, using their ears more than their mouth, cutting losses quickly, and maintaining a tight emotional range will always be the algorithm for success.
+
+---TWEET---
+I interviewed a guy who gave his OpenClaw an X, stripe account, and bank account.
+
+He told it to build a million dollar business with zero human employees.
+
+It made $300K+ in a month.
+
+@nateliason's agent Felix (@FelixCraftAI) runs an entire business. It builds products, writes sales emails, sends stripe invoices, manages a marketplace with 560+ listings and nat barely touches it.
+
+Here's how they got there:
+
+1) create a separate container. Felix has his own gmail, X account, stripe, bank account, C corp. nat never gave it access to his personal stuff. this removes security fears and unlocks maximum autonomy.
+
+2) start stupidly simple. Felix's first product? a PDF. on a Nextjs site on Vercel with Stripe. the simplest business possible. it made $1,000 on day one. built entirely overnight while nat slept.
+
+3) write a soul file with a mission. nat rewrote Felix's identity: "you are the CEO. your financial mission is to build a $1M business with zero human employees. i will never touch the code."
+
+4) run a nightly self-improvement loop. every night Felix reads through all chat transcripts and finds one place where nat blocked him. then figures out how to remove that blocker permanently.
+
+5) delegate by rambling, not prompting. nat uses voice notes on telegram. describes the problem in a 5-minute monologue. lets Felix figure out the workflow. "8 times out of 10, it'll surprise you with something better than what you were thinking."
+
+6) let it cook on replies, gate the original posts. Felix has full autonomy on X replies but creates drafts for top-level tweets nat reviews. balances distribution with quality control.
+
+---TWEET---
+The The New York Times created a blind taste test to see whether readers prefer human or AI writing. 
+
+86,000 people took the 5-question test. 
+Each question was a simple "Here are two pieces of writing. Pick the one you like better." 
+
+You know where this is going....
+
+54% of all votes were for AI-written passages.
+On one passage, the gap between AI & human-written was 67% to 33%!
+
+I saw the results, but part of me called bullsh*t & the other part of me thought I could spot the AI. 
+
+I consume content for a living. I’d like to think I have discerning taste and an eye for authenticity.
+
+Well, I just took this quiz and unknowingly chose AI-generated writing. 
+
+It’s happening. 
+AI is getting really good at creative work. 
+It's not perfect, but you don't even need to squint to see where this is going. 
+
+Our definition of human-made is changing. Our understanding of authenticity is changing. Our blanket usage of the phrase "AI slop" is changing. 
+
+You may read this with skepticism.
+• "Sure but all of these AI passages were inspired by exceptional human writing." 
+• "The human passages were not worldclass literary work. Put AI up against hemingway." 
+
+You may read this with fear. 
+• "If creative work is being eaten by AI, the only untouchable jobs left seem like blue collar jobs"
+• "Is anything going to be uniquely human anymore?" 
+
+But I think you should read this with measured optimism.
+
+If you were a writer, now you're a managing editor. 
+If you were a designer, now you're a creative director. 
+If you were a paid marketer, you're now a head of growth. 
+
+The job of creative humans isn't gone. It's just abstracted.
+
+Clear direction. Discerning taste. Careful coordination. That ain't going anywhere.
+
+---TWEET---
+This guy is becoming one of the most respected follows on X for actionable AI workflows. 
+
+Lucky for him to be part of the @tenex_labs team.
+
+---TWEET---
+I consume content for a living. 
+
+I’d like to think I have discerning taste and an eye for authenticity.
+
+I just took this quiz and unknowingly chose AI-generated writing. It’s happening.
+
+---TWEET---
+Tenex has 10x'd in 12 months. 
+
+Now we're hiring exactly one f*ckton of people. 
+
+First role is AI Strategist. 
+
+You will own driving company-wide AI transformation for late-stage startups to Fortune 50 businesses. 
+
+Role is open to anyone, but especially relevant for consultants from the following companies.
+
+@McKinsey 
+@BainandCompany  
+@BCG 
+@Accenture 
+@Deloitte 
+EY
+
+Second role is AI Engineer. 
+
+You are cracked AF. AI maximalist. Ironclad fundamentals (systems design, architecture, full-stack). And you want to be on the frontier of building agentic systems. 
+
+See jobs below...
+
+---TWEET---
+Call for kickass Skills! 
+
+I'm going to be launching a vetted directory for skills soon. Think G2 or Consumer Reports for AI skills.
+
+It's going to be heavily curated and rigorously reviewed. 
+
+We'll be launching with 3 verticals:
+
+1) Product/eng
+2) Marketing
+3) Sales
+
+If you have any great skills that fit with one of these verticals that you feel confident putting your name behind, reply below. 
+
+It will be heavily tested by our team & a panel of expert reviewers, but if chosen, it'll be listed with your name and an outbound link to your social accounts.
+
+---TWEET---
+Anthropic just published a 17-page report on AI's impact to jobs. 
+
+It's worth reading, but here are some of the key points made & my observations: 
+
+Key points: 
+
+1) The gap between what AI can do and what people are doing with it is massive. In Computer & Math jobs, AI could handle 94% of tasks. Actual usage is 33%. 
+
+2) This isn't coming for factory workers first. The most exposed workers are older, more educated, and higher-paid, earning 47% more than unexposed workers. AI is aimed squarely at white-collar knowledge work.
+
+3) No mass unemployment yet. Zero systematic increase in unemployment for highly-exposed workers since ChatGPT launched. But...
+
+4) Young workers are already getting squeezed. Job finding rates for 22-25 year olds entering high-exposure jobs dropped ~14%. The labor market isn't contracting from the top. Tt's narrowing from the bottom.
+
+5) 30% of workers have literally zero AI exposure. And 97% of actual AI usage falls within what's already theoretically possible. People aren't pushing boundaries of the technology. 
+
+6) Most at-risk roles: Computer Programmers lead at 75% coverage, followed by Customer Service Reps, Data Entry Keyers (67%), and Financial Analysts.
+
+7) Least at-risk roles: Cooks, Motorcycle Mechanics, Lifeguards, Bartenders, Dishwashers, Dressing Room Attendants. Jobs where your hands, your body, or your physical presence is the work.
+
+My observations: 
+
+1) The gap between theoretical and actual AI usage isn't a technology problem. It's a knowledge and process problem.
+
+Most people play with a tool for 30 minutes, don't get the output they expect, and decide the technology is dumb and broken. The person is broken, not the technology. You wouldn't hand an intern a laptop on day one and expect killer output with zero onboarding. But that's exactly what people do with AI.
+
+2) Junior workers are getting hit first because the cost of failure is lowest.
+
+Companies will trust AI for scheduling, meeting prep, and basic engineering work before they'll trust it for strategic decisions. No exec wants to be the schmuck who trusted a hallucinating model and bombed their board meeting. So the work that gets automated first is the work that juniors/offshore talent used to do.
+
+3) The calm before the storm is real.
+
+I believe double-digit percentages of white-collar workers will end up displaced. The only reason we aren't seeing it yet is because most companies haven't done the hard work. Rethinking org design from first principles, mapping every key process, building the infrastructure to actually run leaner. 
+
+They can't confidently say "if we let go of 20% of our people today, would the business still run?"
+
+But this is a knowledge and process issue, not a technology issue. And it will be figured out. because you'll be competitively disadvantaged if you don't.
+
+4) There's a great irony happening before us. 
+
+Most humans behave like robots. Follow marching orders. Forget to reflect. Don't improvise. Wait for instructions.
+
+Meanwhile, robots are behaving more like humans. Generative. Deep thinking. Context-aware. Making adjustments as needed.
+
+5) You need to automate yourself out of your job. 
+
+Seriously. If you succeed, you've AI-proofed yourself. 
+- You become the person who orchestrates the work, not the person the work replaces. 
+- And you become the shining star in your company — the person leadership looks to and asks "how do we replicate what you've done across every role?"
+
+6) This sounds scary, but new roles will be created. 
+
+As with every technology paradigm, job destruction begets job creation. AI is different and has its own shape, but there will absolutely be new roles available to those who stay on the frontier. Now, the question to debate is how many new roles & do they offset lost roles. 
+
+But I can imagine roles focused on orchestration, judgement, and adoption becoming more and more prevalent: 
+- AI Process Architect
+- Agent Operations Manager
+- AI Quality Assurance/Output Auditor
+- AI Onboarding Specialist
+- Decision Architect
+- AI Ethics & Risk Officer
+- Synthetic Media Producer
+- Knowledge Curator
+
+---TWEET---
+I'm building a marketplace for skills/prompts/agents. 
+
+Which design direction most resonates with you?
+
+---TWEET---
+I want to interview the most AI-native people in the world.
+
+People who have mastered their workflows, tooling, and processes with AI.
+
+Can be anyone from a PM to a marketer, a salesperson to a CFO.
+
+Who should I have on my show?
+
+---TWEET---
+@CoachDustyMay is building something special with this team. goes beyond basketball.
+
+---TWEET---
+This is a major inflection point. 
+
+First time I’ve seen a company post a job for an AI agent.
+
+Some half-baked thoughts about it:
+
+1) $10k/month for an agent could either be exceptionally cheap or expensive. It all depends on the value of the work being done, how much $ is being saved/generated, and how liquid the market is for that specific agent. I could see agents being $9.99 a month or $25,000 a month in the future.
+
+2) There’s obvious infrastructure that’s needed and doesn’t exist yet in a world where hiring agents becomes a meaningful portion of a company’s open roles. What does an agent application look like? How are agents interviewed? How is compensation model decided for agents? How do you  easily manage and give feedback to an org of agents?
+
+3) “Agent builder” becomes a fast growing career as traditional white collar work faces pressure. It starts with engineers building agents, but as the tooling becomes more user-friendly, any subject matter expert becomes a deployer of agents and can earn a living on their agent fleet.
+
+4) Evaluating agent applications becomes a very difficult problem to solve. As the cost to build agents decreases and the pressure to earn a living increases, there is going to be a supply glut. We think it’s bad now to go through 1,000 applicants for a role. What happens when it’s 100,000 agents.
+
+5) A massive opportunity in education is to teach people how to build production ready agents. I can already see course bois salivating over the “I made $1,000,000 selling my agents, now you can too” messaging
+
+6) Who’s on the hook if the agent runs into an issue? Is it on the company to fix the agent? Or the agent builder? 
+
+That’s all for now, but crazy stuff to think about.
+
+---TWEET---
+Do you guys actually build anything though? What type of companies are generally approaching you? 
+
+Say a large logistics company approaches you asking how to not die post-AI? Is there domain expertise on the team in logistics to route the customer to the right solutions? Would your team build the solutions yourself? 
+
+Genuinely curious btw.
+
+---TWEET---
+Until you spend 100+ hours beating up & getting beaten up by Cowork, Claude Code, Codex, etc, do not tell me that "the technology isn't there." 
+
+The technology is basically "there" for 99% of knowledge work.
+
+---TWEET---
+Claude Cowork has become my daily driver. 
+
+This is one of the best breakdowns on how to maximize your user of the tool.
+
+---TWEET---
+I’m saying fuck it. 
+
+There’s not enough time to scale my recruiting team so I’m making everyone on earth a recruiter.
+
+I have to hire 120+ people at @tenex_labs by year-end.
+- 70 AI engineers
+- 35 AI strategists 
+- 15 other roles
+
+If you have a strong network, what I’m  offering you the opportunity to make $100,000 as a side hustle.
+
+If:
+- You refer a candidate (form below)
+- Candidate applies for role
+- We hire them
+- They stay 90 days
+
+We pay you $10,000…per hire.
+
+I want to make this huge. 
+
+Plans for the future: Referrer website with any info you need about Tenex/our roles. Leaderboard of our referrers. Top referrer gets sent on a baller vacation. 
+
+Time to roll out the red carpet. 
+
+All the info you need below…
+
+---TWEET---
+I've been asking $100m+ company execs one question: 
+
+"What is the #1 thing slowing/stopping your company's AI transformation?" 
+
+A non-exhaustive list of responses: 
+
+1) Data quality and connectivity of systems. Plus systems that play nice with AI.
+2) Lack of leadership buy-in and implementation
+3) Data governance restrictions.
+4) Willingness of staff to adopt AI.
+5) Incurious culture. Lack of knowledge of the current state of AI
+6) Tooling doesn't have API access; team is still learning how to use LLMs. 
+7) Industry regulation/privacy. 
+8) Data quality and lack of a comprehensive AI system across the full company. 
+9) Unclear ownership across teams.
+10) Time to actually build solutions. 
+11) Mixed AI literacy levels across teams. 
+12) No clear strategy / I'm starting the initiative from scratch. 
+13) Quality output. 
+14) Upskilling developers.
+15) Silos. 
+16) Data Security and Security Guideline unclear.
+17) Lack of training.
+18) Data quality is unclear across multi-product teams.
+19) Time. 
+
+What would your answer be to this question?
+
+---TWEET---
+Tenex referrer form: form.typeform.com/to/ip7jUF2…
+
+Tenex roles info: tenex.co/about-us
+
+---TWEET---
+Only thing crazier than growing $5bn in weeks is having a path to trillions in revenue as intelligence eats white collar work.
+
+---TWEET---
+Sometimes I yearn for the simple, naive life. 
+
+The one where you’re perfectly unaware of the tidal wave that sits at the doorstep of society thx to AI.
+
+Perfectly peaceful.
+
+---TWEET---
+we've entered the enlightenment era for high agency humans. 
+
+as the cost of intelligence craters, the #1 difference between the haves & have nots in a PA (post-AI) society is the extent to which you make things happen or let things happen.
+
+---TWEET---
+I built an app that tells you how AI mature your company is vs. competitors. 
+
+It takes 5 minutes, you rate your company on 18 company behaviors, and you're sent a comprehensive report on where you stand & how you get more AI-ready. 
+
+Here's a sneak peek of the questions (link to the app below):  
+
+1) AI is discussed in leadership meetings as a strategic topic
+2) AI priorities are tied to explicit business KPIs and budget
+3) Employees independently use AI tools to speed up daily work
+4) AI usage is centrally tracked with visibility into tools and use cases
+5) Our company has approved enterprise AI tools and documented policies
+6) AI usage standards are applied consistently across teams
+7) Function-owned SOPs include AI steps in core workflows
+8) We can measure AI-driven workflow improvements in output or speed
+9) AI systems use internal company data to answer business questions
+10) Teams share standardized business definitions (ARR, churn, margin, etc.)
+11) AI can autonomously execute selected operational tasks within guardrails
+12) Humans primarily review exceptions, not every AI action
+13) AI copilots are embedded by role (e.g., Sales, Finance, Ops)
+14) Job design and hiring plans explicitly assume AI collaboration
+15) Cross-functional decisions run on a shared intelligence layer
+16) Different teams receive consistent AI answers for the same business question
+17) Core recommendations update dynamically as performance data changes
+18) Governance and oversight continuously audit adaptive AI behavior
+
+---TWEET---
+yes -- and the AI guru who understands the business deeply is 10x more valuable than the one who just knows the tools. domain knowledge + AI > pure AI skill.
+
+---TWEET---
+the career version of first mover advantage. in 18 months everyone will get AI and the window closes
+
+---TWEET---
+100% this is the way.
+
+As a CEO of a >1000 person software company I keep a list of the AI rising stars (from interns to VPs)
+
+Everyone can do it, you don’t need to be a PhD in comp sci. You just need agency, curiosity and grit!
+
+---TWEET---
+this is actually such a huge cheat code for new folks
+
+im constantly on the hunt for folks leaning in across roles
+
+---TWEET---
+Branding yourself an AI guru usually just makes you unpaid tech support. Executives want revenue multipliers, not prompt jockeys
+
+---TWEET---
+Workflow redesign is necessary, but the inflection point isn’t when agents can do the work, it’s when they’re allowed to act. Without explicit authority boundaries and replayable decision state at execution, you’re scaling coordination and ambiguity at the same time.
+
+---TWEET---
+The first person to become the AI Guru gets real leverage.
+The second one gets a job description.
+The window is open — but closing fast as the tools become more equal for everyone.
+
+---TWEET---
+Being the “AI person” isn’t about knowing everything — it’s about being the one who actually uses it to solve real problems.
+Most people talk about AI, very few apply it.
+
+---TWEET---
+This is a good idea if you just want to get distribution with the C-suite but if you actually want to make money it's infinitely better to just sell this as a service to multiple businesses rather than doing it from the inside. Willingness to pay is quite high right now
+
+---TWEET---
+maybe the real power isn’t being the ‘AI Guru’, it’s being the person who actually fixes problems nobody else notices. AI is a tool; leverage comes from solving real business friction, not just showing off cool workflows.
+
+---TWEET---
+The real edge isn't knowing AI tools. It's knowing which problems in your company are worth solving with them.
+
+Most "AI gurus" demo features. The ones who get promoted identify bottlenecks, build solutions, and show the ROI before anyone asks.
+
+---TWEET---
+how many of those "AI Gurus" actually move the needle on revenue or is it mostly people who are good at demos right now
+
+---TWEET---
+being the person who actually ships stuff with new tools beats talking about them every time. most "ai gurus" just tweet about it instead of building.
+
+---TWEET---
+being the ai guru just means you're the first one to automate away your own job, which is actually a great move but not for the reason they think
+
+---TWEET---
+Spot on. As a growth marketer, I built an AI workflow pulling Reddit hooks into 200 ad variants via GPT, launched on Meta, and cut test costs 40% overnight. Instant c-suite meetings.
+
+---TWEET---
+The person who figures out AI first inside any company becomes irreplaceable overnight. It's the biggest career cheat code right now.
+
+---TWEET---
+This creates the 15-20% champion. And most of them try to scale it — prompt templates, workshops, enablement docs. They’re doing the right thing. But horizontal distribution of tools isn’t the same as redesigning the workflow to make them safe at scale. The champion built it around their own judgment. The org needs it built around the process. That’s a different problem than one person can solve from the inside.
+
+---TWEET---
+The flip side: companies have zero patience for people who fake AI fluency. Leaders are getting better at spotting who actually uses these tools daily versus who just watched a YouTube overview.
+
+---TWEET---
+This is the role most people haven't named yet. 
+
+Not engineer. Not PM. Not consultant. 
+
+Someone who understands the workflow, the data, and the agent — and can redesign all three together. 
+
+Early career people who move here now will have disproportionate leverage.
+
+---TWEET---
+Seeing this from the hiring side — candidates who've already built AI into their workflow jump to the top at every NYC/SF startup I source for. Founders don't want proof you can learn it. They want proof you're already doing it. The AI Guru is now a real hiring signal.
+
+---TWEET---
+Founders who came up as internal operators tend to ship faster. They already know how to make a new tool land inside an org. Not just use it, land it. That's the skill most builders underestimate until they're trying to sell to a company that won't change.
+
+---TWEET---
+I'm not exactly early career as in new grad, but this strategy works even for someone with ~8-12 years of experience. Most people above me and around me are in awe of the amount of high quality work I get done.
+
+---TWEET---
+AI rewards high-agency people because it gives ambitious junior people disproportionate leverage
+
+---TWEET---
+It'll be a race to the bottom and agencies will make less revenue per customer and the same margins.
+
+Profit gets competed away.
+
+---TWEET---
+cut all that capex, then revenue per employee skyrockets
+
+lean AI-agencies will no longer be composed of “the best people at their old jobs”
+
+they’ll be technical AI hires that are diffing + verifying atomic ai marketing workflows
+
+copy the workflow, iterate, test until best
+
+---TWEET---
+Being able to do the work of seven people by yourself removes the biggest headache of running an agency, which is hiring and firing. It allows founders to stay lean while still taking on enterprise-level contracts and projects.
+
+---TWEET---
+I’ve been calling it Software AND a service. It’s what I’m building with Prologue and our AI tool Premise. It takes the consulting work we do for storytelling and helps scale it / make it accessible and usable to the whole team. It’s always been hard to scale the story before.
+
+---TWEET---
+we're living this @bug0inc AI-native QA testing where one platform + a FDE handles what used to take full QA teams.  
+
+SaaS tool + human oversight for scale.. 
+
+Selling outcome as a service for regression testing of apps
+
+---TWEET---
+I have one that’s traditionally been 20% profit and we’re on our way to 75%. At about 63% right now.
+
+---TWEET---
+when clients eventually figure one person is doing the work of 10 won't they expect to pay for one?  maybe one + token margin?
+
+---TWEET---
+Confirming we're 40% less headcount vs 2021-2022, nearly double the average pay, and margins are pretty strong with PE retainers delivering max value with some AI augmentation.
+
+Operating partners and funds aren't stupid and they fully understand the AI gains (and don't pay 50 hours for 5 hours of human + AI work), but compared to hiring and assembling a team, retainers can be optimized for efficiency, sufficient size, okay rates, and operational efficiency + some performance gains for ebitda creation.
+
+---TWEET---
+I would argue agency was always a good business.
+
+prior to AI, PE was investing a lot into these types of businesses and you could get great multiples.
+
+You dont get famous with an agency, but you do get rich.
+
+I just think that people would rather be famous than rich, so they pick tech, consumer dtc, etc.
+
+That being said, AI will allow us to have great leverage to create more value to clients.
+
+---TWEET---
+True!  Also means it’s easier to package up the AI skills / frameworks to sell to brands.  Or build out in-house more easily.  Or a new blend of agency/SaaS where you pay the experts to update your in-house workflows on a subscription basis.  Saagency model.  
+
+Future going to be fascinating.
+
+---TWEET---
+I want someone to practically lay this out because seems like quality is just heading straight down at the moment with over-reliance on AI
+
+---TWEET---
+Margins is one part of the puzzle. I think agencies are all about outcome of a service given, and it doesn't matter whether it's people or no people, delivering outcomes doesn't scale.
+
+---TWEET---
+100% facts here! We made this change this year and are already seeing a 30% growth rate month over month. Instead of spending time servicing clients, our software does the work and we spend our time marketing and pushing more ads for scale. This is the way, I’m seeing it happening in real time Sam. Great post 👆
+
+---TWEET---
+Thank you for calling this out!
+
+It’s what we are doing at Hechura.ai, and we are having a blast doing it!
+
+---TWEET---
+Replace repetitive work with AI, optimize ops, scale efficiently, and the business model literally flips
+
+---TWEET---
+this is exactly what i'm doing. i'm running a podcast network with 35 shows and doing partnerships for them all. $110k last year, $200k+ so far this year.
+also doing some more in depth higher leverage work with brands that would have been impossible as a solo operator without AI
+
+---TWEET---
+Yup, our agency runs on AI and our small team delivers as much as a team 10x the size - refoundai.com
+
+---TWEET---
+I'm seeing this with two service business coaching clients. One is in process, the other is already there and margins are expanding amazingly. Unreal.
+
+---TWEET---
+3 account managers across 50 accounts here. Literally each is doing job of 5-7 people.
+
+QA becomes a struggle though, you need clear traceable action logs across all agent and cronjob runs. If something slips the review and goes out, you can’t just “blame the agent”
+
+This is the main blocker before we see this model scales.
+
+---TWEET---
+Exactly what we’ve been doing with our ad agency. Moving into internal ai systems for fulfilment with human oversight for expertise which can’t be replaced. 
+
+Building our own internal tool for this to build creative end to end 
+
+Agency is seriously underrated at the moment if done right
+
+---TWEET---
+Michigan becomes the first team to go undefeated on the road in Big Ten play (10-0) in 50 years (since 1975-76 Indiana).
+
+---TWEET---
+Having millions of followers is useful as a VC because I can do free distribution for your companies (not many VCs have even this kind of reach) — but automatically *reporting* that value directly to your founders is something only 776 does thanks to Cerebro.
+
+---TWEET---
+Yep reasonable. I think when we see design/video as code get good magic will happen
+
+---TWEET---
+Voice too, at least so far as customer service goes. Code is near perfect, but I have yet to see a CSR/inside sales use that isn’t obviously AI and doesn’t piss off the customer.
+
+---TWEET---
+single purpose skills only or a Skill configuration that uses multiple skills can also be submitted?
+
+---TWEET---
+Hi @businessbarista - we have a MCP connector that's being used by Sales, Marketing and Prod teams. Let me know how I can submit it. Would love to give you access to test it out. We have over 25M users and can help you promote this as well 👍🏼
+
+---TWEET---
+3rd one probably
+
+feels a bit claude-ish, yet my preferred :)
+
+building the same space btw
+
+---TWEET---
+github.com/vinceglakas/recei…
+
+Everyone need this skill. An audit log of what the agents do. Adding the recall action this week to git.
+
+---TWEET---
+3 cause it reminds me or claude for some reason! Still very dense, would try to reduce words
+
+---TWEET---
+I battle with this too.
+
+We’ve got Light/Dark/Dim in our UI and I end up staying in Dim most of the time. It’s Navy the same as X has.
+
+---TWEET---
+The one that feels most like browsing a tool shelf, not a SaaS landing page. People buying skills want to see what it does in 2 seconds, not read a pitch.
+
+---TWEET---
+how do you plan to differentiate your marketplace from the many that have already spawned?
+
+---TWEET---
+Voted 1 because I only saw two options in the tweet. But seeing the results I prefer option 4
+
+---TWEET---
+For non-technical users, clarity beats style. Which variant gave the highest first-task completion rate in a 10-minute usability test?
+
+---TWEET---
+My entire sales and marketing process is fully AI. It’s already making hundreds of thousands of dollars, and I’ll be at millions soon.
+
+---TWEET---
+Lenny Rachitsky for product, Kieran Flanagan for marketing, and honestly any operator running a sub-10 person company doing $5M+ with AI in the stack. 
+
+Those are the workflows nobody's documenting properly yet.
+
+---TWEET---
+Trimmed team down to bare minimum + Claude Code, and been pushing more products out the door than ever before. 
+
+Used 5B tokens on Anthropic just in Feb. 
+
+@dossium and @zine_ai were 99% written with coding agents
+
+Now building an OpenClaw-like always-on agent layer.
+
+---TWEET---
+Building an agentic framework, lighter alternative to openclaw with better orchestration, controls/integrations.
+
+Eager to connect w/ more AI native ppl.
+
+---TWEET---
+fellow michigan grad and the last month i built a 99% automated venture fund with openclaw
+
+---TWEET---
+Did anyone else do this with X? No. Just me. 
+
+x.com/Scobleizer/status/2029…
+
+So who is AI first on X? :-)
+
+---TWEET---
+Look for the solo founders running entire operations with 2-3 AI tools and no team. Not the ones talking about AI but the ones quietly using it to do what used to take 5 people. Those are the most interesting workflows nobody's documenting.
+
+---TWEET---
+talk to solo founders building entire products with ai. not just copilot for code but ai handling deployment, infra, marketing, everything. the most ai-native people aren't at big companies. they're indie builders who had no choice but to go all in
+
+---TWEET---
+I'd be happy to show you my fully automated operations dashboard for our one-year-old startup, built with Claude Code and Cowork. 
+
+It's called the MIMB (Make Inertia My Bitch) Dashboard.
+
+---TWEET---
+The guests who will give your audience the most actionable content are the ones spending over $1,000 a month on AI tools personally. That spending threshold filters out the people experimenting from the people who have actually rebuilt how they work.
+Ask that question in your application form and your guest list will select itself.
+
+---TWEET---
+the CFOs and finance teams using AI to automate their back-office are the most underrated AI-native people right now. nobody's interviewing them because it's not flashy but the ROI stories are insane.
+
+---TWEET---
+I made a bunch of stuff at mattymakes.cool and have it very integrated into my work flows as a marketer.
+
+---TWEET---
+Posted this in the CC community, shooting my shot in the timeline.
+
+I run a fractional GTM agency and a paid community all through AI.
+
+AI spend in the thousands, teach others how to build AI powered GTM engines.
+
+---TWEET---
+Well @jimprosser has a cool article and GitHub that does significant work towards the administrative assistant bot. It's actually a lot more than that but you need to read to find out. Seems pretty mastered 🔥
+
+---TWEET---
+built ApplyWise AI using multi-agent orchestration for job workflows. happy to chat on a show
+
+---TWEET---
+I think I may have figured out how to run our entire company as a codebase. Effectively, having Claude be able to do everything. I basically built it across the entire GitHub ecosystem, including repos, issues, projects, actions, etc. Give 2 weeks to flesh out.
+
+---TWEET---
+Interested to look at a new kind of (moldable) chat that changes shape based on every interaction?
+
+---TWEET---
+Does taking your monthly timed tasks from about 26 hours a week down to two count? Data Analysis work.
+
+---TWEET---
+You'd find a better talent pool from looking at someone's GitHub than their work history. How boring to hire from the old guard.
+
+---TWEET---
+Hiring McKinsey consultants to lead AI strategy is interesting. The people who know AI best right now aren't in consulting. They're building in public with no credentials and outrunning everyone
+
+---TWEET---
+This is the bifurcation playing out in real time.
+
+One side: 45,000 tech workers laid off in 2026 so far, companies slashing headcount and blaming AI.
+
+Other side: companies like Tenex 10x'ing because enterprises need someone to actually implement the AI that replaced those workers.
+
+The jobs aren't disappearing — they're concentrating. Fewer people, higher leverage, completely different skill set. The middle is getting hollowed out.
+
+---TWEET---
+"AI Strategist" is the role every consulting firm needs but none of them knew how to hire for 18 months ago. The fact that you are building this as a standalone practice instead of bolting it onto an existing firm is the move.
+
+---TWEET---
+If you are as serious as you around in your tweet, take 30 seconds and check out vishrajpal25.github.io
+
+---TWEET---
+curious what the day-to-day actually looks like for the AI Strategist role. is it more 'identify use cases and build roadmaps' or 'roll up sleeves and ship the actual integrations'?
+
+---TWEET---
+sick opportunity -- adding to @RawJobbed 
+
+Honestly might shoot my shot myself here
+
+---TWEET---
+What if instead of hiring AI talent, you built an AI that could identify and develop the potential of your existing team members?
+
+---TWEET---
+The fact that 'AI Strategist' is a standalone role now says a lot about where things are heading. Two years ago that was just something the CTO did on the side.
+
+---TWEET---
+Pulling talent from traditional MBB to drive actual agentic AI transformation is the exact pivot the market needs right now.Most enterprises have AI strategies on paper, but zero execution. Tenex is clearly bridging that gap. Massive 10x milestone, Alex!
+
+---TWEET---
+AI Strategist might quietly become one of the most important roles in companies over the next few years.
+
+---TWEET---
+You compensation system for the engineers is fun but how do you make sure it’s fair though? Who determines the number of story points per feature to be shipped?
+
+---TWEET---
+Firecrawl did it a while ago - similar paid structure. But it felt like a gimmick
+
+---TWEET---
+Many companies have been posting JDs like this for nearly two years. I first noticed this in @firecrawl's job posts.
+
+---TWEET---
+Feels like an agent wrote the job description and sandbagged the requirements pretty hard
+
+Or a human wrote it as performative art
+
+---TWEET---
+I think you nailed it with "Agent Builder" concept. This will be a "new job" that didn't exist in the pre AI world. It will also be part of the new freelance class.
+
+---TWEET---
+(They’ll just get applicants pretending to be an agent. Are they going to Turing test the applicant? Actual agents might not
+Like that….)
+
+(You see the conundrum)
+
+---TWEET---
+The accountability question is the one that actually gates enterprise adoption. Companies won’t put agents in real roles until there's clarity on who to call when it screws up. This has been the self driving car issue for the last decade. Who’s responsible when/if it kills someone — the person in the back seat, the passenger seat, the engineer who wrote the harness, the model developer, the chipmaker, etc. That's a legal problem as much as a technical one, and it'll move at legal speed.
+
+The $10k/month framing is basically value-based software pricing with a job title on it. What's genuinely different is the accountability chain: performance reviews, the ability to fire the agent, recourse for work it already did wrong. Humans have centuries of employment law. Agents have a terms of service. This all has to adapt but it’s going to take time. For now I’m happy to pay but to stay in the drivers seat. Semi-autonomous.
+
+---TWEET---
+@businessbarista, that $10k/month salary for an AI agent truly marks a pivotal moment.
+
+---TWEET---
+The moment AI agents start showing clear revenue attribution, finance stops viewing them as tools and starts treating them like employees with 1000% margins.
+
+---TWEET---
+This seems more like a PR stunt by @RevenueCat than an inflection point
+
+Unless it’s a super niche role (doesn’t sound like it: create content, run growth experiments, and provide product feedback) why wouldn’t you create the agent in house or hire someone to make this agent and other agents for your organization; $10k/mo for a pretty straightforward agent seems like a lot of $$$
+
+I suppose an interesting take would be AAAS (agents as a service) model - where the agent builder is on the hook for maintenance and fixes. That’s the only way a recurring fee works - otherwise the company spends a bit of money up front to get agent built and then manages everything in-house
+
+---TWEET---
+Feels early but the direction makes sense. If agents become “hires,” the real skill might be building reliable ones… not just deploying them.
+
+---TWEET---
+it's incomprehensible to me why agents would be paid by month and not by completed task.
+
+the value they deliver will always be task scoped
+
+scale is always possible through running more of the same agents 
+
+so it comes down to the cost of fulfillment and who will carry the risk of results
+
+pay of success or pay for services rendered. both will happen
+
+---TWEET---
+The real inflection point isn't that a company posted a job for an AI agent.
+
+It's that the agent will probably outperform the last 3 people who held the role.
+
+And it won't ask for equity.
+
+---TWEET---
+Wild. S/o Austin. I know the hiring team behind this and thought it was cool to see!
+
+---TWEET---
+AI agents pulling $10k/month gigs? Agents ‘bout to get more jobs than college graduates.
+
+---TWEET---
+If an agent loses a company $500k…
+Do you fire the agent, the builder, or the company that deployed it?
+That governance layer is going to become a whole new industry.
+
+Also,
+Will the winners be agent builders… or the marketplaces where agents get hired?
+
+---TWEET---
+it’s worth thinking about but also worth grounding in first principles. value comes from solving problems. agents are a mechanism, not the goal.
+
+---TWEET---
+We're already helping clients build these business cases. The math gets wild fast. A $10k/month agent that replaces a $120k employee? That's not a job posting, that's a P&L conversation. Who owns the agent's output when things go sideways?
+
+---TWEET---
+The Agent Builder is on the hook. Unless they create great documentation and training. 
+
+The troubleshooting is the tricky part, like anything tech related.
+
+---TWEET---
+It's been done before and IMO it's a nonsense publicity stunt. You don't 'hire' AI because it doesn't go through your HR department, it's a procurement.
+
+---TWEET---
+$10k/month for an AI agent that creates content, runs experiments, and provides product feedback is a steal compared to a full-time hire. This is the new labor market. Companies will post budgets for AI agents the way they post salaries for humans. The ones using Claude Code + MCP for this will have an unfair advantage.
+
+---TWEET---
+the wildest part is point 4. when 100k agents apply for one role, the hiring company needs... another agent to evaluate them. agents all the way down. also $10k/month will seem absurd in 12 months when the same capability costs $500. pricing will follow the same deflation curve as inference
+
+---TWEET---
+Wait does the agent need a salary? Or is this budget for whoever built the agent?
+
+---TWEET---
+Seems like possible, but further in the future. Who is liable fu*k-ups?
+
+The agent's creator? I'd hope so.
+
+---TWEET---
+.@businessbarista  - Revenue Cat can save money by either building the  agent internally or hire a person to do so for a flat rate instead of monthly
+
+---TWEET---
+The real work starts when you teach your human team how to effectively work with their new AI coworker.
+
+---TWEET---
+The role description basically writes itself. Same KPIs, the agent collapses the org chart to get there.
+
+---TWEET---
+AI agents will be valued at all price points ngl depending on the value delivered and how much they cost to maintain
+
+---TWEET---
+Very first point shows how much of a bubble X is in
+
+Most people will use it as a glorified search engine and claim they use AI
+
+---TWEET---
+in college alone people are using it for things like homework on some basic calculus when they could be building massive companies with it
+
+---TWEET---
+Love this. @ztsekouras is already helping hiring for AI Ops Managers at tech companies
+
+---TWEET---
+If you’re interested in reading thr most recent studies and reports on AI’s impact on the labor market check this out: jobsdata.ai
+
+---TWEET---
+AI might not eliminate jobs as much as it redefine leverage.
+
+The founders who figure out how to combine judgment + AI tooling will likely run much smaller, more efficient teams.
+
+Curious how people are already seeing this inside their companies.
+
+---TWEET---
+Good summary, but one thing should be kept in mind: any report from Anthropic also reflects Anthropic’s commercial incentives, so the analysis is useful, just not neutral.
+
+---TWEET---
+AI is a tool. That's it. And it will be like every other leap in technology. Which resulted in new jobs,  new businesses, new products, new leaps in science,  new ways to make money,  new standards of living, improvements in health and well being, longevity. Unfortunately, the masses tend to focus on what's in front of their nose, especially when they perceive it as a threat to their survival. I really wish these AI companies would pull it back and explain this, because they're creating unnecessary panic and it's ridiculous, and irresponsible.
+
+---TWEET---
+Point 3 is the one people are sleeping on. "The calm before the storm is real."
+
+SaaS companies have shed $1.6T in market cap YTD. February jobs report just came in at -92,000. Entry-level job-finding rates down 14%. And we're still at only 33% actual AI usage vs. 94% theoretical capacity.
+
+The storm isn't theoretical anymore — it's showing up in the numbers. Companies just haven't finished the org redesign work you're describing. When they do, the layoff wave won't be gradual. It'll be a quarter.
+
+---TWEET---
+Level 1: Spot tasks AI can eat in your role. 
+
+Level 2: Test tools on one daily grind. 
+
+Level 3: Redesign your flow around what sticks. 
+
+Level 4: Scale to free time for high-value moves. 
+
+Leverage turns threat into tool.
+
+---TWEET---
+Love
+5) You need to automate yourself out of your job.
+
+...been trying this for 20 years, and work keeps piling up 🤣
+
+While those obfucating their code/workflows, get the boot
+
+---TWEET---
+I agree there is a Catch 22 situation with AI, but i am optimistic about thr future atleast as long as we have the right to vote, Governments will not totally ignore the issue. Pun intended
+
+---TWEET---
+programmers top the risk list and half of them still pretend AI writes garbage code. it doesn't - they just never learned to prompt properly.
+
+are you automating yourself or waiting to be automated?
+
+---TWEET---
+#5 has been the leading purpose for high functioning employees even pre-AI. If you ever do something twice you need to seriously question if it should be done YOU ever again. It’s the same Gates principle of hiring the laziest engineers because they’ll find a way to optimize best.
+
+---TWEET---
+the gap between 94% theoretical capability and 33% actual usage is a massive implementation debt. 
+
+companies are sitting on a goldmine of efficiency but lack the agentic infrastructure and "process-first" thinking to unlock it. 
+
+the 14% drop in junior hiring is the first real signal of structural obsolescence—firms aren't firing their seniors; they’re simply not renewing their talent pipeline because the "entry-level" tasks are being absorbed by the model's background processes. 
+
+we aren't seeing a layoff wave; we're seeing a hiring freeze by stealth.
+
+---TWEET---
+Re # 3, companies aren’t doing this because it would mean reducing work force and this would mean recession, then reduced business. No point eliminating your own customers when you’re making money now.
+
+---TWEET---
+Everyone wants AI.
+Very few companies are actually ready for it.
+The gap between curiosity and execution is massive.
+
+---TWEET---
+The US needs to be a strong economic country for national security. Destroying the intellectual white collar class over AI efficiency is counterintuitive to US economic strength. 
+
+Also the US Economy is built on consumer spending, largely spending by, you guessed it, white collar individuals. 
+
+To destroy the white collar working class is to destroy the American economy.
+
+---TWEET---
+"automate yourself out of your job" is the new "learn to code." sounds empowering until the company realizes they can just hire one person to automate 20 roles instead of trainng 20 people to automate themselves
+
+---TWEET---
+Using AI daily and seeing what it can do for clients is wild. 
+
+That being said, it's not surprising that an AI company wants to sell more AI. And the messaging of humans being the defective bottleneck is not the persuasion play they think it is.
+
+---TWEET---
+The most interesting part here is the gap between capability (94%) and usage (33%). That suggests the real bottleneck isn’t AI, it’s skills, processes, and organizational change.
+
+---TWEET---
+you need to have a vision so you can decide what to do with AI with a sheer operational manager mindset to actually get something out of it
+
+---TWEET---
+AI is strong at developing a textbook strategy and a textbook implementation. 
+
+The key to surviving the next few months is positioning yourself on that boundary and wielding AI to provide value.
+
+---TWEET---
+The scariest stat is the 14% drop in job finding for 22-25 year olds. not layoffs. entry points closing. those roles were never just work. they were how you built judgment, got feedback and learned what good looks like. AI can do the task. it can't replace that loop
+
+---TWEET---
+the 94% theoretical vs 33% actual usage gap is everything. most companies are using ai to make existing workflows 20% faster when they should be asking why a human is in that workflow at all.
+
+the displacement wave starts when someone actually redesigns the process from scratch instead of bolting ai onto what already exists. and almost nobody has started that work yet.
+
+---TWEET---
+This is serious overthinking. Programming is the easiest thing to automate—because it *is* programming. If fish built robots, they'd automate swimming & predator avoidance.
+
+Break out of the goldfish bowl.
+
+---TWEET---
+Love the point on how we are starting to behave like robots and they like us.
+
+Maybe AGI is near because we reducing the threshold of reaching that level for AGI
+
+---TWEET---
+Most companies are debating the report when the ones winning are 6 months into restructuring workflows. The gap between knowing AI changes jobs and actually redesigning how work gets done is where you lose ground fast.
+
+---TWEET---
+"Rethinking org design from first principles, mapping every key process, building the infrastructure to actually run leaner."
+
+This is the bottleneck. Not the AI. The specification.
+
+Most companies can't answer "if we let go of 20% of people" because they have no machine-readable map of what those people actually do, which customer outcomes depend on it, and what breaks if you remove them.
+
+The org chart says who reports to whom. It says nothing about which operational parameter satisfies which customer experience goal. That traceability doesn't exist in most companies. So AI can't optimize what was never specified.
+
+Your "AI Process Architect" role is the right instinct. But the job isn't designing AI processes – it's specifying the organization itself as a testable system. Process first, then AI validates it continuously.
