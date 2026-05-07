@@ -88,12 +88,17 @@ def get_tone_context() -> str:
         logging.warning(f"Tone file not found at {tone_file}.")
         return ""
 
+from datetime import datetime
 import time
 
-def generate_content(query: str, context: str, tone: str) -> str:
+def generate_content(query: str, context: str = "", tone: str = "", is_schedule_intent: bool = False) -> tuple[str, dict | None]:
     logging.info("Generating content via Gemini...")
     
-    system_prompt = f"""You are the 'Content Consigliere' AI representing Alex Lieberman (Co-founder of Morning Brew, Tenex).
+    if is_schedule_intent:
+        today = datetime.now().strftime("%A, %B %d, %Y")
+        system_prompt = f"You are a calendar assistant. Today is {today}. Extract the details, use the tool, and reply with a single, short confirmation sentence. Do not elaborate or use frameworks."
+    else:
+        system_prompt = f"""You are the 'Content Consigliere' AI representing Alex Lieberman (Co-founder of Morning Brew, Tenex).
 Your task is to respond to the user's prompt by generating content that mimics Alex's authentic voice, cadence, and mental models.
 
 ### GRAPH CONTEXT:
@@ -111,18 +116,37 @@ You MUST mimic the formatting, hook style, vocabulary, and conversational tone f
 - Address the user's prompt directly using the context provided.
 """
 
+    captured_event = None
+
+    def schedule_event(title: str, date: str, time: str) -> dict:
+        """Schedules an event on the calendar.
+        
+        Args:
+            title: The title of the event.
+            date: The date of the event (e.g. '2026-05-08').
+            time: The time of the event (e.g. '15:00').
+        """
+        nonlocal captured_event
+        captured_event = {"title": title, "date": date, "time": time}
+        logging.info(f"Captured schedule_event: {captured_event}")
+        return {"status": "success"}
+
+    config = types.GenerateContentConfig(
+        system_instruction=system_prompt,
+        temperature=0.7,
+        tools=[schedule_event],
+        automatic_function_calling=types.AutomaticFunctionCallingConfig(disable=False),
+    )
+
     max_retries = 3
     for attempt in range(max_retries):
         try:
             response = client.models.generate_content(
-                model='gemini-3-flash-preview',
+                model='gemini-2.5-flash',
                 contents=query,
-                config=types.GenerateContentConfig(
-                    system_instruction=system_prompt,
-                    temperature=0.7,
-                ),
+                config=config,
             )
-            return response.text
+            return response.text, captured_event
         except Exception as e:
             if "503" in str(e) and attempt < max_retries - 1:
                 logging.warning(f"Model busy (503). Retrying in {2**(attempt+1)}s...")
@@ -149,10 +173,12 @@ def main():
         tone_str = get_tone_context()
         
         # 4. Generate Output
-        final_content = generate_content(args.prompt, context_str, tone_str)
+        final_content, new_event = generate_content(args.prompt, context_str, tone_str)
         
         print("\n================== GENERATED CONTENT ==================\n")
         print(final_content)
+        if new_event:
+            print(f"\n[Tool Triggered] Event Scheduled: {new_event}")
         print("\n=======================================================\n")
         
     except Exception as e:

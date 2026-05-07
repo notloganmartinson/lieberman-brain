@@ -1,5 +1,6 @@
 import logging
-from typing import List, Dict, Any
+import re
+from typing import List, Dict, Any, Optional
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -38,6 +39,7 @@ class Source(BaseModel):
 class ChatResponse(BaseModel):
     reply: str
     sources: List[Source]
+    new_event: Optional[Dict[str, str]] = None
 
 def get_web_context(query: str, max_results: int = 3) -> tuple[str, List[Dict[str, Any]]]:
     """Fetches live web results via DuckDuckGo and returns formatted context + sources list."""
@@ -73,36 +75,54 @@ def chat_endpoint(request: ChatRequest):
     prompt = request.prompt
     logging.info(f"Received chat request with prompt: {prompt}")
 
-    # 1. Web Search
-    web_context_str, web_sources = get_web_context(prompt)
-    
-    # 2. Graph Retrieval
-    try:
-        query_embedding = embed_query(prompt)
-        graph_context_str, graph_sources = retrieve_context(query_embedding)
-    except Exception as e:
-        logging.error(f"Graph retrieval failed: {e}")
-        raise HTTPException(status_code=500, detail="Failed to retrieve graph context.")
+    # Semantic Router (Heuristic)
+    schedule_keywords = [r"\bschedule\b", r"\bbook\b", r"\bmeeting\b", r"\bcalendar\b", r"\bremind\b"]
+    is_schedule = any(re.search(kw, prompt.lower()) for kw in schedule_keywords)
 
-    # 3. Tone Context
-    tone_str = get_tone_context()
+    if is_schedule:
+        logging.info("Intent classified as SCHEDULE. Taking fast path.")
+        try:
+            reply, new_event = generate_content(prompt, is_schedule_intent=True)
+            # Add visual distinction using Markdown instead of raw HTML
+            reply = f"📅 **[Calendar Agent]** {reply}"
+        except Exception as e:
+            logging.error(f"Content generation failed: {e}")
+            raise HTTPException(status_code=500, detail="Failed to generate response.")
+        
+        all_sources = []
+    else:
+        logging.info("Intent classified as RESEARCH. Taking deep path.")
+        # 1. Web Search
+        web_context_str, web_sources = get_web_context(prompt)
+        
+        # 2. Graph Retrieval
+        try:
+            query_embedding = embed_query(prompt)
+            graph_context_str, graph_sources = retrieve_context(query_embedding)
+        except Exception as e:
+            logging.error(f"Graph retrieval failed: {e}")
+            raise HTTPException(status_code=500, detail="Failed to retrieve graph context.")
 
-    # 4. Combine Contexts for the Generation System Prompt
-    combined_context = f"{web_context_str}\n\n{graph_context_str}"
+        # 3. Tone Context
+        tone_str = get_tone_context()
 
-    # 5. Generate Response using the combined context
-    try:
-        reply = generate_content(prompt, combined_context, tone_str)
-    except Exception as e:
-        logging.error(f"Content generation failed: {e}")
-        raise HTTPException(status_code=500, detail="Failed to generate response.")
+        # 4. Combine Contexts for the Generation System Prompt
+        combined_context = f"{web_context_str}\n\n{graph_context_str}"
 
-    # Combine sources
-    all_sources = web_sources + graph_sources
+        # 5. Generate Response using the combined context
+        try:
+            reply, new_event = generate_content(prompt, combined_context, tone_str, is_schedule_intent=False)
+        except Exception as e:
+            logging.error(f"Content generation failed: {e}")
+            raise HTTPException(status_code=500, detail="Failed to generate response.")
+
+        # Combine sources
+        all_sources = web_sources + graph_sources
 
     return ChatResponse(
         reply=reply,
-        sources=all_sources
+        sources=all_sources,
+        new_event=new_event
     )
 
 if __name__ == "__main__":

@@ -5,6 +5,9 @@ function App() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [events, setEvents] = useState([]);
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  
   const messagesEndRef = useRef(null);
   const textareaRef = useRef(null);
 
@@ -40,12 +43,6 @@ function App() {
     
     setIsLoading(true);
 
-    // Create a placeholder message for the AI response
-    setMessages((prev) => [
-      ...prev,
-      { role: 'ai', content: '', sources: [] },
-    ]);
-
     try {
       const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
       const response = await fetch(`${apiUrl}/chat`, {
@@ -60,55 +57,27 @@ function App() {
         throw new Error('Network response was not ok');
       }
 
-      setIsLoading(false); // Stop loading indicator once stream begins
-
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder('utf-8');
-      let done = false;
-
-      while (!done) {
-        const { value, done: readerDone } = await reader.read();
-        done = readerDone;
-        if (value) {
-          const chunk = decoder.decode(value, { stream: true });
-          const lines = chunk.split('\n\n');
-          for (const line of lines) {
-            if (line.startsWith('data: ')) {
-              const dataStr = line.substring(6).trim();
-              if (!dataStr) continue;
-              try {
-                const data = JSON.parse(dataStr);
-                setMessages((prev) => {
-                  const newMessages = [...prev];
-                  const currentAiMsg = newMessages[newMessages.length - 1];
-                  
-                  if (data.type === 'sources') {
-                    currentAiMsg.sources = data.sources || [];
-                  } else if (data.type === 'chunk') {
-                    currentAiMsg.content += data.text;
-                  } else if (data.type === 'error') {
-                    currentAiMsg.content += `\n\n**Error:** ${data.message}`;
-                  }
-                  
-                  return newMessages;
-                });
-              } catch (e) {
-                console.error('Error parsing stream JSON:', e, dataStr);
-              }
-            }
-          }
-        }
+      const data = await response.json();
+      
+      if (data.new_event) {
+        setEvents((prev) => [...prev, data.new_event]);
       }
+      
+      const aiMessage = {
+        role: 'ai',
+        content: data.reply,
+        sources: data.sources || [],
+      };
+      
+      setMessages((prev) => [...prev, aiMessage]);
     } catch (error) {
       console.error('Error fetching chat response:', error);
-      setMessages((prev) => {
-        const newMessages = [...prev];
-        const currentAiMsg = newMessages[newMessages.length - 1];
-        if (currentAiMsg && currentAiMsg.role === 'ai') {
-           currentAiMsg.content = 'Sorry, I encountered an error while processing your request.';
-        }
-        return newMessages;
-      });
+      const errorMessage = {
+        role: 'ai',
+        content: 'Sorry, I encountered an error while processing your request.',
+        sources: [],
+      };
+      setMessages((prev) => [...prev, errorMessage]);
     } finally {
       setIsLoading(false);
     }
@@ -120,10 +89,52 @@ function App() {
         
         {/* Header */}
         <div className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-center z-10 sticky top-0">
-          <div className="flex items-center justify-between w-full max-w-4xl">
-            <h1 className="text-xl font-semibold text-gray-800 tracking-tight">Better Perplexity</h1>
-            <div className="text-xs font-medium bg-purple-100 text-purple-700 px-3 py-1 rounded-full">
-              Persona-Grounded
+          <div className="flex items-center justify-between w-full max-w-4xl relative">
+            <div className="flex items-center gap-3">
+              <h1 className="text-xl font-semibold text-gray-800 tracking-tight">Better Perplexity</h1>
+              <div className="text-xs font-medium bg-purple-100 text-purple-700 px-3 py-1 rounded-full hidden sm:block">
+                Persona-Grounded
+              </div>
+            </div>
+            
+            {/* Calendar UI */}
+            <div className="relative">
+              <button 
+                onClick={() => setIsCalendarOpen(!isCalendarOpen)}
+                className="relative p-2 text-gray-600 hover:bg-gray-100 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                aria-label="View Calendar"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                {events.length > 0 && (
+                  <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 border-2 border-white rounded-full"></span>
+                )}
+              </button>
+
+              {/* Dropdown Menu */}
+              {isCalendarOpen && (
+                <div className="absolute right-0 mt-2 w-72 bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden z-50 transform origin-top-right transition-all">
+                  <div className="px-4 py-3 bg-gray-50 border-b border-gray-100 flex justify-between items-center">
+                    <h3 className="text-sm font-semibold text-gray-800">Scheduled Events</h3>
+                    <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-medium">{events.length}</span>
+                  </div>
+                  <div className="max-h-64 overflow-y-auto p-2">
+                    {events.length === 0 ? (
+                      <p className="text-sm text-gray-500 text-center py-6">No upcoming events</p>
+                    ) : (
+                      <ul className="space-y-1">
+                        {events.map((evt, idx) => (
+                          <li key={idx} className="px-3 py-2 hover:bg-gray-50 rounded-lg transition-colors border border-transparent hover:border-gray-100">
+                            <p className="text-sm font-medium text-gray-800 truncate" title={evt.title}>{evt.title}</p>
+                            <p className="text-xs text-gray-500 mt-1 font-medium">{evt.date} • {evt.time}</p>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -144,8 +155,14 @@ function App() {
                     <div className="whitespace-pre-wrap">{msg.content}</div>
                   ) : (
                     <div className="prose prose-sm md:prose-base max-w-none text-gray-800 prose-p:leading-relaxed prose-pre:bg-gray-800 prose-pre:text-gray-100">
+                      {msg.content.startsWith("📅 **[Calendar Agent]**") && (
+                        <div className="text-purple-600 font-semibold mb-2 flex items-center gap-2">
+                          <span className="text-lg">📅</span>
+                          <span>[Calendar Agent]</span>
+                        </div>
+                      )}
                       <ReactMarkdown>
-                        {msg.content}
+                        {msg.content.replace("📅 **[Calendar Agent]** ", "").replace("📅 **[Calendar Agent]**", "")}
                       </ReactMarkdown>
                     </div>
                   )}
