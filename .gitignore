@@ -1,4 +1,34 @@
+# Credentials
 .env
+
+# Environments
 venv/
+.venv/
+env/
+
+# Data Files & Graph Models (The "Brain")
+chunked_data.json
+extracted_subgraphs.jsonl
+extraction.log
+*.json
+*.jsonl
+*.log
+
+# Raw Source Material
+youtube/*.txt
+linkedin/*.txt
+tweets/*.txt
+tweets/*.json
+
+# Keep the folder structures but ignore the data
+# (Exclude scripts from being ignored)
+!youtube/*.py
+!linkedin/*.py
+!tweets/*.py
+
+# Python artifacts
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.pytest_cache/
