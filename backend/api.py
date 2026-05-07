@@ -126,7 +126,7 @@ def chat_endpoint(request: ChatRequest, req: Request):
 
     # Secure Token Extraction
     auth_header = req.headers.get("Authorization")
-    access_token = None
+    access_token = request.access_token
     if auth_header and auth_header.startswith("Bearer "):
         access_token = auth_header.split(" ")[1]
 
