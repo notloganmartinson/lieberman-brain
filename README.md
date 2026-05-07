@@ -2,12 +2,13 @@
 
 An enterprise-grade GraphRAG (Retrieval-Augmented Generation) architecture upgraded into a "Persona-Grounded Perplexity" web application. This system synthesizes live internet search results with a structured Neo4j knowledge graph to write topical content in Alex Lieberman's authentic voice and business frameworks.
 
-## 🏗️ Architecture Overview
+## Architecture Overview
 
 1. **Backend (FastAPI + Neo4j):**
    - **Semantic Router:** Categorizes user intent. Schedule-related requests take a "Fast Path" directly to the Calendar Agent.
    - **Hybrid Retrieval:** Standard research queries trigger a "Deep Path" combining live web search (DuckDuckGo) with Neo4j graph traversal.
    - **GSuite Calendar Agent:** Uses Gemini Function Calling and Google OAuth to natively read, create, and delete events on the user's actual Google Calendar.
+   - **Localized Timezone Handling:** Automatically detects and respects the user's local timezone for all calendar operations.
 
 2. **Frontend (React + Vite + Tailwind):**
    - **Generative UI:** A clean, minimalistic chat interface that renders real-time citations and a dynamic calendar notification system.
@@ -15,7 +16,7 @@ An enterprise-grade GraphRAG (Retrieval-Augmented Generation) architecture upgra
    - **Markdown Precision:** Uses `react-markdown` with Tailwind Typography for premium text rendering.
    - **Persona-Grounded:** Grounded in a verified "tone file" to ensure output matches the target's unique cadence and vocabulary.
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Python 3.12+ & Node.js
@@ -42,9 +43,9 @@ An enterprise-grade GraphRAG (Retrieval-Augmented Generation) architecture upgra
    npm run dev
    ```
 
-## 🛠️ Technologies Used
+## Technologies Used
 - **Knowledge Graph:** Neo4j
-- **LLM / Embeddings:** Google Gemini (`gemini-2.5-flash`, `gemini-embedding-2`)
-- **Web Search:** DuckDuckGo (`ddgs`)
+- **LLM / Embeddings:** Google Gemini (gemini-2.5-flash, gemini-embedding-2)
+- **Web Search:** DuckDuckGo (ddgs)
 - **Frontend:** React, Vite, Tailwind CSS, React-Markdown
 - **API:** FastAPI
