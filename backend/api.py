@@ -3,7 +3,7 @@ import re
 from typing import List, Dict, Any, Optional
 import json
 from concurrent.futures import ThreadPoolExecutor
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from ddgs import DDGS
@@ -117,12 +117,18 @@ def fetch_graph_data(prompt: str) -> tuple[str, List[Dict[str, Any]]]:
         return "", []
 
 @app.post("/chat", response_model=ChatResponse)
-def chat_endpoint(request: ChatRequest):
+def chat_endpoint(request: ChatRequest, req: Request):
     if not request.prompt.strip():
         raise HTTPException(status_code=400, detail="Prompt cannot be empty.")
         
     prompt = request.prompt
     logging.info(f"Received chat request with prompt: {prompt}")
+
+    # Secure Token Extraction
+    auth_header = req.headers.get("Authorization")
+    access_token = None
+    if auth_header and auth_header.startswith("Bearer "):
+        access_token = auth_header.split(" ")[1]
 
     # LLM Semantic Router
     intent = classify_intent(prompt)
@@ -131,7 +137,7 @@ def chat_endpoint(request: ChatRequest):
     if is_schedule:
         logging.info("Intent classified as SCHEDULE. Taking fast path.")
         try:
-            reply, new_event = generate_content(prompt, is_schedule_intent=True, access_token=request.access_token)
+            reply, new_event = generate_content(prompt, is_schedule_intent=True, access_token=access_token)
             # Add visual distinction using Markdown instead of raw HTML
             reply = f"📅 **[Calendar Agent]** {reply}"
         except Exception as e:

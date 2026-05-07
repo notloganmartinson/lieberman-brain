@@ -97,7 +97,7 @@ def generate_content(query: str, context: str = "", tone: str = "", is_schedule_
     
     if is_schedule_intent:
         today = datetime.now().strftime("%A, %B %d, %Y")
-        system_prompt = f"You are a calendar assistant. Today is {today}. Extract the details, use the tools, and reply with a single, short confirmation sentence. Do not elaborate or use frameworks."
+        system_prompt = f"You are a calendar assistant. Today is {today}. The user's timezone is currently US/Central. All times requested should be interpreted and scheduled in this timezone. Extract the details, use the tools, and reply with a single, short confirmation sentence. Do not elaborate or use frameworks."
     else:
         system_prompt = f"""You are the 'Content Consigliere' AI representing Alex Lieberman (Co-founder of Morning Brew, Tenex).
 Your task is to respond to the user's prompt by generating content that mimics Alex's authentic voice, cadence, and mental models.
