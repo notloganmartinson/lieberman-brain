@@ -6,6 +6,10 @@ from neo4j import GraphDatabase
 from google import genai
 from google.genai import types
 from dotenv import load_dotenv
+from googleapiclient.discovery import build
+from google.oauth2.credentials import Credentials
+from datetime import datetime, timedelta
+import time
 
 load_dotenv()
 
@@ -88,15 +92,12 @@ def get_tone_context() -> str:
         logging.warning(f"Tone file not found at {tone_file}.")
         return ""
 
-from datetime import datetime
-import time
-
-def generate_content(query: str, context: str = "", tone: str = "", is_schedule_intent: bool = False) -> tuple[str, dict | None]:
+def generate_content(query: str, context: str = "", tone: str = "", is_schedule_intent: bool = False, access_token: str = None) -> tuple[str, dict | None]:
     logging.info("Generating content via Gemini...")
     
     if is_schedule_intent:
         today = datetime.now().strftime("%A, %B %d, %Y")
-        system_prompt = f"You are a calendar assistant. Today is {today}. Extract the details, use the tool, and reply with a single, short confirmation sentence. Do not elaborate or use frameworks."
+        system_prompt = f"You are a calendar assistant. Today is {today}. Extract the details, use the tools, and reply with a single, short confirmation sentence. Do not elaborate or use frameworks."
     else:
         system_prompt = f"""You are the 'Content Consigliere' AI representing Alex Lieberman (Co-founder of Morning Brew, Tenex).
 Your task is to respond to the user's prompt by generating content that mimics Alex's authentic voice, cadence, and mental models.
@@ -109,6 +110,11 @@ You MUST base your arguments, facts, and frameworks primarily on the following e
 You MUST mimic the formatting, hook style, vocabulary, and conversational tone found in these examples:
 {tone}
 
+### CONFLICT RESOLUTION RULES:
+- **Rule 1:** Graph > Web for Philosophy (The Graph Context is the ultimate source of truth for Alex's frameworks, mental models, and opinions).
+- **Rule 2:** Web > Graph for Recent Facts (Trust the Web Context only for highly recent or time-sensitive data, news, or trends).
+- **Rule 3:** If the Graph Context and Web Context massively conflict, synthesize them naturally in your writing (e.g., "The internet thinks X, but my framework is Y").
+
 ### INSTRUCTIONS:
 - Write in the first person ("I", "my") as Alex Lieberman.
 - Do NOT explicitly mention that you are using a graph or context provided. Just speak naturally.
@@ -118,23 +124,61 @@ You MUST mimic the formatting, hook style, vocabulary, and conversational tone f
 
     captured_event = None
 
-    def schedule_event(title: str, date: str, time: str) -> dict:
-        """Schedules an event on the calendar.
+    def get_upcoming_meetings() -> dict:
+        """Fetches the next 10 upcoming events from the user's primary Google Calendar."""
+        if not access_token:
+            return {"status": "error", "message": "User must sign in with Google first to access calendar data."}
+        try:
+            creds = Credentials(token=access_token)
+            service = build('calendar', 'v3', credentials=creds)
+            now = datetime.utcnow().isoformat() + 'Z'
+            events_result = service.events().list(calendarId='primary', timeMin=now,
+                                                  maxResults=10, singleEvents=True,
+                                                  orderBy='startTime').execute()
+            events = events_result.get('items', [])
+            return {"status": "success", "events": [{"title": e.get('summary', 'Busy'), "start": e['start'].get('dateTime', e['start'].get('date'))} for e in events]}
+        except Exception as e:
+            logging.error(f"Calendar list error: {e}")
+            return {"status": "error", "message": str(e)}
+
+    def schedule_meeting(title: str, time: str) -> dict:
+        """Schedules an event on the user's Google Calendar.
         
         Args:
             title: The title of the event.
-            date: The date of the event (e.g. '2026-05-08').
-            time: The time of the event (e.g. '15:00').
+            time: The ISO 8601 start time of the event (e.g. '2026-05-08T15:00:00Z').
         """
         nonlocal captured_event
-        captured_event = {"title": title, "date": date, "time": time}
-        logging.info(f"Captured schedule_event: {captured_event}")
-        return {"status": "success"}
+        if not access_token:
+            return {"status": "error", "message": "User must sign in with Google first to schedule a meeting."}
+        try:
+            creds = Credentials(token=access_token)
+            service = build('calendar', 'v3', credentials=creds)
+            
+            event = {
+                'summary': title,
+                'start': {'dateTime': time},
+            }
+            
+            try:
+                dt = datetime.fromisoformat(time.replace('Z', '+00:00'))
+                event['end'] = {'dateTime': (dt + timedelta(hours=1)).isoformat()}
+            except Exception:
+                event['end'] = {'dateTime': time}
+
+            created_event = service.events().insert(calendarId='primary', body=event).execute()
+            
+            captured_event = {"title": title, "date": time.split('T')[0] if 'T' in time else time, "time": time.split('T')[1].replace('Z', '') if 'T' in time else time}
+            logging.info(f"Captured schedule_event: {captured_event}")
+            return {"status": "success", "link": created_event.get('htmlLink')}
+        except Exception as e:
+            logging.error(f"Calendar insert error: {e}")
+            return {"status": "error", "message": str(e)}
 
     config = types.GenerateContentConfig(
         system_instruction=system_prompt,
         temperature=0.7,
-        tools=[schedule_event],
+        tools=[get_upcoming_meetings, schedule_meeting],
         automatic_function_calling=types.AutomaticFunctionCallingConfig(disable=False),
     )
 

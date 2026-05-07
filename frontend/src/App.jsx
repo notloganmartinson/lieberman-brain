@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
+import { useGoogleLogin } from '@react-oauth/google';
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -7,6 +8,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [events, setEvents] = useState([]);
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const [accessToken, setAccessToken] = useState(null);
   
   const messagesEndRef = useRef(null);
   const textareaRef = useRef(null);
@@ -18,6 +20,11 @@ function App() {
   useEffect(() => {
     scrollToBottom();
   }, [messages, isLoading]);
+
+  const login = useGoogleLogin({
+    onSuccess: (tokenResponse) => setAccessToken(tokenResponse.access_token),
+    scope: 'https://www.googleapis.com/auth/calendar.readonly https://www.googleapis.com/auth/calendar.events',
+  });
 
   const handleInputChange = (e) => {
     setInput(e.target.value);
@@ -50,7 +57,7 @@ function App() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ prompt: userMessage.content }),
+        body: JSON.stringify({ prompt: userMessage.content, access_token: accessToken }),
       });
 
       if (!response.ok) {
@@ -98,7 +105,17 @@ function App() {
             </div>
             
             {/* Calendar UI */}
-            <div className="relative">
+            <div className="flex items-center gap-4 relative">
+              {!accessToken ? (
+                <button
+                  onClick={() => login()}
+                  className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  Sign in with Google
+                </button>
+              ) : (
+                <div className="text-sm font-medium text-green-600 px-2">Signed In</div>
+              )}
               <button 
                 onClick={() => setIsCalendarOpen(!isCalendarOpen)}
                 className="relative p-2 text-gray-600 hover:bg-gray-100 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
