@@ -40,6 +40,12 @@ function App() {
     
     setIsLoading(true);
 
+    // Create a placeholder message for the AI response
+    setMessages((prev) => [
+      ...prev,
+      { role: 'ai', content: '', sources: [] },
+    ]);
+
     try {
       const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
       const response = await fetch(`${apiUrl}/chat`, {
@@ -54,23 +60,55 @@ function App() {
         throw new Error('Network response was not ok');
       }
 
-      const data = await response.json();
-      
-      const aiMessage = {
-        role: 'ai',
-        content: data.reply,
-        sources: data.sources || [],
-      };
-      
-      setMessages((prev) => [...prev, aiMessage]);
+      setIsLoading(false); // Stop loading indicator once stream begins
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder('utf-8');
+      let done = false;
+
+      while (!done) {
+        const { value, done: readerDone } = await reader.read();
+        done = readerDone;
+        if (value) {
+          const chunk = decoder.decode(value, { stream: true });
+          const lines = chunk.split('\n\n');
+          for (const line of lines) {
+            if (line.startsWith('data: ')) {
+              const dataStr = line.substring(6).trim();
+              if (!dataStr) continue;
+              try {
+                const data = JSON.parse(dataStr);
+                setMessages((prev) => {
+                  const newMessages = [...prev];
+                  const currentAiMsg = newMessages[newMessages.length - 1];
+                  
+                  if (data.type === 'sources') {
+                    currentAiMsg.sources = data.sources || [];
+                  } else if (data.type === 'chunk') {
+                    currentAiMsg.content += data.text;
+                  } else if (data.type === 'error') {
+                    currentAiMsg.content += `\n\n**Error:** ${data.message}`;
+                  }
+                  
+                  return newMessages;
+                });
+              } catch (e) {
+                console.error('Error parsing stream JSON:', e, dataStr);
+              }
+            }
+          }
+        }
+      }
     } catch (error) {
       console.error('Error fetching chat response:', error);
-      const errorMessage = {
-        role: 'ai',
-        content: 'Sorry, I encountered an error while processing your request.',
-        sources: [],
-      };
-      setMessages((prev) => [...prev, errorMessage]);
+      setMessages((prev) => {
+        const newMessages = [...prev];
+        const currentAiMsg = newMessages[newMessages.length - 1];
+        if (currentAiMsg && currentAiMsg.role === 'ai') {
+           currentAiMsg.content = 'Sorry, I encountered an error while processing your request.';
+        }
+        return newMessages;
+      });
     } finally {
       setIsLoading(false);
     }
