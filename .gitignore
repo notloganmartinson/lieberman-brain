@@ -15,7 +15,6 @@ frontend/dist/
 chunked_data.json
 extracted_subgraphs.jsonl
 extraction.log
-*.json
 *.jsonl
 *.log
 
