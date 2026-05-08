@@ -1,16 +1,23 @@
 import logging
 import re
 import time
+import os
+import httpx
 from typing import List, Dict, Any, Optional
 import json
 from concurrent.futures import ThreadPoolExecutor
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException, Request, File, UploadFile, Form
+from fastapi.responses import JSONResponse
+import filetype
 from fastapi.concurrency import run_in_threadpool
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from ddgs import DDGS
 from google.genai import types
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
 
 from backend.ghostwriter import (
     embed_query,
@@ -33,6 +40,15 @@ async def lifespan(app: FastAPI):
 # Initialize FastAPI App
 app = FastAPI(title="Lieberman GraphRAG API", description="Better Perplexity Backend", lifespan=lifespan)
 
+limiter = Limiter(key_func=get_remote_address)
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+
+@app.exception_handler(Exception)
+async def global_exception_handler(request: Request, exc: Exception):
+    logging.error(f"Unhandled Exception: {str(exc)}")
+    return JSONResponse(status_code=500, content={"detail": "Internal Server Error"})
+
 # Add CORS Middleware to allow React Frontend
 app.add_middleware(
     CORSMiddleware,
@@ -41,6 +57,14 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+@app.middleware("http")
+async def limit_upload_size(request: Request, call_next):
+    if request.url.path == "/upload":
+        content_length = request.headers.get("content-length")
+        if content_length and int(content_length) > 10 * 1024 * 1024: # 10 MB limit
+            return JSONResponse(status_code=413, content={"detail": "Payload too large."})
+    return await call_next(request)
 
 class ChatRequest(BaseModel):
     prompt: str
@@ -138,29 +162,62 @@ def fetch_document_data(query_embedding: List[float], session_id: str) -> tuple[
         return "", []
 
 @app.post("/upload")
-async def upload_document(session_id: str = Form(...), file: UploadFile = File(...)):
+@limiter.limit("3/minute")
+async def upload_document(request: Request, session_id: str = Form(...), file: UploadFile = File(...)):
     try:
         file_bytes = await file.read()
+        
+        # Magic Bytes Verification
+        kind = filetype.guess(file_bytes)
+        if kind is not None:
+            if kind.mime.startswith("application/x-") or kind.mime in ["application/x-msdownload", "application/x-executable"]:
+                raise HTTPException(status_code=415, detail="Unsupported or malicious file type detected.")
+            # Alternatively, specifically whitelist allowed mime types
+            allowed_mimes = ["application/pdf", "text/plain", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"]
+            if kind.mime not in allowed_mimes and not kind.mime.startswith("text/") and not kind.mime.startswith("image/"):
+                raise HTTPException(status_code=415, detail=f"File type {kind.mime} is not supported.")
+
         chunks = await run_in_threadpool(process_file, file.filename, file_bytes)
         await run_in_threadpool(store_document_chunks, session_id, file.filename, chunks)
         return {"status": "success", "filename": file.filename, "chunks_processed": len(chunks)}
+    except HTTPException:
+        raise
     except Exception as e:
         logging.error(f"Failed to process upload: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/chat", response_model=ChatResponse)
-def chat_endpoint(request: ChatRequest, req: Request):
-    if not request.prompt.strip():
+@limiter.limit("10/minute")
+def chat_endpoint(request: Request, payload: ChatRequest):
+    if not payload.prompt.strip():
         raise HTTPException(status_code=400, detail="Prompt cannot be empty.")
         
-    prompt = request.prompt
+    prompt = payload.prompt
     logging.info(f"Received chat request with prompt: {prompt}")
 
     # Secure Token Extraction
-    auth_header = req.headers.get("Authorization")
-    access_token = request.access_token
+    auth_header = request.headers.get("Authorization")
+    access_token = payload.access_token
     if auth_header and auth_header.startswith("Bearer "):
         access_token = auth_header.split(" ")[1]
+
+    # Token Validation
+    if access_token:
+        try:
+            with httpx.Client() as client:
+                resp = client.get(f"https://oauth2.googleapis.com/tokeninfo?access_token={access_token}", timeout=5.0)
+                if resp.status_code != 200:
+                    logging.warning(f"Token validation failed with status {resp.status_code}")
+                    raise HTTPException(status_code=401, detail="Invalid or expired authentication token")
+                
+                token_data = resp.json()
+                expected_aud = os.environ.get("GOOGLE_CLIENT_ID")
+                if expected_aud and token_data.get("aud") != expected_aud:
+                    logging.warning(f"Token validation failed: audience mismatch")
+                    raise HTTPException(status_code=401, detail="Invalid or expired authentication token")
+        except httpx.RequestError as e:
+            logging.error(f"Network error during token validation: {e}")
+            raise HTTPException(status_code=500, detail="Authentication service unavailable")
 
     # LLM Semantic Router
     intent = classify_intent(prompt)
@@ -169,7 +226,7 @@ def chat_endpoint(request: ChatRequest, req: Request):
     if is_schedule:
         logging.info("Intent classified as SCHEDULE. Taking fast path.")
         try:
-            reply, new_event = generate_content(prompt, is_schedule_intent=True, access_token=access_token, history=request.history)
+            reply, new_event = generate_content(prompt, is_schedule_intent=True, access_token=access_token, history=payload.history)
             # Add visual distinction using Markdown instead of raw HTML
             reply = f"📅 **[Calendar Agent]** {reply}"
         except Exception as e:
@@ -187,7 +244,7 @@ def chat_endpoint(request: ChatRequest, req: Request):
         with ThreadPoolExecutor(max_workers=3) as executor:
             future_web = executor.submit(get_web_context, prompt)
             future_graph = executor.submit(fetch_graph_data, query_embedding)
-            future_doc = executor.submit(fetch_document_data, query_embedding, request.session_id)
+            future_doc = executor.submit(fetch_document_data, query_embedding, payload.session_id)
             
             web_context_str, web_sources = future_web.result()
             graph_context_str, graph_sources = future_graph.result()
@@ -201,7 +258,7 @@ def chat_endpoint(request: ChatRequest, req: Request):
 
         # 5. Generate Response using the combined context
         try:
-            reply, new_event = generate_content(prompt, combined_context, tone_str, is_schedule_intent=False, access_token=access_token, history=request.history, user_timezone=request.user_timezone)
+            reply, new_event = generate_content(prompt, combined_context, tone_str, is_schedule_intent=False, access_token=access_token, history=payload.history, user_timezone=payload.user_timezone)
         except Exception as e:
             logging.error(f"Content generation failed: {e}")
             raise HTTPException(status_code=500, detail="Failed to generate response.")
