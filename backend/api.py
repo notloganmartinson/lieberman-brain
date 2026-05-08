@@ -69,7 +69,7 @@ def classify_intent(prompt: str) -> str:
     try:
         logging.info(f"Classifying intent for prompt: {prompt}")
         response = client.models.generate_content(
-            model='gemini-1.5-flash',
+            model='gemini-2.5-flash',
             contents=f"Classify the intent of the following prompt. It must be either 'RESEARCH' or 'SCHEDULE'. Prompt: {prompt}",
             config=types.GenerateContentConfig(
                 response_mime_type="application/json",
