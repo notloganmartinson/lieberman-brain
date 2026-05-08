@@ -109,6 +109,13 @@ function App() {
     if (!input.trim() || isUploading) return;
 
     const userMessage = { role: 'user', content: input, attachment: attachedFile, isCancelled: false };
+    
+    // Capture conversation history before state update
+    const history = messages.map(m => ({
+      role: m.role === 'user' ? 'user' : 'model',
+      content: m.content
+    }));
+
     setMessages((prev) => [...prev, userMessage]);
     setInput('');
     setAttachedFile(null); // Clear from input bar
@@ -129,7 +136,12 @@ function App() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ prompt: userMessage.content, session_id: sessionId, access_token: accessToken }),
+        body: JSON.stringify({ 
+          prompt: userMessage.content, 
+          session_id: sessionId, 
+          access_token: accessToken,
+          history: history 
+        }),
         signal: controller.signal,
       });
 

@@ -128,7 +128,7 @@ def get_tone_context() -> str:
         logging.warning(f"Tone file not found at {tone_file}.")
         return ""
 
-def generate_content(query: str, context: str = "", tone: str = "", is_schedule_intent: bool = False, access_token: str = None) -> tuple[str, dict | None]:
+def generate_content(query: str, context: str = "", tone: str = "", is_schedule_intent: bool = False, access_token: str = None, history: list = None) -> tuple[str, dict | None]:
     logging.info("Generating content via Gemini...")
     
     if is_schedule_intent:
@@ -162,6 +162,7 @@ You MUST mimic the formatting, hook style, vocabulary, and conversational tone f
 
     def get_upcoming_meetings() -> dict:
         """Fetches the next 10 upcoming events from the user's primary Google Calendar."""
+        logging.info("Tool called: get_upcoming_meetings")
         if not access_token:
             return {"status": "error", "message": "User must sign in with Google first to access calendar data."}
         try:
@@ -184,6 +185,7 @@ You MUST mimic the formatting, hook style, vocabulary, and conversational tone f
             title: The title of the event.
             time: The ISO 8601 start time of the event including the timezone offset (e.g. '2026-05-08T15:00:00-05:00'). Do NOT use 'Z'.
         """
+        logging.info(f"Tool called: schedule_meeting (title: {title}, time: {time})")
         nonlocal captured_event
         if not access_token:
             return {"status": "error", "message": "User must sign in with Google first to schedule a meeting."}
@@ -206,7 +208,7 @@ You MUST mimic the formatting, hook style, vocabulary, and conversational tone f
             
             captured_event = {"title": title, "date": time.split('T')[0] if 'T' in time else time, "time": time.split('T')[1].replace('Z', '') if 'T' in time else time}
             logging.info(f"Captured schedule_event: {captured_event}")
-            return {"status": "success", "link": created_event.get('htmlLink')}
+            return {"status": "success", "id": created_event.get('id'), "link": created_event.get('htmlLink')}
         except Exception as e:
             logging.error(f"Calendar insert error: {e}")
             return {"status": "error", "message": str(e)}
@@ -217,6 +219,7 @@ You MUST mimic the formatting, hook style, vocabulary, and conversational tone f
         Args:
             event_id: The unique ID of the event to delete. You MUST use get_upcoming_meetings first to find this ID.
         """
+        logging.info(f"Tool called: delete_meeting (event_id: {event_id})")
         if not access_token:
             return {"status": "error", "message": "User must sign in with Google first to delete a meeting."}
         try:
@@ -236,12 +239,27 @@ You MUST mimic the formatting, hook style, vocabulary, and conversational tone f
         automatic_function_calling=types.AutomaticFunctionCallingConfig(disable=False),
     )
 
+    # Multi-turn Content construction
+    contents = []
+    if history:
+        for msg in history:
+            contents.append(types.Content(
+                role=msg["role"],
+                parts=[types.Part.from_text(text=msg["content"])]
+            ))
+    
+    # Append the latest message
+    contents.append(types.Content(
+        role="user",
+        parts=[types.Part.from_text(text=query)]
+    ))
+
     max_retries = 3
     for attempt in range(max_retries):
         try:
             response = client.models.generate_content(
                 model='gemini-2.5-flash',
-                contents=query,
+                contents=contents,
                 config=config,
             )
             return response.text, captured_event

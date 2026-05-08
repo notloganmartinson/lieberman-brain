@@ -36,6 +36,7 @@ class ChatRequest(BaseModel):
     prompt: str
     session_id: str
     access_token: Optional[str] = None
+    history: Optional[List[Dict[str, str]]] = []
 
 class Source(BaseModel):
     type: str  # "web" or "graph"
@@ -159,7 +160,7 @@ def chat_endpoint(request: ChatRequest, req: Request):
     if is_schedule:
         logging.info("Intent classified as SCHEDULE. Taking fast path.")
         try:
-            reply, new_event = generate_content(prompt, is_schedule_intent=True, access_token=access_token)
+            reply, new_event = generate_content(prompt, is_schedule_intent=True, access_token=access_token, history=request.history)
             # Add visual distinction using Markdown instead of raw HTML
             reply = f"📅 **[Calendar Agent]** {reply}"
         except Exception as e:
@@ -191,7 +192,7 @@ def chat_endpoint(request: ChatRequest, req: Request):
 
         # 5. Generate Response using the combined context
         try:
-            reply, new_event = generate_content(prompt, combined_context, tone_str, is_schedule_intent=False, access_token=access_token)
+            reply, new_event = generate_content(prompt, combined_context, tone_str, is_schedule_intent=False, access_token=access_token, history=request.history)
         except Exception as e:
             logging.error(f"Content generation failed: {e}")
             raise HTTPException(status_code=500, detail="Failed to generate response.")
