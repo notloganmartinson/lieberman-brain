@@ -78,8 +78,6 @@ def classify_intent(prompt: str) -> str:
         logging.error(f"Intent classification failed: {e}. Defaulting to RESEARCH.")
         return "RESEARCH"
 
-import time
-
 def get_web_context(query: str, max_results: int = 3) -> tuple[str, List[Dict[str, Any]]]:
     """Fetches live web results via DuckDuckGo and returns formatted context + sources list."""
     logging.info(f"Running web search for: {query}")

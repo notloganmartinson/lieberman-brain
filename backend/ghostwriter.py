@@ -1,6 +1,7 @@
 import os
 import logging
 import argparse
+from pathlib import Path
 from typing import List, Dict, Any
 from neo4j import GraphDatabase
 from google import genai
@@ -113,13 +114,19 @@ def embed_query(query: str) -> List[float]:
     )
     return response.embeddings[0].values
 
-def embed_chunks(chunks: List[str]) -> List[List[float]]:
-    logging.info(f"Embedding {len(chunks)} chunks in batch...")
-    response = client.models.embed_content(
-        model='gemini-embedding-2',
-        contents=chunks,
-    )
-    return [e.values for e in response.embeddings]
+def embed_chunks(chunks: List[str], batch_size: int = 100) -> List[List[float]]:
+    logging.info(f"Embedding {len(chunks)} chunks in batches of {batch_size}...")
+    all_embeddings = []
+    
+    for i in range(0, len(chunks), batch_size):
+        batch = chunks[i:i + batch_size]
+        response = client.models.embed_content(
+            model='gemini-embedding-2',
+            contents=batch,
+        )
+        all_embeddings.extend([e.values for e in response.embeddings])
+        
+    return all_embeddings
 
 def retrieve_document_context(query_embedding: List[float], session_id: str, top_k: int = 3) -> tuple[str, list]:
     logging.info(f"Querying Neo4j for vector-ranked user document context (session: {session_id})...")
