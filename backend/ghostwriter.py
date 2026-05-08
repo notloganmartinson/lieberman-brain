@@ -250,10 +250,31 @@ You MUST mimic the formatting, hook style, vocabulary, and conversational tone f
 
     calendar_tools = CalendarTools(access_token)
 
+    def get_upcoming_meetings_tool() -> dict:
+        """Fetches the next 10 upcoming events from the user's primary Google Calendar."""
+        return calendar_tools.get_upcoming_meetings()
+
+    def schedule_meeting_tool(title: str, time: str) -> dict:
+        """Schedules an event on the user's Google Calendar.
+        
+        Args:
+            title: The title of the event.
+            time: The ISO 8601 start time of the event including the timezone offset.
+        """
+        return calendar_tools.schedule_meeting(title, time)
+
+    def delete_meeting_tool(event_id: str) -> dict:
+        """Deletes an event from the user's Google Calendar.
+        
+        Args:
+            event_id: The unique ID of the event to delete.
+        """
+        return calendar_tools.delete_meeting(event_id)
+
     config = types.GenerateContentConfig(
         system_instruction=system_prompt,
         temperature=0.7,
-        tools=[calendar_tools.get_upcoming_meetings, calendar_tools.schedule_meeting, calendar_tools.delete_meeting],
+        tools=[get_upcoming_meetings_tool, schedule_meeting_tool, delete_meeting_tool],
         automatic_function_calling=types.AutomaticFunctionCallingConfig(disable=False),
     )
 
