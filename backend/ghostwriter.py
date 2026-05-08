@@ -113,6 +113,14 @@ def embed_query(query: str) -> List[float]:
     )
     return response.embeddings[0].values
 
+def embed_chunks(chunks: List[str]) -> List[List[float]]:
+    logging.info(f"Embedding {len(chunks)} chunks in batch...")
+    response = client.models.embed_content(
+        model='gemini-embedding-2',
+        contents=chunks,
+    )
+    return [e.values for e in response.embeddings]
+
 def retrieve_document_context(query_embedding: List[float], session_id: str, top_k: int = 3) -> tuple[str, list]:
     logging.info(f"Querying Neo4j for vector-ranked user document context (session: {session_id})...")
     
@@ -276,10 +284,9 @@ You MUST mimic the formatting, hook style, vocabulary, and conversational tone f
 def store_document_chunks(session_id: str, filename: str, chunks: List[str]):
     logging.info(f"Storing {len(chunks)} chunks for file {filename} (session: {session_id}) using batching...")
     
-    # Process embeddings sequentially in Python
+    vectors = embed_chunks(chunks)
     payload = []
-    for chunk in chunks:
-        vector = embed_query(chunk)
+    for chunk, vector in zip(chunks, vectors):
         payload.append({
             "id": uuid.uuid4().hex,
             "text": chunk,

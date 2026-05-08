@@ -1,5 +1,6 @@
 import logging
 import re
+import time
 from typing import List, Dict, Any, Optional
 import json
 from concurrent.futures import ThreadPoolExecutor
@@ -37,6 +38,7 @@ class ChatRequest(BaseModel):
     session_id: str
     access_token: Optional[str] = None
     history: Optional[List[Dict[str, str]]] = []
+    user_timezone: Optional[str] = "US/Central"
 
 class Source(BaseModel):
     type: str  # "web" or "graph"
