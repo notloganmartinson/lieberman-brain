@@ -27,6 +27,83 @@ if not all([NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD, GEMINI_API_KEY]):
     raise ValueError("Missing Neo4j or Gemini credentials in environment variables.")
 
 client = genai.Client(api_key=GEMINI_API_KEY)
+neo4j_driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USERNAME, NEO4J_PASSWORD))
+
+class CalendarTools:
+    def __init__(self, access_token: str | None):
+        self.access_token = access_token
+        self.captured_event = None
+
+    def get_upcoming_meetings(self) -> dict:
+        """Fetches the next 10 upcoming events from the user's primary Google Calendar."""
+        logging.info("Tool called: get_upcoming_meetings")
+        if not self.access_token:
+            return {"status": "error", "message": "User must sign in with Google first to access calendar data."}
+        try:
+            creds = Credentials(token=self.access_token)
+            service = build('calendar', 'v3', credentials=creds)
+            now = datetime.utcnow().isoformat() + 'Z'
+            events_result = service.events().list(calendarId='primary', timeMin=now,
+                                                  maxResults=10, singleEvents=True,
+                                                  orderBy='startTime').execute()
+            events = events_result.get('items', [])
+            return {"status": "success", "events": [{"id": e['id'], "title": e.get('summary', 'Busy'), "start": e['start'].get('dateTime', e['start'].get('date'))} for e in events]}
+        except Exception as e:
+            logging.error(f"Calendar list error: {e}")
+            return {"status": "error", "message": str(e)}
+
+    def schedule_meeting(self, title: str, time: str) -> dict:
+        """Schedules an event on the user's Google Calendar.
+        
+        Args:
+            title: The title of the event.
+            time: The ISO 8601 start time of the event including the timezone offset (e.g. '2026-05-08T15:00:00-05:00'). Do NOT use 'Z'.
+        """
+        logging.info(f"Tool called: schedule_meeting (title: {title}, time: {time})")
+        if not self.access_token:
+            return {"status": "error", "message": "User must sign in with Google first to schedule a meeting."}
+        try:
+            creds = Credentials(token=self.access_token)
+            service = build('calendar', 'v3', credentials=creds)
+            
+            event = {
+                'summary': title,
+                'start': {'dateTime': time},
+            }
+            
+            try:
+                dt = datetime.fromisoformat(time.replace('Z', '+00:00'))
+                event['end'] = {'dateTime': (dt + timedelta(hours=1)).isoformat()}
+            except Exception:
+                event['end'] = {'dateTime': time}
+
+            created_event = service.events().insert(calendarId='primary', body=event).execute()
+            
+            self.captured_event = {"title": title, "date": time.split('T')[0] if 'T' in time else time, "time": time.split('T')[1].replace('Z', '') if 'T' in time else time}
+            logging.info(f"Captured schedule_event: {self.captured_event}")
+            return {"status": "success", "id": created_event.get('id'), "link": created_event.get('htmlLink')}
+        except Exception as e:
+            logging.error(f"Calendar insert error: {e}")
+            return {"status": "error", "message": str(e)}
+
+    def delete_meeting(self, event_id: str) -> dict:
+        """Deletes an event from the user's Google Calendar.
+        
+        Args:
+            event_id: The unique ID of the event to delete. You MUST use get_upcoming_meetings first to find this ID.
+        """
+        logging.info(f"Tool called: delete_meeting (event_id: {event_id})")
+        if not self.access_token:
+            return {"status": "error", "message": "User must sign in with Google first to delete a meeting."}
+        try:
+            creds = Credentials(token=self.access_token)
+            service = build('calendar', 'v3', credentials=creds)
+            service.events().delete(calendarId='primary', eventId=event_id).execute()
+            logging.info(f"Deleted schedule_event with ID: {event_id}")
+            return {"status": "success", "message": f"Event {event_id} deleted successfully."}
+        except Exception as e:
+            logging.error(f"Calendar delete error: {e}")
+            return {"status": "error", "message": str(e)}
 
 def embed_query(query: str) -> List[float]:
     logging.info("Embedding the user query...")
@@ -38,11 +115,10 @@ def embed_query(query: str) -> List[float]:
 
 def retrieve_document_context(query_embedding: List[float], session_id: str, top_k: int = 3) -> tuple[str, list]:
     logging.info(f"Querying Neo4j for vector-ranked user document context (session: {session_id})...")
-    driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USERNAME, NEO4J_PASSWORD))
     
     context_str = ""
     sources = []
-    with driver.session() as session:
+    with neo4j_driver.session() as session:
         query = """
         MATCH (n:UserDocumentChunk {session_id: $session_id})
         WHERE n.embedding IS NOT NULL
@@ -67,16 +143,14 @@ def retrieve_document_context(query_embedding: List[float], session_id: str, top
                     "snippet": f"Vector-matched context retrieved from {filename}"
                 })
                 
-    driver.close()
     return context_str, sources
 
 def retrieve_context(query_embedding: List[float], top_k: int = 5) -> tuple[str, list]:
     logging.info("Querying Neo4j for relevant graph context...")
-    driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USERNAME, NEO4J_PASSWORD))
     
     context_str = ""
     sources = []
-    with driver.session() as session:
+    with neo4j_driver.session() as session:
         # Step A: Vector Search to find Entry Nodes
         vector_query = """
         CALL db.index.vector.queryNodes('concept_description_embedding', $top_k, $query_embedding)
@@ -114,26 +188,27 @@ def retrieve_context(query_embedding: List[float], top_k: int = 5) -> tuple[str,
             justification = f" (Because: {r['justification']})" if r['justification'] else ""
             context_str += f"- {r['source']} [{r['relationship']}] {r['target']}{justification}\n"
             
-    driver.close()
     return context_str, sources
 
 def get_tone_context() -> str:
-    # Use absolute path relative to this script's directory
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    tone_file = os.path.join(base_dir, "..", "etl", "data", "tweets", "tone_and_replies.txt")
-    if os.path.exists(tone_file):
-        with open(tone_file, "r", encoding="utf-8") as f:
-            return f.read()
-    else:
-        logging.warning(f"Tone file not found at {tone_file}.")
-        return ""
+    try:
+        tone_file = Path(__file__).resolve().parent.parent / "etl" / "data" / "tweets" / "tone_and_replies.txt"
+        if tone_file.exists():
+            with open(tone_file, "r", encoding="utf-8") as f:
+                return f.read()
+        else:
+            logging.warning(f"Tone file not found at {tone_file}.")
+            return "You are Alex Lieberman. Write with punchy hooks and clear formatting."
+    except Exception as e:
+        logging.error(f"Error reading tone file: {e}")
+        return "You are Alex Lieberman. Write with punchy hooks and clear formatting."
 
-def generate_content(query: str, context: str = "", tone: str = "", is_schedule_intent: bool = False, access_token: str = None, history: list = None) -> tuple[str, dict | None]:
+def generate_content(query: str, context: str = "", tone: str = "", is_schedule_intent: bool = False, access_token: str = None, history: list = None, user_timezone: str = "US/Central") -> tuple[str, dict | None]:
     logging.info("Generating content via Gemini...")
     
     if is_schedule_intent:
         today = datetime.now().strftime("%A, %B %d, %Y")
-        system_prompt = f"You are a calendar assistant. Today is {today}. The user's timezone is currently US/Central. All times requested should be interpreted and scheduled in this timezone. Extract the details, use the tools, and reply with a single, short confirmation sentence. Do not elaborate or use frameworks."
+        system_prompt = f"You are a calendar assistant. Today is {today}. The user's timezone is currently {user_timezone}. All times requested should be interpreted and scheduled in this timezone. Extract the details, use the tools, and reply with a single, short confirmation sentence. Do not elaborate or use frameworks."
     else:
         system_prompt = f"""You are the 'Content Consigliere' AI representing Alex Lieberman (Co-founder of Morning Brew, Tenex).
 Your task is to respond to the user's prompt by generating content that mimics Alex's authentic voice, cadence, and mental models.
@@ -158,84 +233,12 @@ You MUST mimic the formatting, hook style, vocabulary, and conversational tone f
 - Address the user's prompt directly using the context provided.
 """
 
-    captured_event = None
-
-    def get_upcoming_meetings() -> dict:
-        """Fetches the next 10 upcoming events from the user's primary Google Calendar."""
-        logging.info("Tool called: get_upcoming_meetings")
-        if not access_token:
-            return {"status": "error", "message": "User must sign in with Google first to access calendar data."}
-        try:
-            creds = Credentials(token=access_token)
-            service = build('calendar', 'v3', credentials=creds)
-            now = datetime.utcnow().isoformat() + 'Z'
-            events_result = service.events().list(calendarId='primary', timeMin=now,
-                                                  maxResults=10, singleEvents=True,
-                                                  orderBy='startTime').execute()
-            events = events_result.get('items', [])
-            return {"status": "success", "events": [{"id": e['id'], "title": e.get('summary', 'Busy'), "start": e['start'].get('dateTime', e['start'].get('date'))} for e in events]}
-        except Exception as e:
-            logging.error(f"Calendar list error: {e}")
-            return {"status": "error", "message": str(e)}
-
-    def schedule_meeting(title: str, time: str) -> dict:
-        """Schedules an event on the user's Google Calendar.
-        
-        Args:
-            title: The title of the event.
-            time: The ISO 8601 start time of the event including the timezone offset (e.g. '2026-05-08T15:00:00-05:00'). Do NOT use 'Z'.
-        """
-        logging.info(f"Tool called: schedule_meeting (title: {title}, time: {time})")
-        nonlocal captured_event
-        if not access_token:
-            return {"status": "error", "message": "User must sign in with Google first to schedule a meeting."}
-        try:
-            creds = Credentials(token=access_token)
-            service = build('calendar', 'v3', credentials=creds)
-            
-            event = {
-                'summary': title,
-                'start': {'dateTime': time},
-            }
-            
-            try:
-                dt = datetime.fromisoformat(time.replace('Z', '+00:00'))
-                event['end'] = {'dateTime': (dt + timedelta(hours=1)).isoformat()}
-            except Exception:
-                event['end'] = {'dateTime': time}
-
-            created_event = service.events().insert(calendarId='primary', body=event).execute()
-            
-            captured_event = {"title": title, "date": time.split('T')[0] if 'T' in time else time, "time": time.split('T')[1].replace('Z', '') if 'T' in time else time}
-            logging.info(f"Captured schedule_event: {captured_event}")
-            return {"status": "success", "id": created_event.get('id'), "link": created_event.get('htmlLink')}
-        except Exception as e:
-            logging.error(f"Calendar insert error: {e}")
-            return {"status": "error", "message": str(e)}
-
-    def delete_meeting(event_id: str) -> dict:
-        """Deletes an event from the user's Google Calendar.
-        
-        Args:
-            event_id: The unique ID of the event to delete. You MUST use get_upcoming_meetings first to find this ID.
-        """
-        logging.info(f"Tool called: delete_meeting (event_id: {event_id})")
-        if not access_token:
-            return {"status": "error", "message": "User must sign in with Google first to delete a meeting."}
-        try:
-            creds = Credentials(token=access_token)
-            service = build('calendar', 'v3', credentials=creds)
-            service.events().delete(calendarId='primary', eventId=event_id).execute()
-            logging.info(f"Deleted schedule_event with ID: {event_id}")
-            return {"status": "success", "message": f"Event {event_id} deleted successfully."}
-        except Exception as e:
-            logging.error(f"Calendar delete error: {e}")
-            return {"status": "error", "message": str(e)}
+    calendar_tools = CalendarTools(access_token)
 
     config = types.GenerateContentConfig(
         system_instruction=system_prompt,
         temperature=0.7,
-        tools=[get_upcoming_meetings, schedule_meeting, delete_meeting],
+        tools=[calendar_tools.get_upcoming_meetings, calendar_tools.schedule_meeting, calendar_tools.delete_meeting],
         automatic_function_calling=types.AutomaticFunctionCallingConfig(disable=False),
     )
 
@@ -262,7 +265,7 @@ You MUST mimic the formatting, hook style, vocabulary, and conversational tone f
                 contents=contents,
                 config=config,
             )
-            return response.text, captured_event
+            return response.text, calendar_tools.captured_event
         except Exception as e:
             if "503" in str(e) and attempt < max_retries - 1:
                 logging.warning(f"Model busy (503). Retrying in {2**(attempt+1)}s...")
@@ -270,53 +273,44 @@ You MUST mimic the formatting, hook style, vocabulary, and conversational tone f
                 continue
             raise e
 
-def process_and_store_chunk(chunk: str, session_id: str, filename: str):
-    """Helper function to embed and store a single chunk in Neo4j."""
-    vector = embed_query(chunk)
-    chunk_id = uuid.uuid4().hex
-    
-    driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USERNAME, NEO4J_PASSWORD))
-    with driver.session() as session:
-        cypher = """
-        MERGE (n:UserDocumentChunk {id: $id})
-        SET n.session_id = $session_id,
-            n.filename = $filename,
-            n.text = $text
-        WITH n
-        CALL db.create.setNodeVectorProperty(n, 'embedding', $vector)
-        RETURN n
-        """
-        session.run(
-            cypher,
-            id=chunk_id,
-            session_id=session_id,
-            filename=filename,
-            text=chunk,
-            vector=vector
-        )
-    driver.close()
-
 def store_document_chunks(session_id: str, filename: str, chunks: List[str]):
-    logging.info(f"Storing {len(chunks)} chunks for file {filename} (session: {session_id}) using multithreading...")
+    logging.info(f"Storing {len(chunks)} chunks for file {filename} (session: {session_id}) using batching...")
     
-    # Ensure Vector Index exists once before threading
-    driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USERNAME, NEO4J_PASSWORD))
-    with driver.session() as session:
+    # Process embeddings sequentially in Python
+    payload = []
+    for chunk in chunks:
+        vector = embed_query(chunk)
+        payload.append({
+            "id": uuid.uuid4().hex,
+            "text": chunk,
+            "vector": vector
+        })
+
+    # Ensure Vector Index exists
+    with neo4j_driver.session() as session:
         session.run(
             "CREATE VECTOR INDEX user_document_chunk_embedding IF NOT EXISTS "
             "FOR (n:UserDocumentChunk) ON (n.embedding) "
             "OPTIONS {indexConfig: {`vector.dimensions`: 768, `vector.similarity_function`: 'cosine'}}"
         )
-    driver.close()
-    
-    with ThreadPoolExecutor(max_workers=10) as executor:
-        futures = [
-            executor.submit(process_and_store_chunk, chunk, session_id, filename)
-            for chunk in chunks
-        ]
-        # Wait for all to complete and catch exceptions if any
-        for future in futures:
-            future.result()
+        
+        # Batch insert chunks
+        cypher = """
+        UNWIND $payload AS batch
+        MERGE (n:UserDocumentChunk {id: batch.id})
+        SET n.session_id = $session_id,
+            n.filename = $filename,
+            n.text = batch.text
+        WITH n, batch
+        CALL db.create.setNodeVectorProperty(n, 'embedding', batch.vector)
+        RETURN count(n)
+        """
+        session.run(
+            cypher,
+            payload=payload,
+            session_id=session_id,
+            filename=filename
+        )
             
     logging.info("Chunks successfully stored in Neo4j.")
 

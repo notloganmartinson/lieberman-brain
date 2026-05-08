@@ -5,14 +5,15 @@ An enterprise-grade GraphRAG (Retrieval-Augmented Generation) architecture upgra
 ## Architecture Overview
 
 1. **Backend (FastAPI + Neo4j):**
-   - **Semantic Router:** Categorizes user intent. Schedule-related requests take a "Fast Path" directly to the Calendar Agent.
+   - **Semantic Router:** Categorizes user intent. Schedule-related requests take a "Fast Path" directly to the Calendar Agent. Powered by the ultra-fast `gemini-1.5-flash-8b` model for minimum latency.
    - **Hybrid Retrieval:** Standard research queries trigger a "Deep Path" combining live web search (DuckDuckGo) with Neo4j graph traversal.
    - **Multi-Turn Chat Memory:** The system maintains full conversational context. Frontend message history is mapped to Gemini's native `Content` objects, allowing for follow-up questions and complex, multi-step workflows.
-   - **Document Ingestion Pipeline:** Users can upload PDF, DOCX, CSV, and TXT files. Chunks are extracted, semantically chunked, and ingested into Neo4j using multithreading (ThreadPoolExecutor) for maximum speed.
+   - **Document Ingestion Pipeline:** Users can upload PDF, DOCX, CSV, and TXT files. Chunks are extracted, semantically chunked, and ingested into Neo4j using highly optimized batch transactions (`UNWIND` Cypher queries) for maximum database efficiency.
    - **Session-Aware Vector Search:** User-uploaded documents are queried from Neo4j using true cosine similarity vector search scoped to their `session_id`.
    - **Embedding Optimization:** The RAG pipeline computes the user prompt embedding exactly once and shares it across all parallel retrieval tasks (Graph and Docs).
-   - **GSuite Calendar Agent:** Uses Gemini Function Calling and Google OAuth to natively manage the user's calendar. Optimized with event ID tracking to support multi-turn deletion and modification.
-   - **Localized Timezone Handling:** Automatically detects and respects the user's local timezone for all calendar operations.
+   - **GSuite Calendar Agent:** Uses Gemini Function Calling and Google OAuth to natively manage the user's calendar. Calendar tools are cleanly encapsulated in an object-oriented `CalendarTools` class.
+   - **Localized Timezone Handling:** Automatically receives and respects the user's dynamic local timezone for all calendar operations.
+   - **Production-Ready:** Configured with robust cross-platform path resolution, dynamic CORS origins, and global database connection pooling.
 
 2. **Frontend (React + Vite + Tailwind):**
    - **Generative UI:** A clean, minimalistic chat interface that renders real-time citations and a dynamic calendar notification system.

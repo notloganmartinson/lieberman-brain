@@ -26,7 +26,7 @@ app = FastAPI(title="Lieberman GraphRAG API", description="Better Perplexity Bac
 # Add CORS Middleware to allow React Frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173", "https://lieberman-brain.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -58,7 +58,7 @@ def classify_intent(prompt: str) -> str:
     try:
         logging.info(f"Classifying intent for prompt: {prompt}")
         response = client.models.generate_content(
-            model='gemini-2.5-flash',
+            model='gemini-1.5-flash-8b',
             contents=f"Classify the intent of the following prompt. It must be either 'RESEARCH' or 'SCHEDULE'. Prompt: {prompt}",
             config=types.GenerateContentConfig(
                 response_mime_type="application/json",
@@ -192,7 +192,7 @@ def chat_endpoint(request: ChatRequest, req: Request):
 
         # 5. Generate Response using the combined context
         try:
-            reply, new_event = generate_content(prompt, combined_context, tone_str, is_schedule_intent=False, access_token=access_token, history=request.history)
+            reply, new_event = generate_content(prompt, combined_context, tone_str, is_schedule_intent=False, access_token=access_token, history=request.history, user_timezone=request.user_timezone)
         except Exception as e:
             logging.error(f"Content generation failed: {e}")
             raise HTTPException(status_code=500, detail="Failed to generate response.")
