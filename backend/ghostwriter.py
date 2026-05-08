@@ -382,7 +382,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-on failed: {e}")
-
-if __name__ == "__main__":
-    main()
