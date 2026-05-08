@@ -267,7 +267,7 @@ You MUST mimic the formatting, hook style, vocabulary, and conversational tone f
         """Deletes an event from the user's Google Calendar.
         
         Args:
-            event_id: The unique ID of the event to delete.
+            event_id: The unique ID of the event to delete. You MUST use get_upcoming_meetings_tool first to find this ID if you only have the event's name.
         """
         return calendar_tools.delete_meeting(event_id)
 
@@ -379,6 +379,10 @@ def main():
         
     except Exception as e:
         logging.error(f"Agent execution failed: {e}")
+
+if __name__ == "__main__":
+    main()
+on failed: {e}")
 
 if __name__ == "__main__":
     main()
