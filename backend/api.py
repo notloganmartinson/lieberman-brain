@@ -4,7 +4,9 @@ import time
 from typing import List, Dict, Any, Optional
 import json
 from concurrent.futures import ThreadPoolExecutor
+from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException, Request, File, UploadFile, Form
+from fastapi.concurrency import run_in_threadpool
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from ddgs import DDGS
@@ -17,12 +19,19 @@ from backend.ghostwriter import (
     get_tone_context,
     generate_content,
     client,
-    store_document_chunks
+    store_document_chunks,
+    neo4j_driver
 )
 from backend.document_parser import process_file
 
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    yield
+    logging.info("Shutting down Neo4j driver connections...")
+    neo4j_driver.close()
+
 # Initialize FastAPI App
-app = FastAPI(title="Lieberman GraphRAG API", description="Better Perplexity Backend")
+app = FastAPI(title="Lieberman GraphRAG API", description="Better Perplexity Backend", lifespan=lifespan)
 
 # Add CORS Middleware to allow React Frontend
 app.add_middleware(
@@ -132,8 +141,8 @@ def fetch_document_data(query_embedding: List[float], session_id: str) -> tuple[
 async def upload_document(session_id: str = Form(...), file: UploadFile = File(...)):
     try:
         file_bytes = await file.read()
-        chunks = process_file(file.filename, file_bytes)
-        store_document_chunks(session_id, file.filename, chunks)
+        chunks = await run_in_threadpool(process_file, file.filename, file_bytes)
+        await run_in_threadpool(store_document_chunks, session_id, file.filename, chunks)
         return {"status": "success", "filename": file.filename, "chunks_processed": len(chunks)}
     except Exception as e:
         logging.error(f"Failed to process upload: {e}")
