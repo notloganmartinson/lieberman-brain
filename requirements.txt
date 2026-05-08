@@ -19,7 +19,6 @@ googleapis-common-protos==1.75.0
 h11==0.16.0
 httpcore==1.0.9
 httplib2==0.31.2
-httpx==0.28.1
 idna==3.13
 jsonpatch==1.33
 jsonpointer==3.1.1
