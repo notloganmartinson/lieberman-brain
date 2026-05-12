@@ -1,7 +1,19 @@
+import os
+from dotenv import load_dotenv
 from neo4j import GraphDatabase
 
-URI = "***REMOVED***"
-AUTH = ("***REMOVED***", "***REMOVED***")
+load_dotenv()
+
+# Load environment variables
+NEO4J_URI = os.environ.get("NEO4J_URI")
+NEO4J_USERNAME = os.environ.get("NEO4J_USERNAME")
+NEO4J_PASSWORD = os.environ.get("NEO4J_PASSWORD")
+
+if not all([NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD]):
+    raise ValueError("Missing Neo4j credentials in environment variables.")
+
+URI = NEO4J_URI
+AUTH = (NEO4J_USERNAME, NEO4J_PASSWORD)
 
 def run_audit():
     with GraphDatabase.driver(URI, auth=AUTH) as driver:
